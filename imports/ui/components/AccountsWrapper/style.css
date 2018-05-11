@@ -28,30 +28,30 @@
 }
 
 .login-close-text:after {
-  content: '\2716';
+  content: "\2716";
   visibility: visible;
-	position: absolute;
-	top: 0;
-	right: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .accounts-dialog {
   background-color: white;
   border: 1px solid #dbdbdb;
   border-radius: 5px;
-  padding: .5rem .5rem 1rem;
+  padding: 0.5rem 0.5rem 1rem;
   text-align: left;
 }
 
 .accounts-dialog label {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
 }
 
 .accounts-dialog input {
   border: 0;
   border-bottom: 1px solid #8f8f8f;
   color: #8f8f8f;
-  font-size: .9rem;
+  font-size: 0.9rem;
 }
 
 .accounts-dialog input:focus {
@@ -64,10 +64,10 @@
 }
 
 .login-link-text {
-  color: white;
+  color: black;
   display: inline-block;
-  margin-bottom: .5rem;
-  margin-right: .5rem;
+  margin-bottom: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .login-close-text {
@@ -76,8 +76,8 @@
 
 .additional-link-container {
   display: inline-block;
-  margin-right: .5rem;
-  margin-top: .5rem;
+  margin-right: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 [id="signup-link"],
@@ -104,7 +104,7 @@
 }
 
 [id="login-buttons-open-change-password"] {
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
   text-decoration: underline;
 }
 
@@ -113,7 +113,7 @@
   background-color: #a071b8;
   color: white;
   display: block;
-  padding: .25rem .5rem;
+  padding: 0.25rem 0.5rem;
   text-align: center;
 }
 
@@ -129,7 +129,7 @@
   display: flex;
   justify-content: space-between;
   line-height: 1;
-  margin-bottom: .5rem;
+  margin-bottom: 0.5rem;
 }
 
 [id="login-password-label-and-input"],
@@ -139,5 +139,5 @@
 
 .login-form .error-message {
   color: red;
-  font-size: .85rem;
+  font-size: 0.85rem;
 }
