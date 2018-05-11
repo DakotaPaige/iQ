@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import Question from "../imports/ui/containers/Question";
-// import Question2 from "./containers/Question-2/";
-// import Question3 from "./containers/Question-3/";
-// import Question4 from "./containers/Question-4/";
+import Question2 from "../imports/ui/containers/Question-2";
+import Question3 from "../imports/ui/containers/Question-3";
+import Question4 from "../imports/ui/containers/Question-4";
 import { Meteor } from "meteor/meteor";
 import HomePage from "../imports/ui/containers/HomePage";
 import Score from "../imports/ui/containers/Score";
@@ -29,10 +29,10 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={HomePage} />
               <Route exact path="/Film" component={Question} />
-              {/* <Route exact path="/Sports" component={Question2} />
+              <Route exact path="/Sports" component={Question2} />
               <Route exact path="/Mythology" component={Question3} />
-              <Route exact path="/History" component={Question4} /> */}
-              {/* <Route exact path="/Score" component={Score} /> */}
+              <Route exact path="/History" component={Question4} />
+              <Route exact path="/Score" component={Score} />
             </Switch>
           </div>
         </Router>
