@@ -1,0 +1,25 @@
+{
+  "name": "meteor-iq",
+  "version": "1.0.0",
+  "description": "iQ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DakotaPaige/iQ.git"
+  },
+  "author": "Dakota Mauza, Calvin Ting, Cliff Chan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DakotaPaige/iQ/issues"
+  },
+  "homepage": "https://github.com/DakotaPaige/iQ#readme",
+  "dependencies": {
+    "@babel/runtime": "^7.0.0-beta.46",
+    "prop-types": "^15.6.1",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
+  }
+}
