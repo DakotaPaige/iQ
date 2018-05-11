@@ -25,7 +25,7 @@ class App extends Component {
     let buttonClicked = () =>
       this.setState({ isClicked: !this.state.isClicked });
     return (
-      <div className="App" style={{ width: "90%" }}>
+      <div className="app-wrapper" style={{ width: "90%" }}>
         <div className="login-wrapper">
           <AccountsUIWrapper />
         </div>
