@@ -4,7 +4,7 @@ import Score from "../Score";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
-class QuestionContainer extends Component {
+class ComputerScienceContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -19,7 +19,7 @@ class QuestionContainer extends Component {
   //film
   componentDidMount() {
     const questionLink =
-      "https://opentdb.com/api.php?amount=10&category=20&difficulty=medium&type=multiple";
+      "https://opentdb.com/api.php?amount=10&category=18&difficulty=medium&type=multiple";
     this.setState({ isLoading: true });
     fetch(questionLink)
       .then(allQuestions => allQuestions.json())
@@ -74,4 +74,4 @@ class QuestionContainer extends Component {
   }
 }
 
-export default QuestionContainer;
+export default ComputerScienceContainer;

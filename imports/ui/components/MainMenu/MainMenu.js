@@ -5,10 +5,10 @@ const MainMenu = () => {
   return (
     <div>
       <Link to="/">Home Page </Link>
+      <Link to="/Computer-Science"> Computer Science </Link>
       <Link to="/Film"> Film </Link>
-      <Link to="/Sports"> Sports </Link>
-      <Link to="/Mythology"> Mythology </Link>
-      <Link to="/History"> History </Link>
+      <Link to="/General-Knowledge"> General Knowledge </Link>
+      <Link to="/Science-Nature"> Science & Nature</Link>
     </div>
   );
 };

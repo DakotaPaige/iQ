@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Question from "../imports/ui/containers/Question";
-import Question2 from "../imports/ui/containers/Question-2";
-import Question3 from "../imports/ui/containers/Question-3";
-import Question4 from "../imports/ui/containers/Question-4";
+import ComputerScienceQuestion from "../imports/ui/containers/ComputerScienceQuestion";
+import FilmQuestion from "../imports/ui/containers/FilmQuestion";
+import GeneralKQuestion from "../imports/ui/containers/GeneralKQuestion";
+import ScienceNatureQuestion from "../imports/ui/containers/ScienceNatureQuestion";
 import { Meteor } from "meteor/meteor";
 import HomePage from "../imports/ui/containers/HomePage";
 import Score from "../imports/ui/containers/Score";
@@ -28,10 +28,22 @@ class App extends Component {
             <MainMenu />
             <Switch>
               <Route exact path="/" component={HomePage} />
-              <Route exact path="/Film" component={Question} />
-              <Route exact path="/Sports" component={Question2} />
-              <Route exact path="/Mythology" component={Question3} />
-              <Route exact path="/History" component={Question4} />
+              <Route
+                exact
+                path="/Computer-Science"
+                component={ComputerScienceQuestion}
+              />
+              <Route exact path="/Film" component={FilmQuestion} />
+              <Route
+                exact
+                path="/General-Knowledge"
+                component={GeneralKQuestion}
+              />
+              <Route
+                exact
+                path="/Science-Nature"
+                component={ScienceNatureQuestion}
+              />
               <Route exact path="/Score" component={Score} />
             </Switch>
           </div>

@@ -3,8 +3,9 @@ import Questions from "./Questions";
 import Score from "../Score";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
+//context api
 
-class QuestionContainer extends Component {
+class FilmContainer extends Component {
   constructor() {
     super();
     this.state = {
@@ -74,4 +75,6 @@ class QuestionContainer extends Component {
   }
 }
 
-export default QuestionContainer;
+export default FilmContainer;
+
+//https://opentdb.com/api.php?amount=10&category=21&difficulty=medium&type=multiple

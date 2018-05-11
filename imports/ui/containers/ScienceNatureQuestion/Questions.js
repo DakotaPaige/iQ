@@ -1,5 +1,5 @@
 import React from "react";
-import QuestionContainer from "./QuestionContainer";
+import ScienceNatureContainer from "./ScienceNatureContainer";
 
 const Question = props => {
   let quizzes = props.allQuestions.results;
@@ -60,7 +60,6 @@ const Question = props => {
                     {question.incorrect_answers.map((answers, index) => {
                       allQuestions.push(answers);
                     })}
-
                     {allQuestions
                       .sort(function(a, b) {
                         return 0.5 - Math.random();
