@@ -101,8 +101,3 @@ const Question = props => {
 };
 
 export default Question;
-
-// {quizzes &&
-//   quizzes.map((question, index) => (
-//     <li key={index}>{console.log(question)}</li>
-//   ))}

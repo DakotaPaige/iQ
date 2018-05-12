@@ -7,9 +7,12 @@ const Question = props => {
   let current = props.current;
   //temporarary answer
   //ask if we need splice or can we just fix that
+  //no pushes inside render
   let correctAnswer = props.answer.splice(10, 10);
   let score = props.score;
   let allQuestions = [];
+
+  //add some method to push questions with (Category, Question, Correct,Incorrect,Difficulty (Maybe))
   {
     quizzes &&
       quizzes.map((question, index) => {
@@ -19,16 +22,32 @@ const Question = props => {
             answer: question.correct_answer,
             correct: true
           }),
-          // allQuestions.push(question.correct_answer),
           question.incorrect_answers.map((answers, index) => {
             newQuestions.push({ answer: answers, correct: false });
-            // allQuestions.push(answers);
           })
         );
       });
   }
+  {
+    quizzes &&
+      quizzes.map((question, index) => {
+        return (
+          <div key={index}>
+            {current == index ? (
+              <div>
+                {allQuestions.push(question.correct_answer)}
+                {question.incorrect_answers.map((answers, index) => {
+                  allQuestions.push(answers);
+                })}
+              </div>
+            ) : null}
+          </div>
+        );
+      });
+  }
 
-  // console.log(allQuestions);
+  //mongo handle
+
   let handleChange = e => {
     e.preventDefault();
     const selected = e.target.value;
@@ -42,8 +61,6 @@ const Question = props => {
     });
   };
 
-  //how to do the random, push incorrect and correc into array, then random, then
-  //for loop or map to itereate through and return button
   return (
     <div>
       <h1>Questions</h1>
@@ -56,10 +73,6 @@ const Question = props => {
                   <div>
                     <br />
                     <p>{question.question}</p>
-                    {allQuestions.push(question.correct_answer)}
-                    {question.incorrect_answers.map((answers, index) => {
-                      allQuestions.push(answers);
-                    })}
                     {allQuestions
                       .sort(function(a, b) {
                         return 0.5 - Math.random();
@@ -81,15 +94,9 @@ const Question = props => {
               </div>
             );
           })}
-        {/* {console.log(quizzes)} */}
       </div>
     </div>
   );
 };
 
 export default Question;
-
-// {quizzes &&
-//   quizzes.map((question, index) => (
-//     <li key={index}>{console.log(question)}</li>
-//   ))}
