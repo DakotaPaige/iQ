@@ -15,15 +15,11 @@ import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      // isClicked: false
-    };
+    this.state = {};
   }
 
   render() {
-    console.log(this.props);
-    let buttonClicked = () =>
-      this.setState({ isClicked: !this.state.isClicked });
+    // console.log(this.props);
     return (
       <div className="App" style={{ width: "90%" }}>
         <div className="login-wrapper">
