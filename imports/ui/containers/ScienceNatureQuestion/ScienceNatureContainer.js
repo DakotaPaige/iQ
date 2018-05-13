@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import Questions from "./Questions";
+import Questionss from "./Questions";
 import Score from "../Score";
+import { Questions } from "../../../api/questions";
+import { Meteor } from "meteor/meteor";
+
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -10,7 +13,6 @@ class ScienceNatureContainer extends Component {
     this.state = {
       allQuestions: [],
       isLoading: false,
-      isClicked: false,
       score: 0,
       current: 0,
       answer: []
@@ -28,26 +30,23 @@ class ScienceNatureContainer extends Component {
       .catch(error => console.log(error));
   }
 
+  addQuestions(questions) {
+    Meteor.call("questions.addQuestions", questions);
+  }
+
   setCurrent(current) {
     this.setState({ current });
   }
   setScore(score) {
     this.setState({ score });
   }
-  setCorrectAnswer(answer) {
-    this.setState({ answer });
-  }
 
   render() {
     let quizzes = this.state.allQuestions.results;
-    let quizzesArray = [];
     quizzes &&
       quizzes.map((question, index) => {
         this.state.answer.push(question.correct_answer);
       });
-    // console.log(this.state.answer);
-    let buttonClicked = () =>
-      this.setState({ isClicked: !this.state.isClicked });
     return (
       <div>
         {this.state.isLoading ? (
@@ -55,12 +54,12 @@ class ScienceNatureContainer extends Component {
         ) : (
           <div>
             {this.state.current !== 10 ? (
-              <Questions
+              <Questionss
                 setScore={this.setScore.bind(this)}
                 current={this.state.current}
                 setCurrent={this.setCurrent.bind(this)}
+                addQuestions={this.addQuestions.bind(this)}
                 allQuestions={this.state.allQuestions}
-                setCorrectAnswer={this.setCorrectAnswer.bind(this)}
                 score={this.state.score}
                 answer={this.state.answer}
               />

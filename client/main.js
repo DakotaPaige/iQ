@@ -11,19 +11,15 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import MainMenu from "../imports/ui/components/MainMenu";
 import ReactDOM from "react-dom";
 import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
+import { Questions } from "../imports/api/questions";
 
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      // isClicked: false
-    };
+    this.state = {};
   }
 
   render() {
-    console.log(this.props);
-    let buttonClicked = () =>
-      this.setState({ isClicked: !this.state.isClicked });
     return (
       <div className="App" style={{ width: "90%" }}>
         <div className="login-wrapper">
