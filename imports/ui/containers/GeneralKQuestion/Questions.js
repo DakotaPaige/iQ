@@ -1,5 +1,6 @@
 import React from "react";
 import GeneralKContainer from "./GeneralKContainer";
+import { Questions } from "../../../api/questions";
 
 const Question = props => {
   let quizzes = props.allQuestions.results;
@@ -11,6 +12,7 @@ const Question = props => {
   let correctAnswer = props.answer.splice(10, 10);
   let score = props.score;
   let allQuestions = [];
+  let newQuizzes = quizzes;
 
   //add some method to push questions with (Category, Question, Correct,Incorrect,Difficulty (Maybe))
   {
@@ -35,6 +37,7 @@ const Question = props => {
           <div key={index}>
             {current == index ? (
               <div>
+                {props.addQuestions(question)}
                 {allQuestions.push(question.correct_answer)}
                 {question.incorrect_answers.map((answers, index) => {
                   allQuestions.push(answers);
@@ -47,7 +50,6 @@ const Question = props => {
   }
 
   //mongo handle
-
   let handleChange = e => {
     e.preventDefault();
     const selected = e.target.value;

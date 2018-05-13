@@ -1,6 +1,8 @@
 import React, { Component } from "react";
-import Questions from "./Questions";
+import Questionss from "./Questions";
 import Score from "../Score";
+import { Questions } from "../../../api/questions";
+import { Meteor } from "meteor/meteor";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -28,6 +30,15 @@ class ComputerScienceContainer extends Component {
       .catch(error => console.log(error));
   }
 
+  addQuestions(questions) {
+    Questions.insert({
+      category: questions.category,
+      question: questions.question,
+      correct: questions.correct_answer,
+      incorrect: questions.incorrect_answers
+    });
+  }
+
   setCurrent(current) {
     this.setState({ current });
   }
@@ -40,14 +51,10 @@ class ComputerScienceContainer extends Component {
 
   render() {
     let quizzes = this.state.allQuestions.results;
-    let quizzesArray = [];
     quizzes &&
       quizzes.map((question, index) => {
         this.state.answer.push(question.correct_answer);
       });
-    // console.log(this.state.answer);
-    let buttonClicked = () =>
-      this.setState({ isClicked: !this.state.isClicked });
     return (
       <div>
         {this.state.isLoading ? (
@@ -55,10 +62,11 @@ class ComputerScienceContainer extends Component {
         ) : (
           <div>
             {this.state.current !== 10 ? (
-              <Questions
+              <Questionss
                 setScore={this.setScore.bind(this)}
                 current={this.state.current}
                 setCurrent={this.setCurrent.bind(this)}
+                addQuestions={this.addQuestions.bind(this)}
                 allQuestions={this.state.allQuestions}
                 setCorrectAnswer={this.setCorrectAnswer.bind(this)}
                 score={this.state.score}
