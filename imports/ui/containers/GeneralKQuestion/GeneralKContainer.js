@@ -29,12 +29,7 @@ class GeneralKContainer extends Component {
   }
 
   addQuestions(questions) {
-    Questions.insert({
-      category: questions.category,
-      question: questions.question,
-      correct: questions.correct_answer,
-      incorrect: questions.incorrect_answers
-    });
+    Meteor.call("questions.addQuestions", questions);
   }
 
   setCurrent(current) {
