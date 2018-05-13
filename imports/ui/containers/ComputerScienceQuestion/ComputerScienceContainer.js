@@ -12,7 +12,6 @@ class ComputerScienceContainer extends Component {
     this.state = {
       allQuestions: [],
       isLoading: false,
-      isClicked: false,
       score: 0,
       current: 0,
       answer: []
@@ -40,9 +39,6 @@ class ComputerScienceContainer extends Component {
   setScore(score) {
     this.setState({ score });
   }
-  setCorrectAnswer(answer) {
-    this.setState({ answer });
-  }
 
   render() {
     let quizzes = this.state.allQuestions.results;
@@ -63,7 +59,6 @@ class ComputerScienceContainer extends Component {
                 setCurrent={this.setCurrent.bind(this)}
                 addQuestions={this.addQuestions.bind(this)}
                 allQuestions={this.state.allQuestions}
-                setCorrectAnswer={this.setCorrectAnswer.bind(this)}
                 score={this.state.score}
                 answer={this.state.answer}
               />

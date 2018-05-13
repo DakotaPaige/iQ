@@ -17,18 +17,9 @@ class App extends Component {
   constructor() {
     super();
     this.state = {};
-    // this.addQuestions = this.addQuestions.bind(this);
   }
 
-  // addQuestions(event) {
-  //   event.preventDefault();
-  //   Questions.insert({
-  //     complete: false
-  //   });
-  // }
-
   render() {
-    // console.log(Questions);
     return (
       <div className="App" style={{ width: "90%" }}>
         <div className="login-wrapper">
@@ -43,8 +34,6 @@ class App extends Component {
                 exact
                 path="/Computer-Science"
                 component={ComputerScienceQuestion}
-                // addQuestions={this.addQuestions}
-                // onClick={this.addQuestions}
               />
               <Route exact path="/Film" component={FilmQuestion} />
               <Route
@@ -67,11 +56,9 @@ class App extends Component {
 }
 
 const AppContainer = withTracker(() => {
-  // const questions = Questions.find().fetch();
   return {
     currentUser: Meteor.user(),
     currentUserId: Meteor.userId()
-    // questions
   };
 })(App);
 
