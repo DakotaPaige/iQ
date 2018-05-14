@@ -24,8 +24,11 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={{ width: "90%" }}>
-        <div className="login-wrapper">
-          <AccountsUIWrapper />
+        <div className="modal-login, card">
+          <h1 className="modal-title">iQ</h1>
+          <div className="modal-header">
+            <AccountsUIWrapper />
+          </div>
         </div>
         <Router>
           <div>
@@ -49,7 +52,7 @@ class App extends Component {
                 component={ScienceNatureQuestion}
               />
               <Route exact path="/Score" component={Score} />
-              <Route exact path="/Leaderboard" component={Leaderboard} />
+              <Route exact path="/Leaderboard" render={(props) => (<Leaderboard allUsers={this.props.users}/>)}/>
             </Switch>
           </div>
         </Router>
@@ -59,9 +62,11 @@ class App extends Component {
 }
 
 const AppContainer = withTracker(() => {
+  Meteor.subscribe("users");
   return {
     currentUser: Meteor.user(),
-    currentUserId: Meteor.userId()
+    currentUserId: Meteor.userId(),
+    users: Meteor.users.find().fetch()
   };
 })(App);
 

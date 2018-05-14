@@ -5,22 +5,6 @@ import { Meteor } from "meteor/meteor";
 import "./style.css";
 import { Users } from "../../../api/users";
 
-console.log(Users);
-
-// Meteor.subscribe('userData');
-// const userData = Meteor.users.find({}).fetch();
-// console.log(userData);
-// console.log(Meteor.users.find({}).collection._docs._map);
-// console.log(Meteor.users.find({}).fetch());
-
-// const users = Meteor.call('users.getUsers');
-// console.log(users);
-
-Meteor.subscribe("users");
-console.log(Meteor.users.find().fetch());
-
-console.log(Meteor.users.find());
-
 const mockUserData = [
   {
     emails: [
@@ -116,6 +100,30 @@ function compareSciencePoints(a, b) {
   return a.profile.points[3].points - b.profile.points[3].points;
 }
 
+// const sortedAllPoints = mockUserData.sort(compareAllPoints).slice().reverse();
+const sortedComputerPoints = mockUserData
+  .sort(compareComputerPoints)
+  .slice()
+  .reverse();
+const sortedFilmPoints = mockUserData
+  .sort(compareFilmPoints)
+  .slice()
+  .reverse();
+const sortedGeneralPoints = mockUserData
+  .sort(compareGeneralPoints)
+  .slice()
+  .reverse();
+const sortedSciencePoints = mockUserData
+  .sort(compareSciencePoints)
+  .slice()
+  .reverse();
+
+// console.log('this is sorted all:', sortedAllPoints);
+console.log("This is sorted Computer: ", sortedComputerPoints);
+console.log("This is sorted Film: ", sortedFilmPoints);
+console.log("This is sorted General: ", sortedGeneralPoints);
+console.log("This is sorted Science: ", sortedSciencePoints);
+
 const sortedAllPoints = mockUserData
   .sort(compareAllPoints)
   .slice()
@@ -147,11 +155,15 @@ class Leaderboard extends Component {
   constructor() {
     super();
     this.state = {
-      sortedUserData: sortedAllPoints
+      sortedUserData: []
     };
   }
 
   getAllTime = () => {
+    const sortedAllPoints = this.props.allUsers
+      .sort(compareAllPoints)
+      .slice()
+      .reverse();
     this.setState({ sortedUserData: sortedAllPoints });
   };
 
@@ -172,6 +184,7 @@ class Leaderboard extends Component {
   };
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>Top Scores</h1>

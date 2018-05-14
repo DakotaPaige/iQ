@@ -3,7 +3,8 @@ import { Mongo } from "meteor/mongo";
 
 if (Meteor.isServer) {
   Meteor.publish("users", function() {
-    return Meteor.users.find({}, { fields: { profile: 1 } });
+    // console.log(Meteor.users.find().fetch())
+    return Meteor.users.find();
   });
 }
 // Meteor.methods({
@@ -12,4 +13,5 @@ if (Meteor.isServer) {
 //   }
 // })
 
-export const Users = Meteor.users.find({}).fetch();
+export const Users = Meteor.users.find().fetch();
+// console.log(Users);
