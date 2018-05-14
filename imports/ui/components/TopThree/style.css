@@ -2,3 +2,12 @@
   display: flex;
   list-style-type: none;
 }
+
+.single-user {
+  display: flex;
+  flex-direction: column;
+}
+
+.react-gravatar {
+  border-radius: 50%;
+}

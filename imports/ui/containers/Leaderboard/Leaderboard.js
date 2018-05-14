@@ -84,25 +84,82 @@ const mockUserData = [
 ]
 
 function compareAllPoints(a, b) {
+  console.log(a.profile.points[4].points, b.profile.points[4].points)
   return a.profile.points[4].points - b.profile.points[4].points;
-}
+};
 
-const sortedAllPoints = mockUserData.sort(compareAllPoints).reverse();
+function compareComputerPoints(a, b) {
+  return a.profile.points[0].points - b.profile.points[0].points;
+};
+
+function compareFilmPoints(a, b) {
+  return a.profile.points[1].points - b.profile.points[1].points;
+};
+
+function compareGeneralPoints(a, b) {
+  return a.profile.points[2].points - b.profile.points[2].points;
+};
+
+function compareSciencePoints(a, b) {
+  return a.profile.points[3].points - b.profile.points[3].points;
+};
+
+const sortedAllPoints = mockUserData.sort(compareAllPoints).slice().reverse();
+const sortedComputerPoints = mockUserData.sort(compareComputerPoints).slice().reverse();
+const sortedFilmPoints = mockUserData.sort(compareFilmPoints).slice().reverse();
+const sortedGeneralPoints = mockUserData.sort(compareGeneralPoints).slice().reverse();
+const sortedSciencePoints = mockUserData.sort(compareSciencePoints).slice().reverse();
+
+console.log('this is sorted all:', sortedAllPoints);
+console.log('This is sorted Computer: ', sortedComputerPoints);
+console.log('This is sorted Film: ', sortedFilmPoints);
+console.log('This is sorted General: ', sortedGeneralPoints);
+console.log('This is sorted Science: ', sortedSciencePoints);
+
 
 class Leaderboard extends Component {
+  constructor() {
+    super()
+    this.state = {
+      sortedUserData: sortedAllPoints
+    }
+  }
+
+  getAllTime = () => {
+    this.setState({sortedUserData: sortedAllPoints});
+  }
+
+  getFilm = () => {
+    this.setState({sortedUserData: sortedFilmPoints});
+  }
+
+  getScience = () => {
+    this.setState({sortedUserData: sortedSciencePoints});
+  }
+
+  getGeneral = () => {
+    this.setState({sortedUserData: sortedGeneralPoints});
+  }
+
+  getComputers = () => {
+    this.setState({sortedUserData: sortedComputerPoints});
+  }
+
+
 
   render() {
     return (
       <div>
         <h1>Top Scores</h1>
         <ul className='category-list'>
-          <li>General</li>
-          <li>Computers</li>
-          <li>Sciences & Nature</li>
-          <li>Film</li>
+          <li><button onClick={this.getAllTime}>All Time</button></li>
+          <li><button onClick={this.getGeneral}>General</button></li>
+          <li><button onClick={this.getComputers}>Computers</button></li>
+          <li><button onClick={this.getScience}>Science & Nature</button></li>
+          <li><button onClick={this.getFilm}>Film</button></li>
         </ul>
-        <TopThree topThree={sortedAllPoints.slice(0, 3)}/>
-        <LeaderboardList users={sortedAllPoints.slice(3)}/>
+        <TopThree topThree={this.state.sortedUserData.slice(0, 3)}/>
+        <LeaderboardList users={this.state.sortedUserData.slice(3)}/>
       </div>
     )
   }
