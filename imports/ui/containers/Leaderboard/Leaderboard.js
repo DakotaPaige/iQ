@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import TopThree from '../../components/TopThree';
-import LeaderboardList from '../../components/LeaderboardList';
-import { Meteor } from 'meteor/meteor'
-import './style.css';
-import { Users } from '../../../api/users';
+import React, { Component } from "react";
+import TopThree from "../../components/TopThree";
+import LeaderboardList from "../../components/LeaderboardList";
+import { Meteor } from "meteor/meteor";
+import "./style.css";
+import { Users } from "../../../api/users";
 
 // const mockUserData = [
 //   {
@@ -82,23 +82,23 @@ import { Users } from '../../../api/users';
 
 function compareAllPoints(a, b) {
   return a.profile.points[4].points - b.profile.points[4].points;
-};
+}
 
 function compareComputerPoints(a, b) {
   return a.profile.points[0].points - b.profile.points[0].points;
-};
+}
 
 function compareFilmPoints(a, b) {
   return a.profile.points[1].points - b.profile.points[1].points;
-};
+}
 
 function compareGeneralPoints(a, b) {
   return a.profile.points[2].points - b.profile.points[2].points;
-};
+}
 
 function compareSciencePoints(a, b) {
   return a.profile.points[3].points - b.profile.points[3].points;
-};
+}
 
 // const sortedAllPoints = mockUserData.sort(compareAllPoints).slice().reverse();
 // const sortedComputerPoints = mockUserData.sort(compareComputerPoints).slice().reverse();
@@ -115,18 +115,19 @@ function compareSciencePoints(a, b) {
 
 class Leaderboard extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       sortedUserData: []
-    }
+    };
   }
-  
-  
 
   getAllTime = () => {
-    const sortedAllPoints = this.props.allUsers.sort(compareAllPoints).slice().reverse();
-    this.setState({sortedUserData: sortedAllPoints});
-  }
+    const sortedAllPoints = this.props.allUsers
+      .sort(compareAllPoints)
+      .slice()
+      .reverse();
+    this.setState({ sortedUserData: sortedAllPoints });
+  };
 
   getFilm = () => {
     const sortedFilmPoints = this.props.allUsers.sort(compareFilmPoints).slice().reverse();
@@ -155,17 +156,37 @@ class Leaderboard extends Component {
     return (
       <div>
         <h1>Top Scores</h1>
-        <ul className='category-list'>
-          <li><button onClick={this.getAllTime} className="leader-cat">All Time</button></li>
-          <li><button onClick={this.getGeneral} className="leader-cat">General</button></li>
-          <li><button onClick={this.getComputers} className="leader-cat">Computers</button></li>
-          <li><button onClick={this.getScience} className="leader-cat">Science & Nature</button></li>
-          <li><button onClick={this.getFilm} className="leader-cat">Film</button></li>
+        <ul className="category-list">
+          <li>
+            <button onClick={this.getAllTime} className="leader-cat">
+              All Time
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getGeneral} className="leader-cat">
+              General
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getComputers} className="leader-cat">
+              Computers
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getScience} className="leader-cat">
+              Science & Nature
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getFilm} className="leader-cat">
+              Film
+            </button>
+          </li>
         </ul>
-        <TopThree topThree={this.state.sortedUserData.slice(0, 3)}/>
-        <LeaderboardList users={this.state.sortedUserData.slice(3)}/>
+        <TopThree topThree={this.state.sortedUserData.slice(0, 3)} />
+        <LeaderboardList users={this.state.sortedUserData.slice(3)} />
       </div>
-    )
+    );
   }
 }
 

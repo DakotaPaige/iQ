@@ -31,6 +31,9 @@ const Question = props => {
   //     });
   // }
   {
+    props.addScore();
+  }
+  {
     quizzes &&
       quizzes.map((question, index) => {
         return (
@@ -59,7 +62,8 @@ const Question = props => {
     props.setCurrent(current + 1);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
-        return props.setScore(score + 1);
+        //+1 for state to work
+        return props.setScore();
       }
     });
   };

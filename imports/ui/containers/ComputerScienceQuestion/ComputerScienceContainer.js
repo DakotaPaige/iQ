@@ -3,7 +3,7 @@ import Questionss from "./Questions";
 import Score from "../Score";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
-import { Scores } from "../../../api/questions";
+import { Scores } from "../../../api/scores";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -37,12 +37,22 @@ class ComputerScienceContainer extends Component {
   setCurrent(current) {
     this.setState({ current });
   }
+
   setScore(score) {
-    this.setState({ score });
+    // this.setState({ score });
+    Meteor.call("scores.setScore", score);
+  }
+
+  addScore() {
+    const newScore = {
+      user: Meteor.userId(),
+      points: 0
+    };
+    Meteor.call("scores.addScore", newScore);
   }
 
   render() {
-    console.log(Scores);
+    // console.log(Scores);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -63,6 +73,7 @@ class ComputerScienceContainer extends Component {
                 allQuestions={this.state.allQuestions}
                 score={this.state.score}
                 answer={this.state.answer}
+                addScore={this.addScore.bind(this)}
               />
             ) : (
               <h1>Score is {this.state.score}</h1>
