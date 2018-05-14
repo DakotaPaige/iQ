@@ -12,7 +12,8 @@ import MainMenu from "../imports/ui/components/MainMenu";
 import ReactDOM from "react-dom";
 import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
 import { Questions } from "../imports/api/questions";
-import Leaderboard from '../imports/ui/containers/Leaderboard';
+import Leaderboard from "../imports/ui/containers/Leaderboard";
+import { Scores } from "../imports/api/scores";
 
 class App extends Component {
   constructor() {

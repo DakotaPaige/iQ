@@ -3,6 +3,7 @@ import Questionss from "./Questions";
 import Score from "../Score";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
+import { Scores } from "../../../api/questions";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -41,6 +42,7 @@ class ComputerScienceContainer extends Component {
   }
 
   render() {
+    console.log(Scores);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {

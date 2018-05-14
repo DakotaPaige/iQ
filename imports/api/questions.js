@@ -7,7 +7,8 @@ Meteor.methods({
       category: questions.category,
       question: questions.question,
       correct: questions.correct_answer,
-      incorrect: questions.incorrect_answers
+      incorrect: questions.incorrect_answers,
+      difficulty: questions.difficulty
     });
   }
 });
