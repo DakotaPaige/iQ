@@ -14,6 +14,8 @@ import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
 import { Questions } from "../imports/api/questions";
 import Leaderboard from "../imports/ui/containers/Leaderboard";
 import { Scores } from "../imports/api/scores";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "reactstrap";
 
 class App extends Component {
   constructor() {
@@ -24,11 +26,9 @@ class App extends Component {
   render() {
     return (
       <div className="App" style={{ width: "90%" }}>
-        <div className="modal-login, card">
-          <h1 className="modal-title">iQ</h1>
-          <div className="modal-header">
-            <AccountsUIWrapper />
-          </div>
+        <div className="hero-container">
+          <h1 className="modal-title">testing</h1>
+          <AccountsUIWrapper />
         </div>
         <Router>
           <div>
@@ -52,7 +52,7 @@ class App extends Component {
                 component={ScienceNatureQuestion}
               />
               <Route exact path="/Score" component={Score} />
-              <Route exact path="/Leaderboard" render={(props) => (<Leaderboard allUsers={this.props.users}/>)}/>
+              <Route exact path="/Leaderboard" component={Leaderboard} />
             </Switch>
           </div>
         </Router>
@@ -62,11 +62,9 @@ class App extends Component {
 }
 
 const AppContainer = withTracker(() => {
-  Meteor.subscribe("users");
   return {
     currentUser: Meteor.user(),
-    currentUserId: Meteor.userId(),
-    users: Meteor.users.find().fetch()
+    currentUserId: Meteor.userId()
   };
 })(App);
 
