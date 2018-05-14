@@ -12,6 +12,5 @@ if (Meteor.isServer) {
 //     Meteor.users.find().fetch()
 //   }
 // })
-
 export const Users = Meteor.users.find().fetch();
 // console.log(Users);

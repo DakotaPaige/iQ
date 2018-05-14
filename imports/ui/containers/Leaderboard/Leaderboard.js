@@ -116,7 +116,8 @@ class Leaderboard extends Component {
   constructor() {
     super();
     this.state = {
-      sortedUserData: []
+      sortedUserData: [],
+      currentIndex: 0
     };
   }
 
@@ -125,7 +126,7 @@ class Leaderboard extends Component {
       .sort(compareAllPoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedAllPoints });
+    this.setState({ sortedUserData: sortedAllPoints, currentIndex: 4 });
   };
 
   getFilm = () => {
@@ -133,7 +134,7 @@ class Leaderboard extends Component {
       .sort(compareFilmPoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedFilmPoints });
+    this.setState({ sortedUserData: sortedFilmPoints, currentIndex: 1 });
   };
 
   getScience = () => {
@@ -141,7 +142,7 @@ class Leaderboard extends Component {
       .sort(compareSciencePoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedSciencePoints });
+    this.setState({ sortedUserData: sortedSciencePoints, currentIndex: 3 });
   };
 
   getGeneral = () => {
@@ -149,7 +150,7 @@ class Leaderboard extends Component {
       .sort(compareGeneralPoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedGeneralPoints });
+    this.setState({ sortedUserData: sortedGeneralPoints, currentIndex: 2 });
   };
 
   getComputers = () => {
@@ -157,7 +158,7 @@ class Leaderboard extends Component {
       .sort(compareComputerPoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedComputerPoints });
+    this.setState({ sortedUserData: sortedComputerPoints, currentIndex: 0 });
   };
 
   render() {
@@ -192,8 +193,8 @@ class Leaderboard extends Component {
             </button>
           </li>
         </ul>
-        <TopThree topThree={this.state.sortedUserData.slice(0, 3)} />
-        <LeaderboardList users={this.state.sortedUserData.slice(3)} />
+        <TopThree topThree={this.state.sortedUserData.slice(0, 3)} currentIndex={this.state.currentIndex}/>
+        <LeaderboardList users={this.state.sortedUserData.slice(3)} currentIndex={this.state.currentIndex}/>
       </div>
     );
   }
