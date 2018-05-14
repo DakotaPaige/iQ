@@ -5,80 +5,80 @@ import { Meteor } from 'meteor/meteor'
 import './style.css';
 import { Users } from '../../../api/users';
 
-const mockUserData = [
-  {
-    emails: [
-      {
-        address: 'cat@cats.com',
-        verified: false
-      }
-    ],
-    profile: {
-      points: [
-        {category: 'computer-science', points: 0},
-        {category: 'film', points: 10},
-        {category: 'general-knowledge', points: 7},
-        {category: 'science-nature', points: 15},
-        {category: 'all', points: 32}
-      ],
-      username: 'Cats'
-    }
-  },
-  {
-    emails: [
-      {
-        address: 'test@test.com',
-        verified: false
-      }
-    ],
-    profile: {
-      points: [
-        {category: 'computer-science', points: 5},
-        {category: 'film', points: 5},
-        {category: 'general-knowledge', points: 5},
-        {category: 'science-nature', points: 5},
-        {category: 'all', points: 20}
-      ],
-      username: 'Tester'
-    }
-  },
-  {
-    emails: [
-      {
-        address: 'blah@blah.com',
-        verified: false
-      }
-    ],
-    profile: {
-      points: [
-        {category: 'computer-science', points: 10},
-        {category: 'film', points: 10},
-        {category: 'general-knowledge', points: 10},
-        {category: 'science-nature', points: 10},
-        {category: 'all', points: 40}
-      ],
-      username: 'Hello!'
-    }
-  },
-  {
-    emails: [
-      {
-        address: 'user3@blah.com',
-        verified: false
-      }
-    ],
-    profile: {
-      points: [
-        {category: 'computer-science', points: 6},
-        {category: 'film', points: 6},
-        {category: 'general-knowledge', points: 6},
-        {category: 'science-nature', points: 6},
-        {category: 'all', points: 24}
-      ],
-      username: 'User3'
-    }
-  }
-]
+// const mockUserData = [
+//   {
+//     emails: [
+//       {
+//         address: 'cat@cats.com',
+//         verified: false
+//       }
+//     ],
+//     profile: {
+//       points: [
+//         {category: 'computer-science', points: 0},
+//         {category: 'film', points: 10},
+//         {category: 'general-knowledge', points: 7},
+//         {category: 'science-nature', points: 15},
+//         {category: 'all', points: 32}
+//       ],
+//       username: 'Cats'
+//     }
+//   },
+//   {
+//     emails: [
+//       {
+//         address: 'test@test.com',
+//         verified: false
+//       }
+//     ],
+//     profile: {
+//       points: [
+//         {category: 'computer-science', points: 5},
+//         {category: 'film', points: 5},
+//         {category: 'general-knowledge', points: 5},
+//         {category: 'science-nature', points: 5},
+//         {category: 'all', points: 20}
+//       ],
+//       username: 'Tester'
+//     }
+//   },
+//   {
+//     emails: [
+//       {
+//         address: 'blah@blah.com',
+//         verified: false
+//       }
+//     ],
+//     profile: {
+//       points: [
+//         {category: 'computer-science', points: 10},
+//         {category: 'film', points: 10},
+//         {category: 'general-knowledge', points: 10},
+//         {category: 'science-nature', points: 10},
+//         {category: 'all', points: 40}
+//       ],
+//       username: 'Hello!'
+//     }
+//   },
+//   {
+//     emails: [
+//       {
+//         address: 'user3@blah.com',
+//         verified: false
+//       }
+//     ],
+//     profile: {
+//       points: [
+//         {category: 'computer-science', points: 6},
+//         {category: 'film', points: 6},
+//         {category: 'general-knowledge', points: 6},
+//         {category: 'science-nature', points: 6},
+//         {category: 'all', points: 24}
+//       ],
+//       username: 'User3'
+//     }
+//   }
+// ]
 
 function compareAllPoints(a, b) {
   return a.profile.points[4].points - b.profile.points[4].points;
@@ -101,16 +101,16 @@ function compareSciencePoints(a, b) {
 };
 
 // const sortedAllPoints = mockUserData.sort(compareAllPoints).slice().reverse();
-const sortedComputerPoints = mockUserData.sort(compareComputerPoints).slice().reverse();
-const sortedFilmPoints = mockUserData.sort(compareFilmPoints).slice().reverse();
-const sortedGeneralPoints = mockUserData.sort(compareGeneralPoints).slice().reverse();
-const sortedSciencePoints = mockUserData.sort(compareSciencePoints).slice().reverse();
+// const sortedComputerPoints = mockUserData.sort(compareComputerPoints).slice().reverse();
+// const sortedFilmPoints = mockUserData.sort(compareFilmPoints).slice().reverse();
+// const sortedGeneralPoints = mockUserData.sort(compareGeneralPoints).slice().reverse();
+// const sortedSciencePoints = mockUserData.sort(compareSciencePoints).slice().reverse();
 
 // console.log('this is sorted all:', sortedAllPoints);
-console.log('This is sorted Computer: ', sortedComputerPoints);
-console.log('This is sorted Film: ', sortedFilmPoints);
-console.log('This is sorted General: ', sortedGeneralPoints);
-console.log('This is sorted Science: ', sortedSciencePoints);
+// console.log('This is sorted Computer: ', sortedComputerPoints);
+// console.log('This is sorted Film: ', sortedFilmPoints);
+// console.log('This is sorted General: ', sortedGeneralPoints);
+// console.log('This is sorted Science: ', sortedSciencePoints);
 
 
 class Leaderboard extends Component {
@@ -129,18 +129,22 @@ class Leaderboard extends Component {
   }
 
   getFilm = () => {
+    const sortedFilmPoints = this.props.allUsers.sort(compareFilmPoints).slice().reverse();
     this.setState({sortedUserData: sortedFilmPoints});
   }
 
   getScience = () => {
+    const sortedSciencePoints = this.props.allUsers.sort(compareSciencePoints).slice().reverse();
     this.setState({sortedUserData: sortedSciencePoints});
   }
 
   getGeneral = () => {
+    const sortedGeneralPoints = this.props.allUsers.sort(compareGeneralPoints).slice().reverse();
     this.setState({sortedUserData: sortedGeneralPoints});
   }
 
   getComputers = () => {
+    const sortedComputerPoints = this.props.allUsers.sort(compareComputerPoints).slice().reverse();
     this.setState({sortedUserData: sortedComputerPoints});
   }
 
