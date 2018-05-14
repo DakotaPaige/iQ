@@ -112,7 +112,6 @@ function compareSciencePoints(a, b) {
 // console.log('This is sorted General: ', sortedGeneralPoints);
 // console.log('This is sorted Science: ', sortedSciencePoints);
 
-
 class Leaderboard extends Component {
   constructor() {
     super();
@@ -130,26 +129,36 @@ class Leaderboard extends Component {
   };
 
   getFilm = () => {
-    const sortedFilmPoints = this.props.allUsers.sort(compareFilmPoints).slice().reverse();
-    this.setState({sortedUserData: sortedFilmPoints});
-  }
+    const sortedFilmPoints = this.props.allUsers
+      .sort(compareFilmPoints)
+      .slice()
+      .reverse();
+    this.setState({ sortedUserData: sortedFilmPoints });
+  };
 
   getScience = () => {
-    const sortedSciencePoints = this.props.allUsers.sort(compareSciencePoints).slice().reverse();
-    this.setState({sortedUserData: sortedSciencePoints});
-  }
+    const sortedSciencePoints = this.props.allUsers
+      .sort(compareSciencePoints)
+      .slice()
+      .reverse();
+    this.setState({ sortedUserData: sortedSciencePoints });
+  };
 
   getGeneral = () => {
-    const sortedGeneralPoints = this.props.allUsers.sort(compareGeneralPoints).slice().reverse();
-    this.setState({sortedUserData: sortedGeneralPoints});
-  }
+    const sortedGeneralPoints = this.props.allUsers
+      .sort(compareGeneralPoints)
+      .slice()
+      .reverse();
+    this.setState({ sortedUserData: sortedGeneralPoints });
+  };
 
   getComputers = () => {
-    const sortedComputerPoints = this.props.allUsers.sort(compareComputerPoints).slice().reverse();
-    this.setState({sortedUserData: sortedComputerPoints});
-  }
-
-
+    const sortedComputerPoints = this.props.allUsers
+      .sort(compareComputerPoints)
+      .slice()
+      .reverse();
+    this.setState({ sortedUserData: sortedComputerPoints });
+  };
 
   render() {
     console.log(this.props);
