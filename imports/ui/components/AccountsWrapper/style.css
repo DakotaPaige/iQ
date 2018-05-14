@@ -17,6 +17,7 @@
 
 .login-wrapper {
   position: absolute;
+  border: 1px solid black;
   right: 1rem;
   top: 1rem;
 }
@@ -61,13 +62,13 @@
 .login-link-and-dropdown-list {
   position: relative;
   text-align: right;
+  width: 50vw;
 }
 
 .login-link-text {
   color: black;
+  margin: 0 auto;
   display: inline-block;
-  margin-bottom: 0.5rem;
-  margin-right: 0.5rem;
 }
 
 .login-close-text {
@@ -115,6 +116,7 @@
   display: block;
   padding: 0.25rem 0.5rem;
   text-align: center;
+  margin: 0 auto;
 }
 
 [id="login-buttons-logout"]:hover,
@@ -140,4 +142,36 @@
 .login-form .error-message {
   color: red;
   font-size: 0.85rem;
+}
+
+.login-form-sign-in {
+  width: 100%;
+}
+
+.modal-login {
+  display: block;
+  width: 100vw;
+  height: auto;
+}
+
+.modal-title {
+  font-size: 5rem;
+  text-align: center;
+  width: 100vw;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  margin: 0 auto;
+}
+
+.accounts-dialog {
+  margin: 0 auto;
+}
+
+.card-body,
+.card {
+  width: 100vw;
 }
