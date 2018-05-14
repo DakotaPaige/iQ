@@ -62,7 +62,8 @@
 .login-link-and-dropdown-list {
   position: relative;
   text-align: right;
-  width: 50vw;
+  margin: 0 auto;
+  width: 50%;
 }
 
 .login-link-text {
@@ -121,7 +122,7 @@
 
 [id="login-buttons-logout"]:hover,
 .login-button-form-submit:hover {
-  background-color: #4ccbb0;
+  background-color: #b3c1d6;
 }
 
 [id="login-email-label-and-input"],
@@ -132,11 +133,22 @@
   justify-content: space-between;
   line-height: 1;
   margin-bottom: 0.5rem;
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  width: 75%;
+  margin: 5px auto;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-transform: lowercase;
+  color: black;
 }
 
 [id="login-password-label-and-input"],
 [id="forgot-password-email-label-and-input"] {
-  margin-bottom: 1rem;
+  width: 75%;
+  margin: 0 auto;
+  color: black;
 }
 
 .login-form .error-message {
@@ -145,7 +157,11 @@
 }
 
 .login-form-sign-in {
-  width: 100%;
+  width: 75%;
+}
+
+#login-buttons {
+  width: 100vw;
 }
 
 .modal-login {
@@ -158,20 +174,44 @@
   font-size: 5rem;
   text-align: center;
   width: 100vw;
-}
-
-.modal-header {
-  display: flex;
-  justify-content: center;
-  width: 100vw;
-  margin: 0 auto;
+  color: white;
 }
 
 .accounts-dialog {
+  width: 50%;
   margin: 0 auto;
 }
 
-.card-body,
-.card {
+.login-button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  margin: 1rem auto;
+  background: #80b3ff;
+  width: 75%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.additional-link-container {
+  display: flex;
+}
+
+#signup-link,
+#forgot-password-link {
+  margin: 0 auto;
+  font-size: 0.75rem;
+}
+
+.hero-container {
+  background: url("https://www.n-side.com/wp-content/uploads/2017/07/placeholder-blog.jpg");
+  background-repeat: no-repeat;
   width: 100vw;
+  height: 100vh;
+  color: white;
 }
