@@ -1,167 +1,211 @@
-import React, {Component} from 'react';
-import TopThree from '../../components/TopThree';
-import LeaderboardList from '../../components/LeaderboardList';
-import { Meteor } from 'meteor/meteor'
-import './style.css';
+import React, { Component } from "react";
+import TopThree from "../../components/TopThree";
+import LeaderboardList from "../../components/LeaderboardList";
+import { Meteor } from "meteor/meteor";
+import "./style.css";
+import { Users } from "../../../api/users";
 
-Meteor.subscribe('userData');
-const Users = Meteor.users.find().fetch();
 console.log(Users);
+
+// Meteor.subscribe('userData');
+// const userData = Meteor.users.find({}).fetch();
+// console.log(userData);
+// console.log(Meteor.users.find({}).collection._docs._map);
+// console.log(Meteor.users.find({}).fetch());
+
+// const users = Meteor.call('users.getUsers');
+// console.log(users);
+
+Meteor.subscribe("users");
+console.log(Meteor.users.find().fetch());
+
+console.log(Meteor.users.find());
 
 const mockUserData = [
   {
     emails: [
       {
-        address: 'cat@cats.com',
+        address: "cat@cats.com",
         verified: false
       }
     ],
     profile: {
       points: [
-        {category: 'computer-science', points: 0},
-        {category: 'film', points: 10},
-        {category: 'general-knowledge', points: 7},
-        {category: 'science-nature', points: 15},
-        {category: 'all', points: 32}
+        { category: "computer-science", points: 0 },
+        { category: "film", points: 10 },
+        { category: "general-knowledge", points: 7 },
+        { category: "science-nature", points: 15 },
+        { category: "all", points: 32 }
       ],
-      username: 'Cats'
+      username: "Cats"
     }
   },
   {
     emails: [
       {
-        address: 'test@test.com',
+        address: "test@test.com",
         verified: false
       }
     ],
     profile: {
       points: [
-        {category: 'computer-science', points: 5},
-        {category: 'film', points: 5},
-        {category: 'general-knowledge', points: 5},
-        {category: 'science-nature', points: 5},
-        {category: 'all', points: 20}
+        { category: "computer-science", points: 5 },
+        { category: "film", points: 5 },
+        { category: "general-knowledge", points: 5 },
+        { category: "science-nature", points: 5 },
+        { category: "all", points: 20 }
       ],
-      username: 'Tester'
+      username: "Tester"
     }
   },
   {
     emails: [
       {
-        address: 'blah@blah.com',
+        address: "blah@blah.com",
         verified: false
       }
     ],
     profile: {
       points: [
-        {category: 'computer-science', points: 10},
-        {category: 'film', points: 10},
-        {category: 'general-knowledge', points: 10},
-        {category: 'science-nature', points: 10},
-        {category: 'all', points: 40}
+        { category: "computer-science", points: 10 },
+        { category: "film", points: 10 },
+        { category: "general-knowledge", points: 10 },
+        { category: "science-nature", points: 10 },
+        { category: "all", points: 40 }
       ],
-      username: 'Hello!'
+      username: "Hello!"
     }
   },
   {
     emails: [
       {
-        address: 'user3@blah.com',
+        address: "user3@blah.com",
         verified: false
       }
     ],
     profile: {
       points: [
-        {category: 'computer-science', points: 6},
-        {category: 'film', points: 6},
-        {category: 'general-knowledge', points: 6},
-        {category: 'science-nature', points: 6},
-        {category: 'all', points: 24}
+        { category: "computer-science", points: 6 },
+        { category: "film", points: 6 },
+        { category: "general-knowledge", points: 6 },
+        { category: "science-nature", points: 6 },
+        { category: "all", points: 24 }
       ],
-      username: 'User3'
+      username: "User3"
     }
   }
-]
+];
 
 function compareAllPoints(a, b) {
-  console.log(a.profile.points[4].points, b.profile.points[4].points)
   return a.profile.points[4].points - b.profile.points[4].points;
-};
+}
 
 function compareComputerPoints(a, b) {
   return a.profile.points[0].points - b.profile.points[0].points;
-};
+}
 
 function compareFilmPoints(a, b) {
   return a.profile.points[1].points - b.profile.points[1].points;
-};
+}
 
 function compareGeneralPoints(a, b) {
   return a.profile.points[2].points - b.profile.points[2].points;
-};
+}
 
 function compareSciencePoints(a, b) {
   return a.profile.points[3].points - b.profile.points[3].points;
-};
+}
 
-const sortedAllPoints = mockUserData.sort(compareAllPoints).slice().reverse();
-const sortedComputerPoints = mockUserData.sort(compareComputerPoints).slice().reverse();
-const sortedFilmPoints = mockUserData.sort(compareFilmPoints).slice().reverse();
-const sortedGeneralPoints = mockUserData.sort(compareGeneralPoints).slice().reverse();
-const sortedSciencePoints = mockUserData.sort(compareSciencePoints).slice().reverse();
+const sortedAllPoints = mockUserData
+  .sort(compareAllPoints)
+  .slice()
+  .reverse();
+const sortedComputerPoints = mockUserData
+  .sort(compareComputerPoints)
+  .slice()
+  .reverse();
+const sortedFilmPoints = mockUserData
+  .sort(compareFilmPoints)
+  .slice()
+  .reverse();
+const sortedGeneralPoints = mockUserData
+  .sort(compareGeneralPoints)
+  .slice()
+  .reverse();
+const sortedSciencePoints = mockUserData
+  .sort(compareSciencePoints)
+  .slice()
+  .reverse();
 
-console.log('this is sorted all:', sortedAllPoints);
-console.log('This is sorted Computer: ', sortedComputerPoints);
-console.log('This is sorted Film: ', sortedFilmPoints);
-console.log('This is sorted General: ', sortedGeneralPoints);
-console.log('This is sorted Science: ', sortedSciencePoints);
-
+console.log("this is sorted all:", sortedAllPoints);
+console.log("This is sorted Computer: ", sortedComputerPoints);
+console.log("This is sorted Film: ", sortedFilmPoints);
+console.log("This is sorted General: ", sortedGeneralPoints);
+console.log("This is sorted Science: ", sortedSciencePoints);
 
 class Leaderboard extends Component {
   constructor() {
-    super()
+    super();
     this.state = {
       sortedUserData: sortedAllPoints
-    }
+    };
   }
 
   getAllTime = () => {
-    this.setState({sortedUserData: sortedAllPoints});
-  }
+    this.setState({ sortedUserData: sortedAllPoints });
+  };
 
   getFilm = () => {
-    this.setState({sortedUserData: sortedFilmPoints});
-  }
+    this.setState({ sortedUserData: sortedFilmPoints });
+  };
 
   getScience = () => {
-    this.setState({sortedUserData: sortedSciencePoints});
-  }
+    this.setState({ sortedUserData: sortedSciencePoints });
+  };
 
   getGeneral = () => {
-    this.setState({sortedUserData: sortedGeneralPoints});
-  }
+    this.setState({ sortedUserData: sortedGeneralPoints });
+  };
 
   getComputers = () => {
-    this.setState({sortedUserData: sortedComputerPoints});
-  }
-
-
+    this.setState({ sortedUserData: sortedComputerPoints });
+  };
 
   render() {
     return (
       <div>
         <h1>Top Scores</h1>
-        <ul className='category-list'>
-          <li><button onClick={this.getAllTime} className="leader-cat">All Time</button></li>
-          <li><button onClick={this.getGeneral} className="leader-cat">General</button></li>
-          <li><button onClick={this.getComputers} className="leader-cat">Computers</button></li>
-          <li><button onClick={this.getScience} className="leader-cat">Science & Nature</button></li>
-          <li><button onClick={this.getFilm} className="leader-cat">Film</button></li>
+        <ul className="category-list">
+          <li>
+            <button onClick={this.getAllTime} className="leader-cat">
+              All Time
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getGeneral} className="leader-cat">
+              General
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getComputers} className="leader-cat">
+              Computers
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getScience} className="leader-cat">
+              Science & Nature
+            </button>
+          </li>
+          <li>
+            <button onClick={this.getFilm} className="leader-cat">
+              Film
+            </button>
+          </li>
         </ul>
-        <TopThree topThree={this.state.sortedUserData.slice(0, 3)}/>
-        <LeaderboardList users={this.state.sortedUserData.slice(3)}/>
+        <TopThree topThree={this.state.sortedUserData.slice(0, 3)} />
+        <LeaderboardList users={this.state.sortedUserData.slice(3)} />
       </div>
-    )
+    );
   }
 }
 

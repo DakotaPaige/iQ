@@ -1,10 +1,15 @@
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
-
-export const userData = new Mongo.Collection('users');
+import { Meteor } from "meteor/meteor";
+import { Mongo } from "meteor/mongo";
 
 if (Meteor.isServer) {
-  Meteor.publish('userData', function userData() {
-      return Meteor.users.find({});
+  Meteor.publish("users", function() {
+    return Meteor.users.find({}, { fields: { profile: 1 } });
   });
 }
+// Meteor.methods({
+//   'users.getUsers'() {
+//     Meteor.users.find().fetch()
+//   }
+// })
+
+export const Users = Meteor.users.find({}).fetch();
