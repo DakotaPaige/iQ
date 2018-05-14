@@ -25,8 +25,11 @@ class App extends Component {
     console.log(this.props.users);
     return (
       <div className="App" style={{ width: "90%" }}>
-        <div className="login-wrapper">
-          <AccountsUIWrapper />
+        <div className="modal-login, card">
+          <h1 className="modal-title">iQ</h1>
+          <div className="modal-header">
+            <AccountsUIWrapper />
+          </div>
         </div>
         <Router>
           <div>
