@@ -22,7 +22,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props.users);
     return (
       <div className="App" style={{ width: "90%" }}>
         <div className="modal-login, card">
