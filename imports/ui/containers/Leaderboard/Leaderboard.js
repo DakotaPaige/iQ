@@ -124,33 +124,6 @@ console.log("This is sorted Film: ", sortedFilmPoints);
 console.log("This is sorted General: ", sortedGeneralPoints);
 console.log("This is sorted Science: ", sortedSciencePoints);
 
-const sortedAllPoints = mockUserData
-  .sort(compareAllPoints)
-  .slice()
-  .reverse();
-const sortedComputerPoints = mockUserData
-  .sort(compareComputerPoints)
-  .slice()
-  .reverse();
-const sortedFilmPoints = mockUserData
-  .sort(compareFilmPoints)
-  .slice()
-  .reverse();
-const sortedGeneralPoints = mockUserData
-  .sort(compareGeneralPoints)
-  .slice()
-  .reverse();
-const sortedSciencePoints = mockUserData
-  .sort(compareSciencePoints)
-  .slice()
-  .reverse();
-
-console.log("this is sorted all:", sortedAllPoints);
-console.log("This is sorted Computer: ", sortedComputerPoints);
-console.log("This is sorted Film: ", sortedFilmPoints);
-console.log("This is sorted General: ", sortedGeneralPoints);
-console.log("This is sorted Science: ", sortedSciencePoints);
-
 class Leaderboard extends Component {
   constructor() {
     super();
