@@ -152,11 +152,11 @@ class Leaderboard extends Component {
       <div>
         <h1>Top Scores</h1>
         <ul className='category-list'>
-          <li><button onClick={this.getAllTime}>All Time</button></li>
-          <li><button onClick={this.getGeneral}>General</button></li>
-          <li><button onClick={this.getComputers}>Computers</button></li>
-          <li><button onClick={this.getScience}>Science & Nature</button></li>
-          <li><button onClick={this.getFilm}>Film</button></li>
+          <li><button onClick={this.getAllTime} className="leader-cat">All Time</button></li>
+          <li><button onClick={this.getGeneral} className="leader-cat">General</button></li>
+          <li><button onClick={this.getComputers} className="leader-cat">Computers</button></li>
+          <li><button onClick={this.getScience} className="leader-cat">Science & Nature</button></li>
+          <li><button onClick={this.getFilm} className="leader-cat">Film</button></li>
         </ul>
         <TopThree topThree={this.state.sortedUserData.slice(0, 3)}/>
         <LeaderboardList users={this.state.sortedUserData.slice(3)}/>
