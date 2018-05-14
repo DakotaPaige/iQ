@@ -1,8 +1,8 @@
-import { Meteor } from 'meteor/meteor';
-import { Mongo } from 'meteor/mongo';
+import { Meteor } from "meteor/meteor";
+import { Mongo } from "meteor/mongo";
 
 if (Meteor.isServer) {
-  Meteor.publish('users', function() {
+  Meteor.publish("users", function() {
     // console.log(Meteor.users.find().fetch())
     return Meteor.users.find();
   });
