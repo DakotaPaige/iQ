@@ -39,7 +39,7 @@ class ComputerScienceContainer extends Component {
   }
 
   setScore(score) {
-    // this.setState({ score });
+    this.setState({ score });
     Meteor.call("scores.setScore", score);
   }
 

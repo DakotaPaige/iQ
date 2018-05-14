@@ -63,7 +63,7 @@ const Question = props => {
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         //+1 for state to work
-        return props.setScore();
+        return props.setScore(score + 1);
       }
     });
   };

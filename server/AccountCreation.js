@@ -9,6 +9,8 @@ Accounts.onCreateUser(function(options, user) {
     { category: "all", points: 0 }
   ];
 
+  user.profile.username = '';
+
   // Returns the user object
   return user;
 });

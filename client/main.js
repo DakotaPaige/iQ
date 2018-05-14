@@ -14,7 +14,7 @@ import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
 import { Questions } from "../imports/api/questions";
 import Leaderboard from "../imports/ui/containers/Leaderboard";
 import { Scores } from "../imports/api/scores";
-import "bootstrap/dist/css/bootstrap.min.css";
+// import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "reactstrap";
 
 class App extends Component {
@@ -52,7 +52,7 @@ class App extends Component {
                 component={ScienceNatureQuestion}
               />
               <Route exact path="/Score" component={Score} />
-              <Route exact path="/Leaderboard" component={Leaderboard} />
+              <Route exact path="/Leaderboard" render={(props) => (<Leaderboard allUsers={this.props.users}/>)} />
             </Switch>
           </div>
         </Router>
@@ -62,9 +62,11 @@ class App extends Component {
 }
 
 const AppContainer = withTracker(() => {
+  Meteor.subscribe("users");
   return {
     currentUser: Meteor.user(),
-    currentUserId: Meteor.userId()
+    currentUserId: Meteor.userId(),
+    users: Meteor.users.find().fetch()
   };
 })(App);
 
