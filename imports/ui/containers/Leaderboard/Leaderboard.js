@@ -3,10 +3,23 @@ import TopThree from '../../components/TopThree';
 import LeaderboardList from '../../components/LeaderboardList';
 import { Meteor } from 'meteor/meteor'
 import './style.css';
+import { Users } from '../../../api/users';
 
-Meteor.subscribe('userData');
-const Users = Meteor.users.find().fetch();
 console.log(Users);
+
+// Meteor.subscribe('userData');
+// const userData = Meteor.users.find({}).fetch();
+// console.log(userData);
+// console.log(Meteor.users.find({}).collection._docs._map);
+// console.log(Meteor.users.find({}).fetch());
+
+// const users = Meteor.call('users.getUsers');
+// console.log(users);
+
+Meteor.subscribe("users");
+console.log(Meteor.users.find().fetch());
+
+console.log(Meteor.users.find());
 
 const mockUserData = [
   {
@@ -84,7 +97,6 @@ const mockUserData = [
 ]
 
 function compareAllPoints(a, b) {
-  console.log(a.profile.points[4].points, b.profile.points[4].points)
   return a.profile.points[4].points - b.profile.points[4].points;
 };
 
