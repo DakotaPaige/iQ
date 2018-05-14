@@ -16,10 +16,8 @@ console.log(Users);
 // const users = Meteor.call('users.getUsers');
 // console.log(users);
 
-Meteor.subscribe("users");
-console.log(Meteor.users.find().fetch());
-
-console.log(Meteor.users.find());
+Meteor.subscribe("users", Meteor.userId());
+console.log(Meteor.users.find().collection._docs._map);
 
 const mockUserData = [
   {
@@ -160,6 +158,7 @@ class Leaderboard extends Component {
 
 
   render() {
+    console.log(this.props);
     return (
       <div>
         <h1>Top Scores</h1>
