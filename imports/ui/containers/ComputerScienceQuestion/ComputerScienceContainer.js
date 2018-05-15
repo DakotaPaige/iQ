@@ -40,18 +40,18 @@ class ComputerScienceContainer extends Component {
 
   setScore(score) {
     this.setState({ score });
-    Meteor.call("scores.setScore", score);
+    // Meteor.call("scores.setScore", score);
   }
+  // plusScore() {
+  //   Meteor.call("scores.plusScore");
+  // }
 
-  addScore() {
-    const newScore = {
-      user: Meteor.userId(),
-      points: 0
-    };
-    Meteor.call("scores.addScore", newScore);
-  }
+  // addScore() {
+  //   Meteor.call("scores.addScore");
+  // }
 
   render() {
+    // this.addScore();
     // console.log(Scores);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
@@ -73,10 +73,14 @@ class ComputerScienceContainer extends Component {
                 allQuestions={this.state.allQuestions}
                 score={this.state.score}
                 answer={this.state.answer}
-                addScore={this.addScore.bind(this)}
+                // addScore={this.addScore.bind(this)}
+                // plusScore={this.plusScore.bind(this)}
               />
             ) : (
-              <h1>Score is {this.state.score}</h1>
+              <div>
+                {/* {Meteor.call("scores.dropData")} */}
+                <h1>Score is {this.state.score}</h1>
+              </div>
             )}
           </div>
         )}

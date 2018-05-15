@@ -37,11 +37,22 @@ class ScienceNatureContainer extends Component {
   setCurrent(current) {
     this.setState({ current });
   }
+
   setScore(score) {
     this.setState({ score });
+    // Meteor.call("scores.setScore", score);
+  }
+  plusScore() {
+    Meteor.call("scores.plusScore");
+  }
+
+  addScore() {
+    Meteor.call("scores.addScore");
   }
 
   render() {
+    // this.addScore();
+    // console.log(Scores);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -62,6 +73,8 @@ class ScienceNatureContainer extends Component {
                 allQuestions={this.state.allQuestions}
                 score={this.state.score}
                 answer={this.state.answer}
+                addScore={this.addScore.bind(this)}
+                plusScore={this.plusScore.bind(this)}
               />
             ) : (
               <h1>Score is {this.state.score}</h1>
@@ -72,5 +85,4 @@ class ScienceNatureContainer extends Component {
     );
   }
 }
-
 export default ScienceNatureContainer;
