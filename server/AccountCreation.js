@@ -9,6 +9,10 @@ Accounts.onCreateUser(function(options, user) {
     { category: "all", points: 0 }
   ];
 
+  user.profile.username = '';
+
+  user.profile.gamesPlayed = 0;
+
   // Returns the user object
   return user;
 });
