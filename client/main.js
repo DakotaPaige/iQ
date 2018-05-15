@@ -14,7 +14,7 @@ import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
 import { Questions } from "../imports/api/questions";
 import Leaderboard from "../imports/ui/containers/Leaderboard";
 import { Scores } from "../imports/api/scores";
-// import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "reactstrap";
 
 class App extends Component {

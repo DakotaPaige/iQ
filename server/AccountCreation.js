@@ -11,6 +11,8 @@ Accounts.onCreateUser(function(options, user) {
 
   user.profile.username = '';
 
+  user.profile.gamesPlayed = 0;
+
   // Returns the user object
   return user;
 });

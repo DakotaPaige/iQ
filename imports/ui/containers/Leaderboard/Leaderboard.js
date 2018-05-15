@@ -4,6 +4,7 @@ import LeaderboardList from "../../components/LeaderboardList";
 import { Meteor } from "meteor/meteor";
 import "./style.css";
 import { Users } from "../../../api/users";
+import { Button, ButtonGroup } from 'reactstrap';
 
 // const mockUserData = [
 //   {
@@ -81,7 +82,7 @@ import { Users } from "../../../api/users";
 // ]
 
 function compareAllPoints(a, b) {
-  return a.profile.points[4].points - b.profile.points[4].points;
+  return (a.profile.points[4].points/a.profile.gamesPlayed) - (b.profile.points[4].points/b.profile.gamesPlayed);
 }
 
 function compareComputerPoints(a, b) {
@@ -166,33 +167,23 @@ class Leaderboard extends Component {
     return (
       <div>
         <h1>Top Scores</h1>
-        <ul className="category-list">
-          <li>
-            <button onClick={this.getAllTime} className="leader-cat">
+        <ButtonGroup>
+            <Button onClick={this.getAllTime} className="leader-cat">
               All Time
-            </button>
-          </li>
-          <li>
-            <button onClick={this.getGeneral} className="leader-cat">
+            </Button>
+            <Button onClick={this.getGeneral} className="leader-cat">
               General
-            </button>
-          </li>
-          <li>
-            <button onClick={this.getComputers} className="leader-cat">
+            </Button>
+            <Button onClick={this.getComputers} className="leader-cat">
               Computers
-            </button>
-          </li>
-          <li>
-            <button onClick={this.getScience} className="leader-cat">
+            </Button>
+            <Button onClick={this.getScience} className="leader-cat">
               Science & Nature
-            </button>
-          </li>
-          <li>
-            <button onClick={this.getFilm} className="leader-cat">
+            </Button>
+            <Button onClick={this.getFilm} className="leader-cat">
               Film
-            </button>
-          </li>
-        </ul>
+            </Button>
+        </ButtonGroup>
         <TopThree topThree={this.state.sortedUserData.slice(0, 3)} currentIndex={this.state.currentIndex}/>
         <LeaderboardList users={this.state.sortedUserData.slice(3)} currentIndex={this.state.currentIndex}/>
       </div>
