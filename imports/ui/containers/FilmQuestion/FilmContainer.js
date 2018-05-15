@@ -37,11 +37,22 @@ class FilmContainer extends Component {
   setCurrent(current) {
     this.setState({ current });
   }
+
   setScore(score) {
     this.setState({ score });
+    // Meteor.call("scores.setScore", score);
+  }
+  plusScore() {
+    Meteor.call("scores.plusScore");
+  }
+
+  addScore() {
+    Meteor.call("scores.addScore");
   }
 
   render() {
+    // this.addScore();
+    // console.log(Scores);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -62,6 +73,8 @@ class FilmContainer extends Component {
                 allQuestions={this.state.allQuestions}
                 score={this.state.score}
                 answer={this.state.answer}
+                addScore={this.addScore.bind(this)}
+                plusScore={this.plusScore.bind(this)}
               />
             ) : (
               <h1>Score is {this.state.score}</h1>
@@ -74,5 +87,3 @@ class FilmContainer extends Component {
 }
 
 export default FilmContainer;
-
-//"https://opentdb.com/api.php?amount=10&category=11&difficulty=medium&type=multiple";

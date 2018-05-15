@@ -1,6 +1,8 @@
 import React from "react";
 import GeneralKContainer from "./GeneralKContainer";
 import { Questions } from "../../../api/questions";
+import { Meteor } from "meteor/meteor";
+import { Scores } from "../../../api/scores";
 
 const Question = props => {
   let quizzes = props.allQuestions.results;
@@ -31,6 +33,9 @@ const Question = props => {
   //     });
   // }
   {
+    Meteor.call("scores.addScore");
+  }
+  {
     quizzes &&
       quizzes.map((question, index) => {
         return (
@@ -49,6 +54,7 @@ const Question = props => {
       });
   }
 
+  // console.log(newQuestions);
   //mongo handle
   let handleChange = e => {
     e.preventDefault();
@@ -58,7 +64,10 @@ const Question = props => {
     props.setCurrent(current + 1);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
-        return props.setScore(score + 1);
+        //+1 for state to work
+        // console.log("hello")
+        Meteor.call("scores.plusScore");
+        // props.setScore(score + 1);
       }
     });
   };

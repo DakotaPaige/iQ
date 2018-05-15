@@ -1,6 +1,8 @@
 import React from "react";
 import ComputerScienceContainer from "./ComputerScienceContainer";
 import { Questions } from "../../../api/questions";
+import { Meteor } from "meteor/meteor";
+import { Scores } from "../../../api/scores";
 
 const Question = props => {
   let quizzes = props.allQuestions.results;
@@ -31,7 +33,7 @@ const Question = props => {
   //     });
   // }
   {
-    props.addScore();
+    Meteor.call("scores.addScore");
   }
   {
     quizzes &&
@@ -63,7 +65,9 @@ const Question = props => {
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         //+1 for state to work
-        return props.setScore(score + 1);
+        // console.log("hello")
+        Meteor.call("scores.plusScore");
+        // props.setScore(score + 1);
       }
     });
   };

@@ -23,6 +23,14 @@ class App extends Component {
     this.state = {};
   }
 
+  // addScore() {
+  //   const newScore = {
+  //     user: Meteor.userId(),
+  //     points: "hi"
+  //   };
+  //   Meteor.call("scores.addScore", newScore);
+  // }
+
   render() {
     return (
       <div className="App" style={{ width: "90%" }}>
@@ -39,6 +47,7 @@ class App extends Component {
                 exact
                 path="/Computer-Science"
                 component={ComputerScienceQuestion}
+                // render={() => console.log("hello")}
               />
               <Route exact path="/Film" component={FilmQuestion} />
               <Route
@@ -52,7 +61,11 @@ class App extends Component {
                 component={ScienceNatureQuestion}
               />
               <Route exact path="/Score" component={Score} />
-              <Route exact path="/Leaderboard" render={(props) => (<Leaderboard allUsers={this.props.users}/>)} />
+              <Route
+                exact
+                path="/Leaderboard"
+                render={props => <Leaderboard allUsers={this.props.users} />}
+              />
             </Switch>
           </div>
         </Router>

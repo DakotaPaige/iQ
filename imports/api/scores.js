@@ -3,14 +3,22 @@ import { Mongo } from "meteor/mongo";
 
 Meteor.methods({
   //check
-  "scores.addScore"(newScore) {
-    Scores.insert(newScore);
+  "scores.addScore"() {
+    Scores.insert({ name: Meteor.user(), points: 0 });
   },
   //ask
-  "scores.setScore"(score) {
-    Scores.update(scores._id, {
-      $inc: { points: 1 }
-    });
+  "scores.plusScore"() {
+    console.log("its adding");
+    Scores.update(
+      { name: Meteor.user() },
+      {
+        $inc: { points: 1 }
+      }
+    );
+  },
+  "scores.dropData"() {
+    console.log("its dropped");
+    Scores.remove({});
   }
 });
 
