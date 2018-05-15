@@ -1,5 +1,6 @@
 import React from 'react';
 import { Table } from 'reactstrap';
+import './style.css';
 
 const LeaderboardList = (props) => {
   let placement = 3;
@@ -11,6 +12,7 @@ const LeaderboardList = (props) => {
           <th>Username</th>
           <th>Points</th>
           <th>Games Played</th>
+          <th>ELO</th>
         </tr>
       </thead>
       <tbody>
@@ -22,6 +24,7 @@ const LeaderboardList = (props) => {
             <td>{user.profile.username}</td>
             <td>{user.profile.points[props.currentIndex].points}</td> 
             <td>{user.profile.gamesPlayed}</td>
+            <td>{((user.profile.points[4].points/user.profile.gamesPlayed) * 100).toFixed(2)}</td>
           </tr>)
       })}
       </tbody>
