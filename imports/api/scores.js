@@ -22,6 +22,13 @@ Meteor.methods({
   }
 });
 
+if (Meteor.isServer) {
+  // This code only runs on the server
+  Meteor.publish("scores", function() {
+    return Scores.find();
+  });
+}
+
 export const Scores = new Mongo.Collection("scores");
 
 //when you click ont he game it should be add new plyer with the score and user id

@@ -3,6 +3,9 @@ import Questionss from "./Questions";
 import Score from "../Score";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
+import { Scores } from "../../../api/scores";
+import { withTracker } from "meteor/react-meteor-data";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
 class GeneralKContainer extends Component {
   constructor() {
@@ -39,17 +42,12 @@ class GeneralKContainer extends Component {
     this.setState({ score });
     // Meteor.call("scores.setScore", score);
   }
-  plusScore() {
-    Meteor.call("scores.plusScore");
-  }
 
-  addScore() {
-    Meteor.call("scores.addScore");
+  goBackHome() {
+    Meteor.call("scores.dropData");
   }
 
   render() {
-    // this.addScore();
-    // console.log(Scores);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -70,11 +68,22 @@ class GeneralKContainer extends Component {
                 allQuestions={this.state.allQuestions}
                 score={this.state.score}
                 answer={this.state.answer}
-                addScore={this.addScore.bind(this)}
-                plusScore={this.plusScore.bind(this)}
+                // addScore={this.addScore.bind(this)}
+                // plusScore={this.plusScore.bind(this)}
               />
             ) : (
-              <h1>Score is {this.state.score}</h1>
+              <div>
+                {this.props.scores.map((score, index) => {
+                  return (
+                    <div key={index}>
+                      <h1>Score is {score.points}</h1>
+                      <Link to="/">
+                        <button onClick={this.goBackHome}>Go back home</button>
+                      </Link>
+                    </div>
+                  );
+                })}
+              </div>
             )}
           </div>
         )}
@@ -82,4 +91,15 @@ class GeneralKContainer extends Component {
     );
   }
 }
-export default GeneralKContainer;
+
+//if points == user do that
+const newGeneralKContainer = withTracker(() => {
+  Meteor.subscribe("scores");
+  return {
+    scores: Scores.find({ points: { $gt: 1 } }).fetch()
+  };
+})(GeneralKContainer);
+
+export default newGeneralKContainer;
+
+// "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";

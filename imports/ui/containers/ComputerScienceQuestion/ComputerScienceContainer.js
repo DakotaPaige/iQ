@@ -4,6 +4,9 @@ import Score from "../Score";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
+import { withTracker } from "meteor/react-meteor-data";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -42,17 +45,12 @@ class ComputerScienceContainer extends Component {
     this.setState({ score });
     // Meteor.call("scores.setScore", score);
   }
-  // plusScore() {
-  //   Meteor.call("scores.plusScore");
-  // }
 
-  // addScore() {
-  //   Meteor.call("scores.addScore");
-  // }
+  goBackHome() {
+    Meteor.call("scores.dropData");
+  }
 
   render() {
-    // this.addScore();
-    // console.log(Scores);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -78,8 +76,16 @@ class ComputerScienceContainer extends Component {
               />
             ) : (
               <div>
-                {/* {Meteor.call("scores.dropData")} */}
-                <h1>Score is {this.state.score}</h1>
+                {this.props.scores.map((score, index) => {
+                  return (
+                    <div key={index}>
+                      <h1>Score is {score.points}</h1>
+                      <Link to="/">
+                        <button onClick={this.goBackHome}>Go back home</button>
+                      </Link>
+                    </div>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -89,4 +95,12 @@ class ComputerScienceContainer extends Component {
   }
 }
 
-export default ComputerScienceContainer;
+//if points == user do that
+const CSContainer = withTracker(() => {
+  Meteor.subscribe("scores");
+  return {
+    scores: Scores.find({ points: { $gt: 1 } }).fetch()
+  };
+})(ComputerScienceContainer);
+
+export default CSContainer;
