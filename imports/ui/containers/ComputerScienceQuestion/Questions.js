@@ -16,22 +16,6 @@ const Question = props => {
   let allQuestions = [];
   let newQuizzes = quizzes;
 
-  //add some method to push questions with (Category, Question, Correct,Incorrect,Difficulty (Maybe))
-  // {
-  //   quizzes &&
-  //     quizzes.map((question, index) => {
-  //       // console.log(question);
-  //       return (
-  //         newQuestions.push({
-  //           answer: question.correct_answer,
-  //           correct: true
-  //         }),
-  //         question.incorrect_answers.map((answers, index) => {
-  //           newQuestions.push({ answer: answers, correct: false });
-  //         })
-  //       );
-  //     });
-  // }
   {
     Meteor.call("scores.addScore");
   }
