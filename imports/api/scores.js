@@ -1,5 +1,6 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
+import QuizResults from "./quizresults";
 
 Meteor.methods({
   //check
@@ -8,12 +9,29 @@ Meteor.methods({
   },
   //ask
   "scores.plusScore"() {
-    console.log("its adding");
+    // console.log("its adding");
     Scores.update(
       { name: Meteor.user() },
       {
         $inc: { points: 1 }
       }
+    );
+    QuizResults.upsert(
+      { answer: true },
+      { $set: { correct: true, message: "good job!" } }
+    );
+  },
+  "scores.sameScore"() {
+    // console.log("its not adding");
+    Scores.update(
+      { name: Meteor.user() },
+      {
+        $inc: { points: 0 }
+      }
+    );
+    QuizResults.upsert(
+      { answer: true },
+      { $set: { correct: false, message: "bad job!" } }
     );
   },
   "scores.dropData"() {

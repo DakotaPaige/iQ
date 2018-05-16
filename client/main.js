@@ -16,6 +16,7 @@ import Leaderboard from "../imports/ui/containers/Leaderboard";
 import { Scores } from "../imports/api/scores";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "reactstrap";
+import QuizResultsContainer from "../imports/ui/components/QuizResultMessage";
 
 class App extends Component {
   constructor() {
@@ -29,6 +30,8 @@ class App extends Component {
       <div className="App" style={{ width: "90%" }}>
         <div className="hero-container">
           <h1 className="modal-title">iQ</h1>
+          <QuizResultsContainer />
+
           <AccountsUIWrapper />
         </div>
         <Router>
