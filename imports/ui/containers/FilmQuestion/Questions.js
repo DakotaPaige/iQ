@@ -71,7 +71,7 @@ const Question = props => {
       }
     });
   };
-  console.log("it works");
+
   return (
     <div>
       <h1>Questions</h1>

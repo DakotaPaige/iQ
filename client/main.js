@@ -25,14 +25,6 @@ class App extends Component {
     this.state = {};
   }
 
-  // addScore() {
-  //   const newScore = {
-  //     user: Meteor.userId(),
-  //     points: "hi"
-  //   };
-  //   Meteor.call("scores.addScore", newScore);
-  // }
-
   render() {
     return (
       <div className="App" style={{ width: "90%" }}>
