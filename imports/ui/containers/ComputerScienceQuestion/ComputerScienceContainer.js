@@ -7,6 +7,7 @@ import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { QuizResults } from "../../../api/quizresults";
+import Testing from "./testing";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -19,7 +20,8 @@ class ComputerScienceContainer extends Component {
       score: 0,
       current: 0,
       answer: [],
-      incorrectAnswer: []
+      incorrectAnswer: [],
+      showQuestion: false
     };
   }
   //film
@@ -46,6 +48,13 @@ class ComputerScienceContainer extends Component {
     this.setState({ score });
     // Meteor.call("scores.setScore", score);
   }
+  showQuestion() {
+    this.setState({ showQuestion: true });
+  }
+
+  showQuestions() {
+    this.setState({ showQuestion: false });
+  }
 
   goBackHome() {
     Meteor.call("scores.dropData");
@@ -67,18 +76,25 @@ class ComputerScienceContainer extends Component {
         ) : (
           <div>
             {this.state.current !== 10 ? (
-              <Questionss
-                setScore={this.setScore.bind(this)}
-                current={this.state.current}
-                setCurrent={this.setCurrent.bind(this)}
-                addQuestions={this.addQuestions.bind(this)}
-                allQuestions={this.state.allQuestions}
-                score={this.state.score}
-                answer={this.state.answer}
-                incorrectAnswer={this.state.incorrectAnswer}
-                // addScore={this.addScore.bind(this)}
-                // plusScore={this.plusScore.bind(this)}
-              />
+              this.state.showQuestion == false ? (
+                <Questionss
+                  setScore={this.setScore.bind(this)}
+                  current={this.state.current}
+                  setCurrent={this.setCurrent.bind(this)}
+                  addQuestions={this.addQuestions.bind(this)}
+                  allQuestions={this.state.allQuestions}
+                  score={this.state.score}
+                  answer={this.state.answer}
+                  incorrectAnswer={this.state.incorrectAnswer}
+                  // addScore={this.addScore.bind(this)}
+                  // plusScore={this.plusScore.bind(this)}
+                  showQuestion={this.showQuestion.bind(this)}
+                  // showQuestions={this.showQuestions.bind(this)}
+                  showQ={this.state.showQuestion}
+                />
+              ) : (
+                <Testing showQuestions={this.showQuestions.bind(this)} />
+              )
             ) : (
               <div>
                 {this.props.scores.map((score, index) => {

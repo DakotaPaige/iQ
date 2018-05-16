@@ -33,7 +33,6 @@ class App extends Component {
         <div className="hero-container">
           <h1 className="modal-title">iQ</h1>
           <QuizResultsContainer />
-
           <AccountsUIWrapper />
         </div>
         <Router>

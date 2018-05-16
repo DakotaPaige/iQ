@@ -44,27 +44,45 @@ const Question = props => {
   // console.log(newQuestions);
   //mongo handle
   // console.log(correctAnswer);
-  console.log(incorrectAnswer);
-  incorrectAnswer.find(function(element) {
-    return;
-  });
+  // console.log(incorrectAnswer);
 
   let handleChange = e => {
     e.preventDefault();
     const selected = e.target.value;
     //why is it showing only 9
     //temporary answer
-    props.setCurrent(current + 1);
+    props.showQuestion();
+    console.log("hello");
+    console.log(props.showQ);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         // console.log(element);
         // console.log(selected);
+        // props.showQuestion();
         Meteor.call("scores.plusScore");
+        console.log("its right");
+        // console.log(props.showQ);
+        props.setCurrent(current + 1);
+        // setTimeout(() => {
+        //   props.showQuestion2();
+        //   console.log(props.showQ);
+        //   props.setCurrent(current + 1);
+        // }, 3000);
+        // setTimeout()
         // console.log("its correct!");
         // console.log("its not working");
         // props.setScore(score + 1);
       } else if (correctAnswer.includes(selected) == false) {
+        // props.showQuestion();
         Meteor.call("scores.sameScore");
+        console.log("its wrong");
+        // console.log(props.showQ);
+        props.setCurrent(current + 1);
+        // setTimeout(() => {
+        //   props.showQuestion2();
+        //   console.log(props.showQ);
+        //   props.setCurrent(current + 1);
+        // }, 3000);
       }
     });
   };
@@ -78,7 +96,7 @@ const Question = props => {
             return (
               <div key={index}>
                 {current == index ? (
-                  <div>
+                  <div className="questionContainer">
                     <br />
                     <p>{question.question}</p>
                     {allQuestions
