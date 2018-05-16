@@ -9,6 +9,7 @@ const MainMenu = () => {
       <Link to="/Film"> Film </Link>
       <Link to="/General-Knowledge"> General Knowledge </Link>
       <Link to="/Science-Nature"> Science & Nature</Link>
+      <Link to="/Leaderboard">Leaderboard</Link>
     </div>
   );
 };
