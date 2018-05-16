@@ -11,12 +11,15 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import MainMenu from "../imports/ui/components/MainMenu";
 import ReactDOM from "react-dom";
 import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
+import "../imports/start-up/accounts-config.js";
 import { Questions } from "../imports/api/questions";
 import Leaderboard from "../imports/ui/containers/Leaderboard";
 import { Scores } from "../imports/api/scores";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "reactstrap";
 import QuizResultsContainer from "../imports/ui/components/QuizResultMessage";
+
+import Routes from "../imports/routes";
 
 class App extends Component {
   constructor() {
@@ -25,7 +28,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <div className="App" style={{ width: "90%" }}>
         <div className="hero-container">
@@ -37,32 +39,10 @@ class App extends Component {
         <Router>
           <div>
             <MainMenu />
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route
-                exact
-                path="/Computer-Science"
-                component={ComputerScienceQuestion}
-                // render={() => console.log("hello")}
-              />
-              <Route exact path="/Film" component={FilmQuestion} />
-              <Route
-                exact
-                path="/General-Knowledge"
-                component={GeneralKQuestion}
-              />
-              <Route
-                exact
-                path="/Science-Nature"
-                component={ScienceNatureQuestion}
-              />
-              <Route exact path="/Score" component={Score} />
-              <Route
-                exact
-                path="/Leaderboard"
-                render={props => <Leaderboard allUsers={this.props.users} />}
-              />
-            </Switch>
+            <Routes
+              currentUser={this.props.currentUser}
+              currentUserId={this.props.currentUserId}
+            />
           </div>
         </Router>
       </div>

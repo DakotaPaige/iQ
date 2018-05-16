@@ -4,7 +4,8 @@ import LeaderboardList from "../../components/LeaderboardList";
 import { Meteor } from "meteor/meteor";
 import "./style.css";
 import { Users } from "../../../api/users";
-import { Button, ButtonGroup } from 'reactstrap';
+import { Button, ButtonGroup } from "reactstrap";
+import { withTracker } from "meteor/react-meteor-data";
 
 // const mockUserData = [
 //   {
@@ -82,7 +83,10 @@ import { Button, ButtonGroup } from 'reactstrap';
 // ]
 
 function compareAllPoints(a, b) {
-  return (a.profile.points[4].points/a.profile.gamesPlayed) - (b.profile.points[4].points/b.profile.gamesPlayed);
+  return (
+    a.profile.points[4].points / a.profile.gamesPlayed -
+    b.profile.points[4].points / b.profile.gamesPlayed
+  );
 }
 
 function compareComputerPoints(a, b) {
@@ -123,7 +127,7 @@ class Leaderboard extends Component {
   }
 
   getAllTime = () => {
-    const sortedAllPoints = this.props.allUsers
+    const sortedAllPoints = this.props.users
       .sort(compareAllPoints)
       .slice()
       .reverse();
@@ -131,7 +135,7 @@ class Leaderboard extends Component {
   };
 
   getFilm = () => {
-    const sortedFilmPoints = this.props.allUsers
+    const sortedFilmPoints = this.props.users
       .sort(compareFilmPoints)
       .slice()
       .reverse();
@@ -139,7 +143,7 @@ class Leaderboard extends Component {
   };
 
   getScience = () => {
-    const sortedSciencePoints = this.props.allUsers
+    const sortedSciencePoints = this.props.users
       .sort(compareSciencePoints)
       .slice()
       .reverse();
@@ -147,7 +151,7 @@ class Leaderboard extends Component {
   };
 
   getGeneral = () => {
-    const sortedGeneralPoints = this.props.allUsers
+    const sortedGeneralPoints = this.props.users
       .sort(compareGeneralPoints)
       .slice()
       .reverse();
@@ -155,7 +159,7 @@ class Leaderboard extends Component {
   };
 
   getComputers = () => {
-    const sortedComputerPoints = this.props.allUsers
+    const sortedComputerPoints = this.props.users
       .sort(compareComputerPoints)
       .slice()
       .reverse();
@@ -163,35 +167,47 @@ class Leaderboard extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <h1>Top Scores</h1>
         <ButtonGroup>
-            <Button onClick={this.getAllTime} className="leader-cat">
-              All Time
-            </Button>
-            <Button onClick={this.getGeneral} className="leader-cat">
-              General
-            </Button>
-            <Button onClick={this.getComputers} className="leader-cat">
-              Computers
-            </Button>
-            <Button onClick={this.getScience} className="leader-cat">
-              Science & Nature
-            </Button>
-            <Button onClick={this.getFilm} className="leader-cat">
-              Film
-            </Button>
+          <Button onClick={this.getAllTime} className="leader-cat">
+            All Time
+          </Button>
+          <Button onClick={this.getGeneral} className="leader-cat">
+            General
+          </Button>
+          <Button onClick={this.getComputers} className="leader-cat">
+            Computers
+          </Button>
+          <Button onClick={this.getScience} className="leader-cat">
+            Science & Nature
+          </Button>
+          <Button onClick={this.getFilm} className="leader-cat">
+            Film
+          </Button>
         </ButtonGroup>
-        <TopThree topThree={this.state.sortedUserData.slice(0, 3)} currentIndex={this.state.currentIndex}/>
-        <LeaderboardList users={this.state.sortedUserData.slice(3)} currentIndex={this.state.currentIndex}/>
+        <TopThree
+          topThree={this.state.sortedUserData.slice(0, 3)}
+          currentIndex={this.state.currentIndex}
+        />
+        <LeaderboardList
+          users={this.state.sortedUserData.slice(3)}
+          currentIndex={this.state.currentIndex}
+        />
       </div>
     );
   }
 }
 
-export default Leaderboard;
+const LeaderboardContainer = withTracker(() => {
+  Meteor.subscribe("users");
+  return {
+    users: Meteor.users.find().fetch()
+  };
+})(Leaderboard);
+
+export default LeaderboardContainer;
 
 // feed in just the top 3 user scores into TopThree
 // feed in the rest to LeaderboardList
