@@ -11,6 +11,16 @@
   align-items: center;
 }
 
+.single-user p {
+  margin: 0;
+}
+
+.top-image {
+  height: 75px;
+  display: flex;
+  align-items: center;
+}
+
 .react-gravatar {
   border-radius: 50%;
 }
@@ -23,4 +33,8 @@ li:nth-of-type(2) .react-gravatar {
 li:nth-of-type(3) .react-gravatar {
   width: 35px;
   height: 35px;
+}
+
+.btn-group .btn {
+  white-space: pre-wrap;
 }

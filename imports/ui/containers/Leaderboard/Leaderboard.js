@@ -171,19 +171,35 @@ class Leaderboard extends Component {
       <div>
         <h1>Top Scores</h1>
         <ButtonGroup>
-          <Button onClick={this.getAllTime} className="leader-cat">
+          <Button
+            onClick={this.getAllTime}
+            className="leader-cat"
+            color="primary"
+          >
             All Time
           </Button>
-          <Button onClick={this.getGeneral} className="leader-cat">
+          <Button
+            onClick={this.getGeneral}
+            className="leader-cat"
+            color="primary"
+          >
             General
           </Button>
-          <Button onClick={this.getComputers} className="leader-cat">
+          <Button
+            onClick={this.getComputers}
+            className="leader-cat"
+            color="primary"
+          >
             Computers
           </Button>
-          <Button onClick={this.getScience} className="leader-cat">
+          <Button
+            onClick={this.getScience}
+            className="leader-cat"
+            color="primary"
+          >
             Science & Nature
           </Button>
-          <Button onClick={this.getFilm} className="leader-cat">
+          <Button onClick={this.getFilm} className="leader-cat" color="primary">
             Film
           </Button>
         </ButtonGroup>

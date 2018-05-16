@@ -1,8 +1,8 @@
-import React from 'react';
-import { Table } from 'reactstrap';
-import './style.css';
+import React from "react";
+import { Table } from "reactstrap";
+import "./style.css";
 
-const LeaderboardList = (props) => {
+const LeaderboardList = props => {
   let placement = 3;
   return (
     <Table>
@@ -16,20 +16,27 @@ const LeaderboardList = (props) => {
         </tr>
       </thead>
       <tbody>
-      {props.users.map(user => {
-        placement+=1;
-        return (
-          <tr>
-            <th scope="row">{placement}</th>
-            <td>{user.profile.username}</td>
-            <td>{user.profile.points[props.currentIndex].points}</td> 
-            <td>{user.profile.gamesPlayed}</td>
-            <td>{((user.profile.points[4].points/user.profile.gamesPlayed) * 100).toFixed(2)}</td>
-          </tr>)
-      })}
+        {props.users.map(user => {
+          placement += 1;
+          return (
+            <tr>
+              <th scope="row">{placement}</th>
+              <td>{user.username}</td>
+              <td>{user.profile.points[props.currentIndex].points}</td>
+              <td>{user.profile.gamesPlayed}</td>
+              <td>
+                {(
+                  user.profile.points[4].points /
+                  user.profile.gamesPlayed *
+                  100
+                ).toFixed(2)}
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </Table>
-  )
+  );
 };
 
 export default LeaderboardList;
