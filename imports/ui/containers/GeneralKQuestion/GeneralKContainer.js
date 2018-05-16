@@ -45,6 +45,7 @@ class GeneralKContainer extends Component {
 
   goBackHome() {
     Meteor.call("scores.dropData");
+    Meteor.call("questions.dropData");
   }
 
   render() {

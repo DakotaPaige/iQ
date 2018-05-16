@@ -10,7 +10,17 @@ Meteor.methods({
       incorrect: questions.incorrect_answers,
       difficulty: questions.difficulty
     });
+  },
+  "questions.dropData"() {
+    Questions.remove({});
   }
 });
+
+// if (Meteor.isServer) {
+//   // This code only runs on the server
+//   Meteor.publish("questions", function() {
+//     return Questions.find();
+//   });
+// }
 
 export const Questions = new Mongo.Collection("questions");
