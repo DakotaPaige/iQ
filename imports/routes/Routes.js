@@ -9,34 +9,53 @@ import ScienceNatureQuestion from "../ui/containers/ScienceNatureQuestion";
 import Score from "../ui/containers/Score";
 import Leaderboard from "../ui/containers/Leaderboard";
 
-const PrivateLeaderboard = (props, { component: Component, ...rest }) => {
-  console.log(props);
-  const currentUser = props.userId;
-  console.log(currentUser);
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        currentUser ? <Leaderboard {...props} /> : <Redirect to="/" />
-      }
-    />
-  );
-};
+import PrivateLeaderboard from "./PrivateLeaderboard";
+import PrivateComputer from "./PrivateComputer";
+import PrivateFilm from "./PrivateFilm";
+import PrivateGeneral from "./PrivateGeneral";
+import PrivateScience from "./PrivateScience";
+import PrivateScore from "./PrivateScore";
 
 const Routes = props => {
   return (
     <Switch>
       <Route exact path="/" component={HomePage} />
-      <Route
+      <PrivateComputer
         exact
         path="/Computer-Science"
         component={ComputerScienceQuestion}
+        userId={props.currentUserId}
+        user={props.currentUser}
         // render={() => console.log("hello")}
       />
-      <Route exact path="/Film" component={FilmQuestion} />
-      <Route exact path="/General-Knowledge" component={GeneralKQuestion} />
-      <Route exact path="/Science-Nature" component={ScienceNatureQuestion} />
-      <Route exact path="/Score" component={Score} />
+      <PrivateFilm
+        exact
+        path="/Film"
+        component={FilmQuestion}
+        userId={props.currentUserId}
+        user={props.currentUser}
+      />
+      <PrivateGeneral
+        exact
+        path="/General-Knowledge"
+        component={GeneralKQuestion}
+        userId={props.currentUserId}
+        user={props.currentUser}
+      />
+      <PrivateScience
+        exact
+        path="/Science-Nature"
+        component={ScienceNatureQuestion}
+        userId={props.currentUserId}
+        user={props.currentUser}
+      />
+      <PrivateScore
+        exact
+        path="/Score"
+        component={Score}
+        userId={props.currentUserId}
+        user={props.currentUser}
+      />
       <PrivateLeaderboard
         exact
         path="/Leaderboard"

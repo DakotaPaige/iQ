@@ -3,6 +3,8 @@ import ComputerScienceContainer from "./ComputerScienceContainer";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
+import { Mongo } from "meteor/mongo";
+import QuizResults from "../../../api/quizresults";
 
 const Question = props => {
   let quizzes = props.allQuestions.results;
@@ -12,6 +14,7 @@ const Question = props => {
   //ask if we need splice or can we just fix that
   //no pushes inside render
   let correctAnswer = props.answer.splice(10, 10);
+  let incorrectAnswer = props.incorrectAnswer;
   let score = props.score;
   let allQuestions = [];
   let newQuizzes = quizzes;
@@ -40,6 +43,12 @@ const Question = props => {
 
   // console.log(newQuestions);
   //mongo handle
+  // console.log(correctAnswer);
+  console.log(incorrectAnswer);
+  incorrectAnswer.find(function(element) {
+    return;
+  });
+
   let handleChange = e => {
     e.preventDefault();
     const selected = e.target.value;
@@ -48,10 +57,14 @@ const Question = props => {
     props.setCurrent(current + 1);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
-        //+1 for state to work
-        // console.log("hello")
+        // console.log(element);
+        // console.log(selected);
         Meteor.call("scores.plusScore");
+        // console.log("its correct!");
+        // console.log("its not working");
         // props.setScore(score + 1);
+      } else if (correctAnswer.includes(selected) == false) {
+        Meteor.call("scores.sameScore");
       }
     });
   };

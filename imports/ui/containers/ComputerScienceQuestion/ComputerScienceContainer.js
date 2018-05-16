@@ -6,7 +6,7 @@ import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
+import { QuizResults } from "../../../api/quizresults";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -18,7 +18,8 @@ class ComputerScienceContainer extends Component {
       isLoading: false,
       score: 0,
       current: 0,
-      answer: []
+      answer: [],
+      incorrectAnswer: []
     };
   }
   //film
@@ -49,6 +50,7 @@ class ComputerScienceContainer extends Component {
   goBackHome() {
     Meteor.call("scores.dropData");
     Meteor.call("questions.dropData");
+    Meteor.call("quizresults.dropData");
   }
 
   render() {
@@ -56,6 +58,7 @@ class ComputerScienceContainer extends Component {
     quizzes &&
       quizzes.map((question, index) => {
         this.state.answer.push(question.correct_answer);
+        this.state.incorrectAnswer.push(question.incorrect_answers);
       });
     return (
       <div>
@@ -72,6 +75,7 @@ class ComputerScienceContainer extends Component {
                 allQuestions={this.state.allQuestions}
                 score={this.state.score}
                 answer={this.state.answer}
+                incorrectAnswer={this.state.incorrectAnswer}
                 // addScore={this.addScore.bind(this)}
                 // plusScore={this.plusScore.bind(this)}
               />
@@ -105,3 +109,13 @@ const CSContainer = withTracker(() => {
 })(ComputerScienceContainer);
 
 export default CSContainer;
+
+// for(let i =1; i <= 11; i++){
+//   if(i==11 && i %2 !== 0){
+//     console.log("its magic");
+//   }else if(i %2 ==0){
+//     console.log("its even");
+//   }else if(i%2 !==0){
+//     console.log("its odd");
+//   }
+// }
