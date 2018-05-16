@@ -18,6 +18,8 @@ import { Scores } from "../imports/api/scores";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "reactstrap";
 
+import Routes from "../imports/routes";
+
 class App extends Component {
   constructor() {
     super();
@@ -25,7 +27,6 @@ class App extends Component {
   }
 
   render() {
-    // console.log(this.props);
     return (
       <div className="App" style={{ width: "90%" }}>
         <div className="hero-container">
@@ -35,32 +36,10 @@ class App extends Component {
         <Router>
           <div>
             <MainMenu />
-            <Switch>
-              <Route exact path="/" component={HomePage} />
-              <Route
-                exact
-                path="/Computer-Science"
-                component={ComputerScienceQuestion}
-                // render={() => console.log("hello")}
-              />
-              <Route exact path="/Film" component={FilmQuestion} />
-              <Route
-                exact
-                path="/General-Knowledge"
-                component={GeneralKQuestion}
-              />
-              <Route
-                exact
-                path="/Science-Nature"
-                component={ScienceNatureQuestion}
-              />
-              <Route exact path="/Score" component={Score} />
-              <Route
-                exact
-                path="/Leaderboard"
-                render={props => <Leaderboard allUsers={this.props.users} />}
-              />
-            </Switch>
+            <Routes
+              currentUser={this.props.currentUser}
+              currentUserId={this.props.currentUserId}
+            />
           </div>
         </Router>
       </div>
