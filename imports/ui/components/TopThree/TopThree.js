@@ -12,6 +12,7 @@ const TopThree = (props) => {
             <p>{user.profile.username}</p>
             <p>{user.profile.points[props.currentIndex].points}</p>
             <p>{user.profile.gamesPlayed} Games</p>
+            <p>{((user.profile.points[4].points/user.profile.gamesPlayed) * 100).toFixed(2)}</p>
           </li>);
       })}
     </ul>
