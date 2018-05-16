@@ -35,7 +35,10 @@ class App extends Component {
         <Router>
           <div>
             <MainMenu />
-            <Routes />
+            <Routes
+              currentUser={this.props.currentUser}
+              currentUserId={this.props.currentUserId}
+            />
           </div>
         </Router>
       </div>
