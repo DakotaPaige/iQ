@@ -16,11 +16,9 @@ Meteor.methods({
   }
 });
 
-// if (Meteor.isServer) {
-//   // This code only runs on the server
-//   Meteor.publish("questions", function() {
-//     return Questions.find();
-//   });
-// }
-
+if (Meteor.isServer) {
+  Meteor.publish("questions", function() {
+    return Questions.find();
+  });
+}
 export const Questions = new Mongo.Collection("questions");

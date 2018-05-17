@@ -10,9 +10,6 @@ const Question = props => {
   let quizzes = props.allQuestions.results;
   const newQuestions = [];
   let current = props.current;
-  //temporarary answer
-  //ask if we need splice or can we just fix that
-  //no pushes inside render
   let correctAnswer = props.answer.splice(10, 10);
   let incorrectAnswer = props.incorrectAnswer;
   let score = props.score;
@@ -41,51 +38,28 @@ const Question = props => {
       });
   }
 
-  // console.log(newQuestions);
-  //mongo handle
-  // console.log(correctAnswer);
-  // console.log(incorrectAnswer);
-
   let handleChange = e => {
     e.preventDefault();
     const selected = e.target.value;
-    //why is it showing only 9
-    //temporary answer
     props.showQuestion();
     console.log("hello");
     console.log(props.showQ);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
-        // console.log(element);
-        // console.log(selected);
-        // props.showQuestion();
         Meteor.call("scores.plusScore");
         console.log("its right");
-        // console.log(props.showQ);
         props.setCurrent(current + 1);
-        // setTimeout(() => {
-        //   props.showQuestion2();
-        //   console.log(props.showQ);
-        //   props.setCurrent(current + 1);
-        // }, 3000);
-        // setTimeout()
-        // console.log("its correct!");
-        // console.log("its not working");
-        // props.setScore(score + 1);
+        console.log(props.isCorrectAnswer);
+        props.isCorrect();
       } else if (correctAnswer.includes(selected) == false) {
-        // props.showQuestion();
         Meteor.call("scores.sameScore");
         console.log("its wrong");
-        // console.log(props.showQ);
         props.setCurrent(current + 1);
-        // setTimeout(() => {
-        //   props.showQuestion2();
-        //   console.log(props.showQ);
-        //   props.setCurrent(current + 1);
-        // }, 3000);
+        props.isIncorrect();
       }
     });
   };
+  console.log(current);
 
   return (
     <div>

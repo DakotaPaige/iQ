@@ -21,7 +21,8 @@ class ComputerScienceContainer extends Component {
       current: 0,
       answer: [],
       incorrectAnswer: [],
-      showQuestion: false
+      showQuestion: false,
+      isCorrectAnswer: true
     };
   }
   //film
@@ -54,6 +55,14 @@ class ComputerScienceContainer extends Component {
 
   showQuestions() {
     this.setState({ showQuestion: false });
+    Meteor.call("questions.dropData");
+    this.setState({ isCorrect: false });
+  }
+  isCorrect() {
+    this.setState({ isCorrectAnswer: true });
+  }
+  isIncorrect() {
+    this.setState({ isCorrectAnswer: false });
   }
 
   goBackHome() {
@@ -75,27 +84,7 @@ class ComputerScienceContainer extends Component {
           <p>It is Loading</p>
         ) : (
           <div>
-            {this.state.current !== 10 ? (
-              this.state.showQuestion == false ? (
-                <Questionss
-                  setScore={this.setScore.bind(this)}
-                  current={this.state.current}
-                  setCurrent={this.setCurrent.bind(this)}
-                  addQuestions={this.addQuestions.bind(this)}
-                  allQuestions={this.state.allQuestions}
-                  score={this.state.score}
-                  answer={this.state.answer}
-                  incorrectAnswer={this.state.incorrectAnswer}
-                  // addScore={this.addScore.bind(this)}
-                  // plusScore={this.plusScore.bind(this)}
-                  showQuestion={this.showQuestion.bind(this)}
-                  // showQuestions={this.showQuestions.bind(this)}
-                  showQ={this.state.showQuestion}
-                />
-              ) : (
-                <Testing showQuestions={this.showQuestions.bind(this)} />
-              )
-            ) : (
+            {this.state.current == 10 ? (
               <div>
                 {this.props.scores.map((score, index) => {
                   return (
@@ -108,6 +97,30 @@ class ComputerScienceContainer extends Component {
                   );
                 })}
               </div>
+            ) : this.state.showQuestion == false ? (
+              <Questionss
+                setScore={this.setScore.bind(this)}
+                current={this.state.current}
+                setCurrent={this.setCurrent.bind(this)}
+                addQuestions={this.addQuestions.bind(this)}
+                allQuestions={this.state.allQuestions}
+                score={this.state.score}
+                answer={this.state.answer}
+                incorrectAnswer={this.state.incorrectAnswer}
+                // addScore={this.addScore.bind(this)}
+                // plusScore={this.plusScore.bind(this)}
+                showQuestion={this.showQuestion.bind(this)}
+                // showQuestions={this.showQuestions.bind(this)}
+                showQ={this.state.showQuestion}
+                isCorrectAnswer={this.state.isCorrectAnswer}
+                isCorrect={this.isCorrect.bind(this)}
+                isIncorrect={this.isIncorrect.bind(this)}
+              />
+            ) : (
+              <Testing
+                showQuestions={this.showQuestions.bind(this)}
+                isCorrectAnswer={this.state.isCorrectAnswer}
+              />
             )}
           </div>
         )}

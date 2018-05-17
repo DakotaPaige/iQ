@@ -41,7 +41,6 @@ Meteor.methods({
 });
 
 if (Meteor.isServer) {
-  // This code only runs on the server
   Meteor.publish("scores", function() {
     return Scores.find();
   });
