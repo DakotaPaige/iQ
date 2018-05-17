@@ -1,12 +1,16 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
 
+export const Users = Meteor.users.find().fetch();
+
 Meteor.methods({
-  "users.addScore"(category) {
-    Users.update(
-      { name: category },
+  "users.plusScore"(category) {
+    const currentUser = Meteor.user();
+    const currentUserId = Meteor.userId();
+    Meteor.users.update(
+      { _id: currentUserId, "profile.points.category": "all" },
       {
-        $inc: { points: 1 }
+        $inc: { "profile.points.4.points": 1 }
       }
     );
   }
@@ -23,5 +27,4 @@ if (Meteor.isServer) {
 //     Meteor.users.find().fetch()
 //   }
 // })
-export const Users = Meteor.users.find().fetch();
 // console.log(Users);
