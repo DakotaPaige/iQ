@@ -19,3 +19,5 @@ const privateHome = (props, { component: Component, ...rest }) => {
     />
   );
 };
+
+export default privateHome;
