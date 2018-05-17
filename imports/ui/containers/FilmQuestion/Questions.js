@@ -4,7 +4,6 @@ import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { Mongo } from "meteor/mongo";
-import QuizResults from "../../../api/quizresults";
 
 const Question = props => {
   let quizzes = props.allQuestions.results;
@@ -59,7 +58,24 @@ const Question = props => {
       }
     });
   };
-  console.log(current);
+  let decodeEntities = encodedString => {
+    var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
+    var translate = {
+      nbsp: " ",
+      amp: "&",
+      quot: '"',
+      lt: "<",
+      gt: ">"
+    };
+    return encodedString
+      .replace(translate_re, function(match, entity) {
+        return translate[entity];
+      })
+      .replace(/&#(\d+);/gi, function(match, numStr) {
+        var num = parseInt(numStr, 10);
+        return String.fromCharCode(num);
+      });
+  };
 
   return (
     <div className="card">
@@ -71,7 +87,9 @@ const Question = props => {
                 {current == index ? (
                   <div className="questionContainer">
                     <br />
-                    <h2 className="card-title">{question.question}</h2>
+                    <h2 className="card-title">
+                      {decodeEntities(question.question)}
+                    </h2>
                     {allQuestions
                       .sort(function(a, b) {
                         return 0.5 - Math.random();
@@ -86,7 +104,7 @@ const Question = props => {
                               key={index}
                               value={question}
                             >
-                              {question}
+                              {decodeEntities(question)}
                             </button>
                           </div>
                         );

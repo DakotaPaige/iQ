@@ -1,7 +1,5 @@
 import { Meteor } from "meteor/meteor";
 import { Mongo } from "meteor/mongo";
-import QuizResults from "./quizresults";
-
 Meteor.methods({
   //check
   "scores.addScore"() {
@@ -15,10 +13,6 @@ Meteor.methods({
       {
         $inc: { points: 1 }
       }
-    );
-    QuizResults.upsert(
-      { answer: true },
-      { $set: { correct: true, message: "good job!" } }
     );
   },
   "scores.sameScore"() {
