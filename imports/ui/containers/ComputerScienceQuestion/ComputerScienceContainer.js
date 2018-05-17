@@ -6,10 +6,10 @@ import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { QuizResults } from "../../../api/quizresults";
+
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
 import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
-import QuizShowScore from "../../components/QuizShowScore";
+
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -45,12 +45,6 @@ class ComputerScienceContainer extends Component {
 
   setCurrent(current) {
     this.setState({ current });
-  }
-
-  goBackHome() {
-    Meteor.call("scores.dropData");
-    Meteor.call("questions.dropData");
-    Meteor.call("quizresults.dropData");
   }
 
   setScore(score) {
@@ -134,13 +128,3 @@ const CSContainer = withTracker(() => {
 })(ComputerScienceContainer);
 
 export default CSContainer;
-
-// for(let i =1; i <= 11; i++){
-//   if(i==11 && i %2 !== 0){
-//     console.log("its magic");
-//   }else if(i %2 ==0){
-//     console.log("its even");
-//   }else if(i%2 !==0){
-//     console.log("its odd");
-//   }
-// }
