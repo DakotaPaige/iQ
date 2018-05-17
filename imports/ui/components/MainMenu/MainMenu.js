@@ -8,7 +8,6 @@ const MainMenu = () => {
       <button type="button" className="btn btn-primary">
         <Link to="/">Home Page</Link>
       </button>
-
       <div className="category-container">
         <button type="button" value="Computer Science" className="btn btn-dark">
           <Link to="/Computer-Science"> Computer Science </Link>

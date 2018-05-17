@@ -6,8 +6,8 @@ import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-import { QuizResults } from "../../../api/quizresults";
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
+import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
 
 class GeneralKContainer extends Component {
   constructor() {
@@ -63,12 +63,6 @@ class GeneralKContainer extends Component {
     this.setState({ isCorrectAnswer: false });
   }
 
-  goBackHome() {
-    Meteor.call("scores.dropData");
-    Meteor.call("questions.dropData");
-    Meteor.call("quizresults.dropData");
-  }
-
   render() {
     let quizzes = this.state.allQuestions.results;
     quizzes &&
@@ -84,16 +78,10 @@ class GeneralKContainer extends Component {
           <div>
             {this.state.current == 10 ? (
               <div>
-                {this.props.scores.map((score, index) => {
-                  return (
-                    <div key={index}>
-                      <h1>Score is {score.points}</h1>
-                      <Link to="/">
-                        <button onClick={this.goBackHome}>Go back home</button>
-                      </Link>
-                    </div>
-                  );
-                })}
+                <QuizResultsFinishContainer
+                  showQuestions={this.showQuestions.bind(this)}
+                  isCorrectAnswer={this.state.isCorrectAnswer}
+                />
               </div>
             ) : this.state.showQuestion == false ? (
               <Questionss
@@ -137,4 +125,4 @@ const newGeneralKContainer = withTracker(() => {
 
 export default newGeneralKContainer;
 
-// "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";
+// "https://opentdb.com/api.php?amount=10&category=9&type=multiple";

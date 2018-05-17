@@ -7,6 +7,12 @@ import { Mongo } from "meteor/mongo";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 
+let goBackHome = () => {
+  Meteor.call("scores.dropData");
+  Meteor.call("questions.dropData");
+  Meteor.call("quizresults.dropData");
+};
+
 const Score = props => {
   return (
     <div>
@@ -15,12 +21,11 @@ const Score = props => {
           <div key={index}>
             <h1>Score is {score.points}</h1>
             <Link to="/">
-              <button onClick={props.goBackHome}>Go back home</button>
+              <button onClick={goBackHome}>Go back home</button>
             </Link>
           </div>
         );
       })}
-      <button onClick={props.showQuestions}> click here</button>
     </div>
   );
 };

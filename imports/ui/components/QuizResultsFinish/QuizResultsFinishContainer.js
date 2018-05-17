@@ -8,6 +8,25 @@ import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import ScoreContainer from "../../containers/Score";
 
+let decodeEntities = encodedString => {
+  var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
+  var translate = {
+    nbsp: " ",
+    amp: "&",
+    quot: '"',
+    lt: "<",
+    gt: ">"
+  };
+  return encodedString
+    .replace(translate_re, function(match, entity) {
+      return translate[entity];
+    })
+    .replace(/&#(\d+);/gi, function(match, numStr) {
+      var num = parseInt(numStr, 10);
+      return String.fromCharCode(num);
+    });
+};
+
 const QuestionFinish = props => {
   return (
     <div>
@@ -20,7 +39,7 @@ const QuestionFinish = props => {
                 <h1>Good job</h1>
               </div>
             ) : (
-              <h1>Correct Answer is : {question.correct}</h1>
+              <h1>Correct Answer is : {decodeEntities(question.correct)}</h1>
             )}
           </div>
         );
