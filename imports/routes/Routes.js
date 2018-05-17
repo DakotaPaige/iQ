@@ -9,17 +9,27 @@ import ScienceNatureQuestion from "../ui/containers/ScienceNatureQuestion";
 import Score from "../ui/containers/Score";
 import Leaderboard from "../ui/containers/Leaderboard";
 
+import Login from "../ui/containers/Login";
+
 import PrivateLeaderboard from "./PrivateLeaderboard";
 import PrivateComputer from "./PrivateComputer";
 import PrivateFilm from "./PrivateFilm";
 import PrivateGeneral from "./PrivateGeneral";
 import PrivateScience from "./PrivateScience";
 import PrivateScore from "./PrivateScore";
+import PrivateHome from "./PrivateHome";
 
 const Routes = props => {
   return (
     <Switch>
-      <Route exact path="/" component={HomePage} />
+      <PrivateHome
+        exact
+        path="/"
+        component={HomePage}
+        userId={props.currentUserId}
+        user={props.currentUser}
+      />
+      <Route exact path="/login" component={Login} />
       <PrivateComputer
         exact
         path="/Computer-Science"

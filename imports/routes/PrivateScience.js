@@ -13,7 +13,7 @@ const PrivateScience = (props, { component: Component, ...rest }) => {
         currentUser && currentUserId ? (
           <ScienceNatureQuestion />
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/login" />
         )
       }
     />
