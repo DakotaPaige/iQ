@@ -152,6 +152,6 @@
   background: url("https://www.n-side.com/wp-content/uploads/2017/07/placeholder-blog.jpg");
   background-repeat: no-repeat;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   color: white;
 }

@@ -26,7 +26,7 @@ class GeneralKContainer extends Component {
   //film
   componentDidMount() {
     const questionLink =
-      "https://opentdb.com/api.php?amount=10&category=9&difficulty=medium&type=multiple";
+      "https://opentdb.com/api.php?amount=10&category=9&type=multiple";
     this.setState({ isLoading: true });
     fetch(questionLink)
       .then(allQuestions => allQuestions.json())
