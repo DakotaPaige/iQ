@@ -5,6 +5,7 @@ import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { Mongo } from "meteor/mongo";
 import QuizResults from "../../../api/quizresults";
+import "./style.css";
 
 const Question = props => {
   let quizzes = props.allQuestions.results;
@@ -80,7 +81,7 @@ const Question = props => {
                           <div className="card-text">
                             <button
                               type="button"
-                              class="btn btn-outline-primary"
+                              className="btn btn-outline-primary"
                               onClick={handleChange}
                               key={index}
                               value={question}

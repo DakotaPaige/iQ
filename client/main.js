@@ -29,11 +29,9 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App" style={{ width: "90%" }}>
-        <div className="hero-container">
-          <h1 className="modal-title">iQ</h1>
-          <AccountsUIWrapper />
-        </div>
+      <div className="App">
+        <h1 className="modal-title">iQ</h1>
+        <AccountsUIWrapper />
         <Router>
           <div>
             <MainMenu />

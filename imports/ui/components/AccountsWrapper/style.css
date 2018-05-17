@@ -5,7 +5,6 @@
   align-items: center;
   display: flex;
   justify-content: center;
-  height: 100vh;
 }
 
 .logged-out-message {
@@ -38,7 +37,6 @@
 .accounts-dialog {
   color: black;
   width: 75%;
-  height: 75vh;
   margin: 0 auto;
   background-color: white;
   border: 1px solid #dbdbdb;
@@ -143,15 +141,10 @@
 .login-form .error-message {
   display: flex;
   justify-content: space-between;
-  height: 50vh;
   font-size: 0.85rem;
   align-content: flex-end;
 }
 
 .hero-container {
-  background: url("https://www.n-side.com/wp-content/uploads/2017/07/placeholder-blog.jpg");
-  background-repeat: no-repeat;
   width: 100vw;
-  /* height: 100vh; */
-  color: white;
 }
