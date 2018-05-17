@@ -22,6 +22,9 @@ export default class AccountsUIWrapper extends Component {
 
 const loginButton = document.getElementsByClassName("login-link-text");
 console.log(loginButton);
+// loginButton.onclick(function() {
+//   console.log("clicked");
+// });
 
 // loginButton.map(button => {
 //   button.onClick(function() {
