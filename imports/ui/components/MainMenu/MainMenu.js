@@ -6,24 +6,29 @@ const MainMenu = () => {
   return (
     <div>
       <button type="button" className="btn btn-primary">
-        <Link to="/">Home Page </Link>
+        <Link to="/">Home Page</Link>
       </button>
+
       <div className="category-container">
-        <button type="button" className="btn btn-dark">
-          <Link to="/Computer-Science"> Computer Science </Link>{" "}
+        <button type="button" value="Computer Science" className="btn btn-dark">
+          <Link to="/Computer-Science"> Computer Science </Link>
         </button>
-        <button type="button" className="btn btn-dark">
-          <Link to="/Film"> Film </Link>{" "}
+        <button type="button" value="Film" className="btn btn-dark">
+          <Link to="/Film"> Film </Link>
         </button>
-        <button type="button" className="btn btn-dark">
-          <Link to="/General-Knowledge"> General Knowledge </Link>{" "}
+        <button
+          type="button"
+          value="General Knowledge"
+          className="btn btn-dark"
+        >
+          <Link to="/General-Knowledge"> General Knowledge </Link>
         </button>
-        <button type="button" className="btn btn-dark">
-          <Link to="/Science-Nature"> Science & Nature</Link>{" "}
+        <button type="button" value="Science & Nature" className="btn btn-dark">
+          <Link to="/Science-Nature"> Science & Nature </Link>
         </button>
       </div>
-      <button type="button" className="btn btn-dark">
-        <Link to="/Leaderboard">Leaderboard</Link>{" "}
+      <button type="button" value="Leaderboard" className="btn btn-dark">
+        <Link to="/Leaderboard">Leaderboard</Link>
       </button>
     </div>
   );

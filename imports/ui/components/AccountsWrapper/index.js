@@ -19,3 +19,13 @@ export default class AccountsUIWrapper extends Component {
     return <span ref="container" />; // Render a placeholder
   }
 }
+
+const loginButton = document.getElementsByClassName("login-link-text");
+console.log(loginButton);
+
+// loginButton.map(button => {
+//   button.onClick(function() {
+//     const loginDropdown = document.getElementById("login-dropdown-list");
+//     loginDropdown.hide();
+//   });
+// });

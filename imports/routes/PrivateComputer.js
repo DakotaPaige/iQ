@@ -12,7 +12,7 @@ const PrivateComputer = (props, { component: Component, ...rest }) => {
         currentUser && currentUserId ? (
           <ComputerScienceQuestion />
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/login" />
         )
       }
     />

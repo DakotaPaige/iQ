@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import FilmQuestion from "../ui/containers/FilmQuestion";
+import HomePage from "../ui/containers/HomePage";
 
-const PrivateFilm = (props, { component: Component, ...rest }) => {
+const privateHome = (props, { component: Component, ...rest }) => {
   const currentUser = props.user;
   const currentUserId = props.userId;
   return (
@@ -11,7 +11,7 @@ const PrivateFilm = (props, { component: Component, ...rest }) => {
       {...rest}
       render={props =>
         currentUser && currentUserId ? (
-          <FilmQuestion />
+          <HomePage {...props} />
         ) : (
           <Redirect to="/login" />
         )
@@ -19,5 +19,3 @@ const PrivateFilm = (props, { component: Component, ...rest }) => {
     />
   );
 };
-
-export default PrivateFilm;

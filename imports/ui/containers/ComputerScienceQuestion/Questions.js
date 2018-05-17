@@ -61,9 +61,8 @@ const Question = props => {
   };
 
   return (
-    <div>
-      <h1>Questions</h1>
-      <div>
+    <div className="card">
+      <div className="card-body">
         {quizzes &&
           quizzes.map((question, index) => {
             return (
@@ -71,20 +70,24 @@ const Question = props => {
                 {current == index ? (
                   <div className="questionContainer">
                     <br />
-                    <p>{question.question}</p>
+                    <h2 className="card-title">{question.question}</h2>
                     {allQuestions
                       .sort(function(a, b) {
                         return 0.5 - Math.random();
                       })
                       .map((question, index) => {
                         return (
-                          <button
-                            onClick={handleChange}
-                            key={index}
-                            value={question}
-                          >
-                            {question}
-                          </button>
+                          <div className="card-text">
+                            <button
+                              type="button"
+                              class="btn btn-outline-primary"
+                              onClick={handleChange}
+                              key={index}
+                              value={question}
+                            >
+                              {question}
+                            </button>
+                          </div>
                         );
                       })}
                     <br />
