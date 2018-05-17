@@ -48,6 +48,15 @@ Meteor.methods({
         $inc: { "profile.points.3.points": 1 }
       }
     );
+  },
+  "users.addGamePlayed"() {
+    const currentUserId = Meteor.userId();
+    Meteor.users.update(
+      { _id: currentUserId },
+      {
+        $inc: { "profile.gamesPlayed": 1 }
+      }
+    );
   }
 });
 
