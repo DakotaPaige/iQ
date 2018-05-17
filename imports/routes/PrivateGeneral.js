@@ -13,7 +13,7 @@ const PrivateGeneral = (props, { component: Component, ...rest }) => {
         currentUser && currentUserId ? (
           <GeneralKQuestion />
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/login" />
         )
       }
     />

@@ -10,7 +10,7 @@ const PrivateScore = (props, { component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        currentUser && currentUserId ? <Score /> : <Redirect to="/" />
+        currentUser && currentUserId ? <Score /> : <Redirect to="/login" />
       }
     />
   );

@@ -12,7 +12,7 @@ const PrivateLeaderboard = (props, { component: Component, ...rest }) => {
         currentUser && currentUserId ? (
           <Leaderboard {...props} />
         ) : (
-          <Redirect to="/" />
+          <Redirect to="/login" />
         )
       }
     />
