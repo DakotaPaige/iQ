@@ -1,5 +1,5 @@
 import React from "react";
-import ComputerScienceContainer from "./ComputerScienceContainer";
+import GeneralKContainer from "./GeneralKContainer";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
@@ -7,15 +7,12 @@ import { Mongo } from "meteor/mongo";
 import QuizResults from "../../../api/quizresults";
 import { withTracker } from "meteor/react-meteor-data";
 
-const Testing = props => {
-  let showQuestion23 = () => {
-    props.showQuestions();
-  };
+const QuestionResult = props => {
   return (
     <div>
       {props.questionAnswer.map((question, index) => {
         return (
-          <div>
+          <div key={index}>
             {console.log(props.isCorrectAnswer)}
             {props.isCorrectAnswer == true ? (
               <div>
@@ -27,16 +24,16 @@ const Testing = props => {
           </div>
         );
       })}
-      <button onClick={showQuestion23}> click here</button>
+      <button onClick={props.showQuestions}> click here</button>
     </div>
   );
 };
 
-const TestingContainer = withTracker(() => {
+const QuestionResultContainer = withTracker(() => {
   Meteor.subscribe("questions");
   return {
     questionAnswer: Questions.find().fetch()
   };
-})(Testing);
+})(QuestionResult);
 
-export default TestingContainer;
+export default QuestionResultContainer;

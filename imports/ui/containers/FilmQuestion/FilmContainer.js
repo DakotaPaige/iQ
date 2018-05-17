@@ -6,6 +6,8 @@ import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { QuizResults } from "../../../api/quizresults";
+import QuestionResult from "./QuestionResult";
 
 class FilmContainer extends Component {
   constructor() {
@@ -15,7 +17,10 @@ class FilmContainer extends Component {
       isLoading: false,
       score: 0,
       current: 0,
-      answer: []
+      answer: [],
+      incorrectAnswer: [],
+      showQuestion: false,
+      isCorrectAnswer: true
     };
   }
   //film
@@ -42,10 +47,26 @@ class FilmContainer extends Component {
     this.setState({ score });
     // Meteor.call("scores.setScore", score);
   }
+  showQuestion() {
+    this.setState({ showQuestion: true });
+  }
+
+  showQuestions() {
+    this.setState({ showQuestion: false });
+    Meteor.call("questions.dropData");
+    this.setState({ isCorrect: false });
+  }
+  isCorrect() {
+    this.setState({ isCorrectAnswer: true });
+  }
+  isIncorrect() {
+    this.setState({ isCorrectAnswer: false });
+  }
 
   goBackHome() {
     Meteor.call("scores.dropData");
     Meteor.call("questions.dropData");
+    Meteor.call("quizresults.dropData");
   }
 
   render() {
@@ -53,6 +74,7 @@ class FilmContainer extends Component {
     quizzes &&
       quizzes.map((question, index) => {
         this.state.answer.push(question.correct_answer);
+        this.state.incorrectAnswer.push(question.incorrect_answers);
       });
     return (
       <div>
@@ -60,19 +82,7 @@ class FilmContainer extends Component {
           <p>It is Loading</p>
         ) : (
           <div>
-            {this.state.current !== 10 ? (
-              <Questionss
-                setScore={this.setScore.bind(this)}
-                current={this.state.current}
-                setCurrent={this.setCurrent.bind(this)}
-                addQuestions={this.addQuestions.bind(this)}
-                allQuestions={this.state.allQuestions}
-                score={this.state.score}
-                answer={this.state.answer}
-                // addScore={this.addScore.bind(this)}
-                // plusScore={this.plusScore.bind(this)}
-              />
-            ) : (
+            {this.state.current == 10 ? (
               <div>
                 {this.props.scores.map((score, index) => {
                   return (
@@ -85,6 +95,30 @@ class FilmContainer extends Component {
                   );
                 })}
               </div>
+            ) : this.state.showQuestion == false ? (
+              <Questionss
+                setScore={this.setScore.bind(this)}
+                current={this.state.current}
+                setCurrent={this.setCurrent.bind(this)}
+                addQuestions={this.addQuestions.bind(this)}
+                allQuestions={this.state.allQuestions}
+                score={this.state.score}
+                answer={this.state.answer}
+                incorrectAnswer={this.state.incorrectAnswer}
+                // addScore={this.addScore.bind(this)}
+                // plusScore={this.plusScore.bind(this)}
+                showQuestion={this.showQuestion.bind(this)}
+                // showQuestions={this.showQuestions.bind(this)}
+                showQ={this.state.showQuestion}
+                isCorrectAnswer={this.state.isCorrectAnswer}
+                isCorrect={this.isCorrect.bind(this)}
+                isIncorrect={this.isIncorrect.bind(this)}
+              />
+            ) : (
+              <QuestionResult
+                showQuestions={this.showQuestions.bind(this)}
+                isCorrectAnswer={this.state.isCorrectAnswer}
+              />
             )}
           </div>
         )}
