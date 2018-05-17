@@ -46,6 +46,8 @@ const Question = props => {
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         Meteor.call("scores.plusScore");
+        Meteor.call("users.plusAllScore");
+        Meteor.call("users.plusScienceScore");
         console.log("its right");
         props.setCurrent(current + 1);
         console.log(props.isCorrectAnswer);
