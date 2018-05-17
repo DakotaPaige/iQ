@@ -1,15 +1,28 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import "./styles.css";
 
 const MainMenu = () => {
   return (
-    <div>
-      <Link to="/">Home Page </Link>
-      <Link to="/Computer-Science"> Computer Science </Link>
-      <Link to="/Film"> Film </Link>
-      <Link to="/General-Knowledge"> General Knowledge </Link>
-      <Link to="/Science-Nature"> Science & Nature</Link>
-      <Link to="/Leaderboard">Leaderboard</Link>
+    <div className="category-container">
+      <button type="button" className="btn btn-primary">
+        <Link to="/">Home Page </Link>
+      </button>
+      <button type="button" className="btn btn-dark">
+        <Link to="/Computer-Science"> Computer Science </Link>{" "}
+      </button>
+      <button type="button" className="btn btn-dark">
+        <Link to="/Film"> Film </Link>{" "}
+      </button>
+      <button type="button" className="btn btn-dark">
+        <Link to="/General-Knowledge"> General Knowledge </Link>{" "}
+      </button>
+      <button type="button" className="btn btn-dark">
+        <Link to="/Science-Nature"> Science & Nature</Link>{" "}
+      </button>
+      <button type="button" className="btn btn-dark">
+        <Link to="/Leaderboard">Leaderboard</Link>{" "}
+      </button>
     </div>
   );
 };
