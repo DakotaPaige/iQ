@@ -1,13 +1,14 @@
 import React from "react";
-import ComputerScienceContainer from "./ComputerScienceContainer";
+import ComputerScienceContainer from "../../containers/ComputerScienceQuestion";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { Mongo } from "meteor/mongo";
-import QuizResults from "../../../api/quizresults";
 import { withTracker } from "meteor/react-meteor-data";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import ScoreContainer from "../../containers/Score";
 
-const QuestionResult = props => {
+const QuestionFinish = props => {
   return (
     <div>
       {props.questionAnswer.map((question, index) => {
@@ -24,16 +25,18 @@ const QuestionResult = props => {
           </div>
         );
       })}
-      <button onClick={props.showQuestions}> click here</button>
+      <Link to="/Score">
+        <button onClick={props.showQuestions}> click here</button>
+      </Link>
     </div>
   );
 };
 
-const QuestionResultContainer = withTracker(() => {
+const QuestionFinishContainer = withTracker(() => {
   Meteor.subscribe("questions");
   return {
     questionAnswer: Questions.find().fetch()
   };
-})(QuestionResult);
+})(QuestionFinish);
 
-export default QuestionResultContainer;
+export default QuestionFinishContainer;

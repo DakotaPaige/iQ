@@ -59,7 +59,6 @@ const Question = props => {
       }
     });
   };
-  console.log(current);
 
   return (
     <div>

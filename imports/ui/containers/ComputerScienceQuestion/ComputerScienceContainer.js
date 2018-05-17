@@ -7,7 +7,9 @@ import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { QuizResults } from "../../../api/quizresults";
-import QuestionResult from "./QuestionResult";
+import QuizResultsMessageContainer from "../../components/QuizResultMessage";
+import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
+import QuizShowScore from "../../components/QuizShowScore";
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
 
@@ -45,6 +47,12 @@ class ComputerScienceContainer extends Component {
     this.setState({ current });
   }
 
+  goBackHome() {
+    Meteor.call("scores.dropData");
+    Meteor.call("questions.dropData");
+    Meteor.call("quizresults.dropData");
+  }
+
   setScore(score) {
     this.setState({ score });
     // Meteor.call("scores.setScore", score);
@@ -65,12 +73,6 @@ class ComputerScienceContainer extends Component {
     this.setState({ isCorrectAnswer: false });
   }
 
-  goBackHome() {
-    Meteor.call("scores.dropData");
-    Meteor.call("questions.dropData");
-    Meteor.call("quizresults.dropData");
-  }
-
   render() {
     let quizzes = this.state.allQuestions.results;
     quizzes &&
@@ -86,16 +88,10 @@ class ComputerScienceContainer extends Component {
           <div>
             {this.state.current == 10 ? (
               <div>
-                {this.props.scores.map((score, index) => {
-                  return (
-                    <div key={index}>
-                      <h1>Score is {score.points}</h1>
-                      <Link to="/">
-                        <button onClick={this.goBackHome}>Go back home</button>
-                      </Link>
-                    </div>
-                  );
-                })}
+                <QuizResultsFinishContainer
+                  showQuestions={this.showQuestions.bind(this)}
+                  isCorrectAnswer={this.state.isCorrectAnswer}
+                />
               </div>
             ) : this.state.showQuestion == false ? (
               <Questionss
@@ -117,7 +113,7 @@ class ComputerScienceContainer extends Component {
                 isIncorrect={this.isIncorrect.bind(this)}
               />
             ) : (
-              <QuestionResult
+              <QuizResultsMessageContainer
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
               />

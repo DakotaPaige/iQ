@@ -7,7 +7,7 @@ import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { QuizResults } from "../../../api/quizresults";
-import QuestionResult from "./QuestionResult";
+import QuizResultsMessageContainer from "../../components/QuizResultMessage";
 
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
@@ -118,7 +118,7 @@ class ScienceNatureContainer extends Component {
                 isIncorrect={this.isIncorrect.bind(this)}
               />
             ) : (
-              <QuestionResult
+              <QuizResultsMessageContainer
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
               />
