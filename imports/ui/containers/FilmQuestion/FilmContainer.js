@@ -77,6 +77,7 @@ class FilmContainer extends Component {
                 <QuizResultsFinishContainer
                   showQuestions={this.showQuestions.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
+                  questionAnswer={this.props.questionAnswer}
                 />
               </div>
             ) : this.state.showQuestion == false ? (
@@ -96,11 +97,13 @@ class FilmContainer extends Component {
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 isCorrect={this.isCorrect.bind(this)}
                 isIncorrect={this.isIncorrect.bind(this)}
+                currentQuestion={this.props.questionAnswer}
               />
             ) : (
               <QuizResultsMessageContainer
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
+                questionAnswer={this.props.questionAnswer}
               />
             )}
           </div>
@@ -113,8 +116,10 @@ class FilmContainer extends Component {
 //if points == user do that
 const newFilmContainer = withTracker(() => {
   Meteor.subscribe("scores");
+  Meteor.subscribe("questions");
   return {
-    scores: Scores.find({ points: { $gt: 1 } }).fetch()
+    scores: Scores.find({ points: { $gt: 1 } }).fetch(),
+    questionAnswer: Questions.findOne()
   };
 })(FilmContainer);
 
