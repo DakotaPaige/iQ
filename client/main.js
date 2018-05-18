@@ -37,23 +37,24 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log("COMING FROM MAIN: ", this.props);
     return (
-      <div className="App">
-        <h1 className="modal-title">iQ</h1>
+      <div>
         <Router>
-          <div>
-            {window.location.href.includes("/login") ? (
-              <p>None</p>
-            ) : (
-              <AccountsUIWrapper />
-            )}
-            <LoggedInUsers />
-            <MainMenu />
-            <Routes
-              currentUser={this.props.currentUser}
-              currentUserId={this.props.currentUserId}
-            />
+          <div className="App">
+            <div>
+              {window.location.href.includes("/login") ? (
+                <p>None</p>
+              ) : (
+                <AccountsUIWrapper />
+              )}
+              <LoggedInUsers />
+              <MainMenu />
+              <Routes
+                currentUser={this.props.currentUser}
+                currentUserId={this.props.currentUserId}
+              />
+            </div>
           </div>
         </Router>
       </div>
