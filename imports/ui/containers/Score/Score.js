@@ -14,6 +14,7 @@ let goBackHome = () => {
 
 const Score = props => {
   Meteor.call("users.addGamePlayed");
+  console.log(props.scores);
   return (
     <div>
       {props.scores.map((score, index) => {
@@ -33,7 +34,7 @@ const Score = props => {
 const ScoreC = withTracker(() => {
   Meteor.subscribe("scores");
   return {
-    scores: Scores.find({ points: { $gt: 1 } }).fetch()
+    scores: Scores.find({ points: { $gte: 1 } }).fetch()
   };
 })(Score);
 

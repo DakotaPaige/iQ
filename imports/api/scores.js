@@ -3,13 +3,13 @@ import { Mongo } from "meteor/mongo";
 Meteor.methods({
   //check
   "scores.addScore"() {
-    Scores.insert({ name: Meteor.user(), points: 0 });
+    Scores.insert({ id: Meteor.userId(), points: 0 });
   },
   //ask
   "scores.plusScore"() {
     // console.log("its adding");
     Scores.update(
-      { name: Meteor.user() },
+      { id: Meteor.userId() },
       {
         $inc: { points: 1 }
       }
@@ -18,7 +18,7 @@ Meteor.methods({
   "scores.sameScore"() {
     // console.log("its not adding");
     Scores.update(
-      { name: Meteor.user() },
+      { id: Meteor.userId() },
       {
         $inc: { points: 0 }
       }
