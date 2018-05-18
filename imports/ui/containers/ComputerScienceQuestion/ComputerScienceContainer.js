@@ -63,7 +63,6 @@ class ComputerScienceContainer extends Component {
   }
 
   render() {
-    console.log(this.props);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -72,7 +71,6 @@ class ComputerScienceContainer extends Component {
       });
     return (
       <div>
-        {console.log("hello")}
         {this.state.isLoading ? (
           <p>It is Loading</p>
         ) : (
@@ -87,7 +85,6 @@ class ComputerScienceContainer extends Component {
               </div>
             ) : this.state.showQuestion == false ? (
               <Questionss
-
                 current={this.state.current}
                 setCurrent={this.setCurrent.bind(this)}
                 addQuestions={this.addQuestions.bind(this)}
@@ -103,6 +100,7 @@ class ComputerScienceContainer extends Component {
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 isCorrect={this.isCorrect.bind(this)}
                 isIncorrect={this.isIncorrect.bind(this)}
+                currentQuestion={this.props.questionAnswer}
               />
             ) : (
               <QuizResultsMessageContainer
