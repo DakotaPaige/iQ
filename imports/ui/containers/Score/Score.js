@@ -13,6 +13,7 @@ let goBackHome = () => {
 };
 
 const Score = props => {
+  Meteor.call("users.addGamePlayed");
   return (
     <div>
       {props.scores.map((score, index) => {
