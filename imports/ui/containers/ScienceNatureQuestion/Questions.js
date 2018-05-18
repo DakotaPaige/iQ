@@ -53,7 +53,6 @@ const Question = props => {
         console.log(props.isCorrectAnswer);
         props.isCorrect();
       } else if (correctAnswer.includes(selected) == false) {
-        Meteor.call("scores.sameScore");
         console.log("its wrong");
         props.setCurrent(current + 1);
         props.isIncorrect();
