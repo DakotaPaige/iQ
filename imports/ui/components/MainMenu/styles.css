@@ -18,6 +18,10 @@
   width: 200px;
   margin: 10px auto;
 }
+.btn-primary {
+  width: 200px;
+  margin: 10px auto;
+}
 
 .btn-outline-primary {
   min-width: 300px;

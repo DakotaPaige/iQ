@@ -25,9 +25,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 // import "../node_modules/font-awesome/css/font-awesome.min.css";
 import { Button } from "reactstrap";
 import QuizResultsContainer from "../imports/ui/components/QuizResultMessage";
-
 import LoggedInUsers from "../imports/ui/components/LoggedInUsers";
-
 import Routes from "../imports/routes";
 
 class App extends Component {
@@ -42,6 +40,9 @@ class App extends Component {
       <div>
         <Router>
           <div className="App">
+            <Link to="/" className="iq-logo">
+              <h1>iQ</h1>
+            </Link>
             <div>
               {window.location.href.includes("/login") ? (
                 <p>None</p>
@@ -49,7 +50,7 @@ class App extends Component {
                 <AccountsUIWrapper />
               )}
               <LoggedInUsers />
-              <MainMenu />
+              {/* <MainMenu /> */}
               <Routes
                 currentUser={this.props.currentUser}
                 currentUserId={this.props.currentUserId}
