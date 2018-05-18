@@ -1,5 +1,5 @@
 import React from "react";
-import AccountsUIWrapper from "../../components/AccountsWrapper";
+import LoginAccountsUIWrapper from "./LoginAccountsUIWrapper";
 import "./style.css";
 import { withTracker } from "meteor/react-meteor-data";
 import { Redirect } from "react-router-dom";
@@ -9,7 +9,7 @@ const Login = props => {
     <Redirect to="/" />
   ) : (
     <div className="main-login">
-      <AccountsUIWrapper className="login-page" />
+      <LoginAccountsUIWrapper className="login-page" />
     </div>
   );
 };

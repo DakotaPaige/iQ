@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
+import { withRouter } from "react-router-dom";
 import { Template } from "meteor/templating";
 import { Blaze } from "meteor/blaze";
 import "./style.css";
 
-export default class AccountsUIWrapper extends Component {
+class AccountsUIWrapper extends Component {
   componentDidMount() {
     // Use Meteor Blaze to render login buttons
     this.view = Blaze.render(
@@ -16,12 +17,19 @@ export default class AccountsUIWrapper extends Component {
     Blaze.remove(this.view); // Clean up Blaze view
   }
   render() {
-    return <span ref="container" />; // Render a placeholder
+    console.log("COMING FROM ACCOUNTSWRAPPER:", this.props.location);
+    if (this.props.location.pathname !== "/login") {
+      return <span ref="container" />; // Render a placeholder
+    } else {
+      return <p>None</p>;
+    }
   }
 }
 
-const loginButton = document.getElementById("root");
-console.log(loginButton);
+export default withRouter(AccountsUIWrapper);
+
+// const loginButton = document.getElementById("root");
+// console.log(loginButton);
 // loginButton.onclick(function() {
 //   console.log("clicked");
 // });

@@ -7,7 +7,13 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import HomePage from "../imports/ui/containers/HomePage";
 import Score from "../imports/ui/containers/Score";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Link,
+  Switch,
+  withRouter
+} from "react-router-dom";
 import MainMenu from "../imports/ui/components/MainMenu";
 import ReactDOM from "react-dom";
 import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
@@ -31,13 +37,18 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         <h1 className="modal-title">iQ</h1>
-        <AccountsUIWrapper />
-        <LoggedInUsers />
         <Router>
           <div>
+            {window.location.href.includes("/login") ? (
+              <p>None</p>
+            ) : (
+              <AccountsUIWrapper />
+            )}
+            <LoggedInUsers />
             <MainMenu />
             <Routes
               currentUser={this.props.currentUser}
