@@ -1,0 +1,12 @@
+.logged-in-users {
+  position: fixed;
+  top: 2%;
+  right: 2%;
+}
+
+.fa-user {
+  font-family: "FontAwesome";
+  font-weight: normal;
+  font-style: normal;
+  color: #007bff;
+}

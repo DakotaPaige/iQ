@@ -1,12 +1,22 @@
 import React, { Component } from "react";
 import { withTracker } from "meteor/react-meteor-data";
 
+import "./style.css";
+
 const LoggedInUsers = props => {
   console.log(props.users);
-  const numberOfLoggedIn = props.users.filter(user => user.status.online)
-    .length;
-  console.log(numberOfLoggedIn);
-  return <p>LoggedIn: {numberOfLoggedIn}</p>;
+  let numberOfLoggedIn = 0;
+  if (props.users) {
+    numberOfLoggedIn = props.users.filter(user => user.status.online).length;
+    console.log(numberOfLoggedIn);
+  }
+  return (
+    <div className="logged-in-users">
+      <p>
+        <i className="fas fa-user" /> {numberOfLoggedIn}
+      </p>
+    </div>
+  );
 };
 
 const LoggedInUsersContainer = withTracker(() => {

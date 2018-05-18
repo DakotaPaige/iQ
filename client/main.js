@@ -16,6 +16,7 @@ import { Questions } from "../imports/api/questions";
 import Leaderboard from "../imports/ui/containers/Leaderboard";
 import { Scores } from "../imports/api/scores";
 import "bootstrap/dist/css/bootstrap.min.css";
+// import "../node_modules/font-awesome/css/font-awesome.min.css";
 import { Button } from "reactstrap";
 import QuizResultsContainer from "../imports/ui/components/QuizResultMessage";
 
