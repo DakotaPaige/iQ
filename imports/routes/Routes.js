@@ -20,6 +20,7 @@ import PrivateScore from "./PrivateScore";
 import PrivateHome from "./PrivateHome";
 
 const Routes = props => {
+  console.log(props);
   return (
     <Switch>
       <PrivateHome

@@ -1,0 +1,21 @@
+.main-login .login-link-text {
+  background-color: #007bff;
+  padding: 5px 20px;
+  border-radius: 5px;
+}
+
+.main-login .login-link-and-dropdown-list {
+  text-align: center;
+}
+
+#login-buttons-open-change-password {
+  background-color: #a071b8;
+  padding: 0.25rem 0.5rem;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+}
+
+#login-buttons-open-change-password:hover {
+  background-color: #20c997;
+}

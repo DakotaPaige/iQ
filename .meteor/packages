@@ -22,6 +22,5 @@ accounts-password
 react-meteor-data
 autopublish
 session
-jamielob:accounts-ui-no-dropdown
 mizzao:user-status
 fortawesome:fontawesome

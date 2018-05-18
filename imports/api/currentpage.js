@@ -18,8 +18,6 @@ Meteor.methods({
     });
   }
 
-  //method that tracks the number of users logged in and consistently updates that
-
   //method that tracks the currentQuestionStatus for how many users got it right or wrong (to ultimately display pie chart)
 });
 
