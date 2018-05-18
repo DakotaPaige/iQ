@@ -41,3 +41,7 @@
 a {
   color: white !important;
 }
+
+.iq-logo:hover {
+  text-decoration: none;
+}

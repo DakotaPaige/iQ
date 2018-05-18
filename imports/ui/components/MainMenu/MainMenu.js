@@ -5,7 +5,7 @@ import "./styles.css";
 const MainMenu = () => {
   return (
     <div>
-      <Link to="/">
+      <Link to="/" className="iq-logo">
         <h1 className="modal-title">iQ</h1>
       </Link>
       <div className="category-container">
