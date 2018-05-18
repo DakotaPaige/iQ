@@ -37,7 +37,7 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log("COMING FROM MAIN: ", this.props);
     return (
       <div className="App">
         <h1 className="modal-title">iQ</h1>
