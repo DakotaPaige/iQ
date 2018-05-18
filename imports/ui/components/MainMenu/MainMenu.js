@@ -5,9 +5,9 @@ import "./styles.css";
 const MainMenu = () => {
   return (
     <div>
-      <button type="button" className="btn btn-primary">
-        <Link to="/">Home Page</Link>
-      </button>
+      <Link to="/">
+        <h1 className="modal-title">iQ</h1>
+      </Link>
       <div className="category-container">
         <button type="button" value="Computer Science" className="btn btn-dark">
           <Link to="/Computer-Science"> Computer Science </Link>
