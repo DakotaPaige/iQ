@@ -13,15 +13,13 @@ class AccountsUIWrapper extends Component {
       ReactDOM.findDOMNode(this.refs.container)
     );
   }
-  componentWillUnmount() {
-    Blaze.remove(this.view); // Clean up Blaze view
-  }
+
   render() {
     console.log("COMING FROM ACCOUNTSWRAPPER:", this.props.location);
     if (this.props.location.pathname !== "/login") {
       return <span ref="container" />; // Render a placeholder
     } else {
-      return <p>None</p>;
+      return <p>.</p>;
     }
   }
 }

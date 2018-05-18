@@ -12,9 +12,9 @@ if (Meteor.isServer) {
 
 Meteor.methods({
   // method that takes in page-slug as a variable and updates the collection with it for path
-  "currentpage.changePage"(path) {
+  "currentpage.changePage"(question) {
     CurrentPage.insert({
-      path: path
+      question: question
     });
   }
 

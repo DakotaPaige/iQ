@@ -6,13 +6,14 @@ import { Scores } from "../../../api/scores";
 import { Mongo } from "meteor/mongo";
 
 const Question = props => {
+  let { currentQuestion } = props;
   let quizzes = props.allQuestions.results;
   const newQuestions = [];
   let current = props.current;
   let correctAnswer = props.answer.splice(10, 10);
   let incorrectAnswer = props.incorrectAnswer;
   let score = props.score;
-  let allQuestions = [];
+  let allAnswers = [];
   let newQuizzes = quizzes;
 
   {
@@ -26,10 +27,11 @@ const Question = props => {
             {current == index ? (
               <div>
                 {props.addQuestions(question)}
-                {allQuestions.push(question.correct_answer)}
-                {question.incorrect_answers.map((answers, index) => {
-                  allQuestions.push(answers);
-                })}
+                {currentQuestion && allAnswers.push(currentQuestion.correct)}
+                {currentQuestion &&
+                  currentQuestion.incorrect.map((answer, index) => {
+                    allAnswers.push(answer);
+                  })}
               </div>
             ) : null}
           </div>
@@ -88,27 +90,29 @@ const Question = props => {
                   <div className="questionContainer">
                     <br />
                     <h2 className="card-title">
-                      {decodeEntities(question.question)}
+                      {currentQuestion &&
+                        decodeEntities(currentQuestion.question)}
                     </h2>
-                    {allQuestions
-                      .sort(function(a, b) {
-                        return 0.5 - Math.random();
-                      })
-                      .map((question, index) => {
-                        return (
-                          <div className="card-text">
-                            <button
-                              type="button"
-                              className="btn btn-outline-primary"
-                              onClick={handleChange}
-                              key={index}
-                              value={question}
-                            >
-                              {decodeEntities(question)}
-                            </button>
-                          </div>
-                        );
-                      })}
+                    {allAnswers &&
+                      allAnswers
+                        .sort(function(a, b) {
+                          return 0.5 - Math.random();
+                        })
+                        .map((answer, index) => {
+                          return (
+                            <div className="card-text">
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary"
+                                onClick={handleChange}
+                                key={index}
+                                value={answer}
+                              >
+                                {decodeEntities(answer)}
+                              </button>
+                            </div>
+                          );
+                        })}
                     <br />
                   </div>
                 ) : null}
