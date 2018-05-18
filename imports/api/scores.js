@@ -23,10 +23,6 @@ Meteor.methods({
         $inc: { points: 0 }
       }
     );
-    QuizResults.upsert(
-      { answer: true },
-      { $set: { correct: false, message: "bad job!" } }
-    );
   },
   "scores.dropData"() {
     console.log("its dropped");

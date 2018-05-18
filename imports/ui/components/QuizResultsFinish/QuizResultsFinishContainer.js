@@ -8,6 +8,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import ScoreContainer from "../../containers/Score";
 
+//why
 let decodeEntities = encodedString => {
   var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
   var translate = {
@@ -30,20 +31,15 @@ let decodeEntities = encodedString => {
 const QuestionFinish = props => {
   return (
     <div>
-      {props.questionAnswer.map((question, index) => {
-        return (
-          <div key={index}>
-            {console.log(props.isCorrectAnswer)}
-            {props.isCorrectAnswer == true ? (
-              <div>
-                <h1>Good job</h1>
-              </div>
-            ) : (
-              <h1>Correct Answer is : {decodeEntities(question.correct)}</h1>
-            )}
-          </div>
-        );
-      })}
+      {props.isCorrectAnswer == true ? (
+        <div>
+          <h1>Good Job</h1>
+        </div>
+      ) : (
+        <h1>
+          Correct Answer is : {decodeEntities(props.questionAnswer.correct)}
+        </h1>
+      )}
       <Link to="/Score">
         <button onClick={props.showQuestions}> click here</button>
       </Link>
@@ -51,11 +47,4 @@ const QuestionFinish = props => {
   );
 };
 
-const QuestionFinishContainer = withTracker(() => {
-  Meteor.subscribe("questions");
-  return {
-    questionAnswer: Questions.find().fetch()
-  };
-})(QuestionFinish);
-
-export default QuestionFinishContainer;
+export default QuestionFinish;

@@ -41,18 +41,14 @@ const Question = props => {
     e.preventDefault();
     const selected = e.target.value;
     props.showQuestion();
-    console.log("hello");
-    console.log(props.showQ);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         Meteor.call("scores.plusScore");
-        console.log("its right");
         props.setCurrent(current + 1);
         console.log(props.isCorrectAnswer);
         props.isCorrect();
       } else if (correctAnswer.includes(selected) == false) {
         Meteor.call("scores.sameScore");
-        console.log("its wrong");
         props.setCurrent(current + 1);
         props.isIncorrect();
       }

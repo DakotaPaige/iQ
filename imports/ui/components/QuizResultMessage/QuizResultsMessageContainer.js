@@ -27,30 +27,18 @@ let decodeEntities = encodedString => {
 const QuestionResult = props => {
   return (
     <div>
-      {props.questionAnswer.map((question, index) => {
-        return (
-          <div key={index}>
-            {console.log(props.isCorrectAnswer)}
-            {props.isCorrectAnswer == true ? (
-              <div>
-                <h1>Good job</h1>
-              </div>
-            ) : (
-              <h1>Correct Answer is : {decodeEntities(question.correct)}</h1>
-            )}
-          </div>
-        );
-      })}
+      {props.isCorrectAnswer == true ? (
+        <div>
+          <h1>Good Job</h1>
+        </div>
+      ) : (
+        <h1>
+          Correct Answer is : {decodeEntities(props.questionAnswer.correct)}
+        </h1>
+      )}
       <button onClick={props.showQuestions}> click here</button>
     </div>
   );
 };
 
-const QuestionResultContainer = withTracker(() => {
-  Meteor.subscribe("questions");
-  return {
-    questionAnswer: Questions.find().fetch()
-  };
-})(QuestionResult);
-
-export default QuestionResultContainer;
+export default QuestionResult;
