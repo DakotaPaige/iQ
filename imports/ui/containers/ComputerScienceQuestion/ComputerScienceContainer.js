@@ -6,7 +6,6 @@ import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
-
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
 import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
 
@@ -68,6 +67,7 @@ class ComputerScienceContainer extends Component {
   }
 
   render() {
+    console.log(this.props);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -76,6 +76,7 @@ class ComputerScienceContainer extends Component {
       });
     return (
       <div>
+        {console.log("hello")}
         {this.state.isLoading ? (
           <p>It is Loading</p>
         ) : (
@@ -85,6 +86,7 @@ class ComputerScienceContainer extends Component {
                 <QuizResultsFinishContainer
                   showQuestions={this.showQuestions.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
+                  questionAnswer={this.props.questionAnswer}
                 />
               </div>
             ) : this.state.showQuestion == false ? (
@@ -110,6 +112,7 @@ class ComputerScienceContainer extends Component {
               <QuizResultsMessageContainer
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
+                questionAnswer={this.props.questionAnswer}
               />
             )}
           </div>
@@ -122,8 +125,10 @@ class ComputerScienceContainer extends Component {
 //if points == user do that
 const CSContainer = withTracker(() => {
   Meteor.subscribe("scores");
+  Meteor.subscribe("questions");
   return {
-    scores: Scores.find({ points: { $gt: 1 } }).fetch()
+    scores: Scores.find({ points: { $gt: 1 } }).fetch(),
+    questionAnswer: Questions.findOne()
   };
 })(ComputerScienceContainer);
 

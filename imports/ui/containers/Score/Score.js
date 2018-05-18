@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 let goBackHome = () => {
   Meteor.call("scores.dropData");
   Meteor.call("questions.dropData");
-  Meteor.call("quizresults.dropData");
 };
 
 const Score = props => {
