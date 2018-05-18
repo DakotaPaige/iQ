@@ -47,10 +47,6 @@ class ScienceNatureContainer extends Component {
     this.setState({ current });
   }
 
-  setScore(score) {
-    this.setState({ score });
-    // Meteor.call("scores.setScore", score);
-  }
   showQuestion() {
     this.setState({ showQuestion: true });
   }
@@ -89,7 +85,6 @@ class ScienceNatureContainer extends Component {
               </div>
             ) : this.state.showQuestion == false ? (
               <Questionss
-                setScore={this.setScore.bind(this)}
                 current={this.state.current}
                 setCurrent={this.setCurrent.bind(this)}
                 addQuestions={this.addQuestions.bind(this)}
