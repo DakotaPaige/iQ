@@ -7,7 +7,6 @@ const HomePage = props => {
   return props.currentUser && props.currentUser.profile.superuser ? (
     <div>
       <MainMenu />
-      <h1>Home Page </h1>
     </div>
   ) : (
     <div>

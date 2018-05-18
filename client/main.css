@@ -32,8 +32,8 @@ p {
 }
 
 .btn-primary {
-  width: 300px;
-  display: flex;
-  justify-content: center;
-  margin-top: 10%;
+  width: 300px !important;
+  display: flex !important;
+  justify-content: center !important;
+  margin-top: 10% !important;
 }
