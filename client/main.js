@@ -17,6 +17,7 @@ import {
 import MainMenu from "../imports/ui/components/MainMenu";
 import ReactDOM from "react-dom";
 import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import "../imports/start-up/accounts-config.js";
 import { Questions } from "../imports/api/questions";
 import Leaderboard from "../imports/ui/containers/Leaderboard";
@@ -37,28 +38,30 @@ class App extends Component {
   render() {
     console.log("COMING FROM MAIN: ", this.props);
     return (
-      <div>
-        <Router>
-          <div className="App">
-            <Link to="/" className="iq-logo">
-              <h1>iQ</h1>
-            </Link>
-            <div>
-              {window.location.href.includes("/login") ? (
-                <p>None</p>
-              ) : (
-                <AccountsUIWrapper />
-              )}
-              <LoggedInUsers />
-              {/* <MainMenu /> */}
-              <Routes
-                currentUser={this.props.currentUser}
-                currentUserId={this.props.currentUserId}
-              />
+      <MuiThemeProvider>
+        <div>
+          <Router>
+            <div className="App">
+              <Link to="/" className="iq-logo">
+                <h1>iQ</h1>
+              </Link>
+              <div>
+                {window.location.href.includes("/login") ? (
+                  <p>None</p>
+                ) : (
+                  <AccountsUIWrapper />
+                )}
+                <LoggedInUsers />
+                {/* <MainMenu /> */}
+                <Routes
+                  currentUser={this.props.currentUser}
+                  currentUserId={this.props.currentUserId}
+                />
+              </div>
             </div>
-          </div>
-        </Router>
-      </div>
+          </Router>
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

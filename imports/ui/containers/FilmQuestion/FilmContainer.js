@@ -9,6 +9,15 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
 import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
 import { BubbleSpinLoader } from "react-css-loaders";
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from "material-ui/Card";
+import "./style.css";
 
 class FilmContainer extends Component {
   constructor() {
