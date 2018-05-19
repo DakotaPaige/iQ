@@ -8,6 +8,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
 import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
+import { BubbleSpinLoader } from "react-css-loaders";
 
 class FilmContainer extends Component {
   constructor() {
@@ -69,7 +70,7 @@ class FilmContainer extends Component {
     return (
       <div>
         {this.state.isLoading ? (
-          <p>It is Loading</p>
+          <BubbleSpinLoader />
         ) : (
           <div>
             {this.state.current == 10 ? (
