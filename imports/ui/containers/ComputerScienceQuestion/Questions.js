@@ -57,9 +57,8 @@ const Question = props => {
         Meteor.call("scores.plusScore");
         Meteor.call("users.plusAllScore");
         Meteor.call("users.plusComputerScore");
-        console.log("its right");
+        props.addScore(element);
         props.setCurrent(current + 1);
-        console.log(props.isCorrectAnswer);
         props.isCorrect();
       } else if (correctAnswer.includes(selected) == false) {
         Meteor.call("scores.sameScore");

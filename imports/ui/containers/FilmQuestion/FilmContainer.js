@@ -134,5 +134,3 @@ const newFilmContainer = withTracker(() => {
 })(FilmContainer);
 
 export default newFilmContainer;
-
-// "https://opentdb.com/api.php?amount=10&category=11&type=multiple";

@@ -42,6 +42,9 @@ class ComputerScienceContainer extends Component {
   addQuestions(questions) {
     Meteor.call("questions.addQuestions", questions);
   }
+  addScore(question) {
+    Meteor.call("questions.addScore", question);
+  }
 
   setCurrent(current) {
     this.setState({ current });
@@ -93,7 +96,7 @@ class ComputerScienceContainer extends Component {
                 score={this.state.score}
                 answer={this.state.answer}
                 incorrectAnswer={this.state.incorrectAnswer}
-                // addScore={this.addScore.bind(this)}
+                addScore={this.addScore.bind(this)}
                 // plusScore={this.plusScore.bind(this)}
                 showQuestion={this.showQuestion.bind(this)}
                 // showQuestions={this.showQuestions.bind(this)}

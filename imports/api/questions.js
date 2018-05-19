@@ -4,16 +4,25 @@ import { Meteor } from "meteor/meteor";
 Meteor.methods({
   "questions.addQuestions"(questions) {
     Questions.insert({
-      current: 0,
       category: questions.category,
       question: questions.question,
       correct: questions.correct_answer,
       incorrect: questions.incorrect_answers,
-      difficulty: questions.difficulty
+      difficulty: questions.difficulty,
+      correctscore: 0
     });
   },
   "questions.dropData"() {
     Questions.remove({});
+  },
+  "questions.addScore"(question) {
+    // console.log("its adding");
+    Questions.update(
+      { correct: question.correct_answer },
+      {
+        $inc: { correctscore: 1 }
+      }
+    );
   }
 });
 
