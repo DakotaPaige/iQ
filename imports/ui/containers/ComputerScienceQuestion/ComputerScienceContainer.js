@@ -24,8 +24,7 @@ class ComputerScienceContainer extends Component {
       answer: [],
       incorrectAnswer: [],
       showQuestion: false,
-      isCorrectAnswer: true,
-      numberofusers: 0
+      isCorrectAnswer: true
     };
   }
   //film
@@ -86,7 +85,6 @@ class ComputerScienceContainer extends Component {
                   showQuestions={this.showQuestions.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
                   questionAnswer={this.props.questionAnswer}
-                  numberofusers={this.state.numberofusers}
                   users={this.props.users}
                 />
               </div>
@@ -114,7 +112,6 @@ class ComputerScienceContainer extends Component {
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 questionAnswer={this.props.questionAnswer}
-                numberofusers={this.state.numberofusers}
                 users={this.props.users}
               />
             )}

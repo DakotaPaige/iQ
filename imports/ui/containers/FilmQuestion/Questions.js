@@ -4,6 +4,15 @@ import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
 import { Mongo } from "meteor/mongo";
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from "material-ui/Card";
+import "./style.css";
 
 const Question = props => {
   let { currentQuestion } = props;
@@ -19,6 +28,7 @@ const Question = props => {
   {
     Meteor.call("scores.addScore");
   }
+
   {
     quizzes &&
       quizzes.map((question, index) => {
@@ -26,6 +36,7 @@ const Question = props => {
           <div key={index}>
             {current == index ? (
               <div>
+                {/* {props.addNumberUsers(numberOfLoggedIn)} */}
                 {props.addQuestions(question)}
                 {currentQuestion && allAnswers.push(currentQuestion.correct)}
                 {currentQuestion &&
@@ -38,6 +49,7 @@ const Question = props => {
         );
       });
   }
+  console.log(props);
 
   let handleChange = e => {
     e.preventDefault();
@@ -48,9 +60,8 @@ const Question = props => {
         Meteor.call("scores.plusScore");
         Meteor.call("users.plusAllScore");
         Meteor.call("users.plusComputerScore");
-        console.log("its right");
+        props.addScore(element);
         props.setCurrent(current + 1);
-        console.log(props.isCorrectAnswer);
         props.isCorrect();
       } else if (correctAnswer.includes(selected) == false) {
         Meteor.call("scores.sameScore");
@@ -80,46 +91,48 @@ const Question = props => {
   };
 
   return (
-    <div className="card">
-      <div className="card-body">
-        {quizzes &&
-          quizzes.map((question, index) => {
-            return (
-              <div key={index}>
-                {current == index ? (
-                  <div className="questionContainer">
-                    <br />
-                    <h2 className="card-title">
-                      {currentQuestion &&
-                        decodeEntities(currentQuestion.question)}
-                    </h2>
-                    {allAnswers &&
-                      allAnswers
-                        .sort(function(a, b) {
-                          return 0.5 - Math.random();
-                        })
-                        .map((answer, index) => {
-                          return (
-                            <div className="card-text">
-                              <button
-                                type="button"
-                                className="btn btn-outline-primary"
-                                onClick={handleChange}
-                                key={index}
-                                value={answer}
-                              >
-                                {decodeEntities(answer)}
-                              </button>
-                            </div>
-                          );
-                        })}
-                    <br />
-                  </div>
-                ) : null}
-              </div>
-            );
-          })}
-      </div>
+    <div className="cardQuestion">
+      <Card>
+        <div>
+          {quizzes &&
+            quizzes.map((question, index) => {
+              return (
+                <div key={index}>
+                  {current == index ? (
+                    <div className="questionContainer">
+                      <br />
+                      <h2 className="card-title">
+                        {currentQuestion &&
+                          decodeEntities(currentQuestion.question)}
+                      </h2>
+                      {allAnswers &&
+                        allAnswers
+                          .sort(function(a, b) {
+                            return 0.5 - Math.random();
+                          })
+                          .map((answer, index) => {
+                            return (
+                              <div className="card-text">
+                                <button
+                                  type="button"
+                                  className="btn btn-outline-primary"
+                                  onClick={handleChange}
+                                  key={index}
+                                  value={answer}
+                                >
+                                  {decodeEntities(answer)}
+                                </button>
+                              </div>
+                            );
+                          })}
+                      <br />
+                    </div>
+                  ) : null}
+                </div>
+              );
+            })}
+        </div>
+      </Card>
     </div>
   );
 };

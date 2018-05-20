@@ -78,7 +78,6 @@ const QuestionResult = props => {
             <div class="colorbox correct">Correct.</div>
             <div class="colorbox wrong">Wrong.</div>
           </div>
-          {/* {console.log(props.numberofusers)} */}
           <div className="piechart">
             <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
               <Pie

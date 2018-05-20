@@ -28,6 +28,7 @@ const Question = props => {
   {
     Meteor.call("scores.addScore");
   }
+
   {
     quizzes &&
       quizzes.map((question, index) => {
@@ -35,6 +36,7 @@ const Question = props => {
           <div key={index}>
             {current == index ? (
               <div>
+                {/* {props.addNumberUsers(numberOfLoggedIn)} */}
                 {props.addQuestions(question)}
                 {currentQuestion && allAnswers.push(currentQuestion.correct)}
                 {currentQuestion &&
@@ -47,6 +49,7 @@ const Question = props => {
         );
       });
   }
+  console.log(props);
 
   let handleChange = e => {
     e.preventDefault();
@@ -57,9 +60,8 @@ const Question = props => {
         Meteor.call("scores.plusScore");
         Meteor.call("users.plusAllScore");
         Meteor.call("users.plusComputerScore");
-        console.log("its right");
+        props.addScore(element);
         props.setCurrent(current + 1);
-        console.log(props.isCorrectAnswer);
         props.isCorrect();
       } else if (correctAnswer.includes(selected) == false) {
         Meteor.call("scores.sameScore");
