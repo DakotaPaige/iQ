@@ -43,7 +43,8 @@ class Leaderboard extends Component {
     super();
     this.state = {
       sortedUserData: [],
-      currentIndex: 0
+      currentIndex: 0,
+      category: "All Time"
     };
   }
 
@@ -60,7 +61,11 @@ class Leaderboard extends Component {
       .sort(compareAllPoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedAllPoints, currentIndex: 4 });
+    this.setState({
+      sortedUserData: sortedAllPoints,
+      currentIndex: 4,
+      category: "All Time"
+    });
   };
 
   getFilm = () => {
@@ -68,8 +73,11 @@ class Leaderboard extends Component {
       .sort(compareFilmPoints)
       .slice()
       .reverse();
-    console.log("THIS IS SORTED FILM: ", sortedFilmPoints);
-    this.setState({ sortedUserData: sortedFilmPoints, currentIndex: 1 });
+    this.setState({
+      sortedUserData: sortedFilmPoints,
+      currentIndex: 1,
+      category: "Film"
+    });
   };
 
   getScience = () => {
@@ -77,7 +85,11 @@ class Leaderboard extends Component {
       .sort(compareSciencePoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedSciencePoints, currentIndex: 3 });
+    this.setState({
+      sortedUserData: sortedSciencePoints,
+      currentIndex: 3,
+      category: "Science & Nature"
+    });
   };
 
   getGeneral = () => {
@@ -85,7 +97,11 @@ class Leaderboard extends Component {
       .sort(compareGeneralPoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedGeneralPoints, currentIndex: 2 });
+    this.setState({
+      sortedUserData: sortedGeneralPoints,
+      currentIndex: 2,
+      category: "General Knowledge"
+    });
   };
 
   getComputers = () => {
@@ -93,13 +109,18 @@ class Leaderboard extends Component {
       .sort(compareComputerPoints)
       .slice()
       .reverse();
-    this.setState({ sortedUserData: sortedComputerPoints, currentIndex: 0 });
+    this.setState({
+      sortedUserData: sortedComputerPoints,
+      currentIndex: 0,
+      category: "Computer Science"
+    });
   };
 
   render() {
     return (
       <div>
         <h1>Top Scores</h1>
+        <h2 className="category-title">{this.state.category}</h2>
         <ButtonGroup>
           <Button
             onClick={this.getAllTime}
