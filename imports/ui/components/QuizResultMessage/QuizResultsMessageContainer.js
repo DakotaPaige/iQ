@@ -74,22 +74,29 @@ const QuestionResult = props => {
       {props.isCorrectAnswer == true ? (
         <div>
           <h1>Good Job</h1>
+          <div class="colorcontainer">
+            <div class="colorbox correct">Correct.</div>
+            <div class="colorbox wrong">Wrong.</div>
+          </div>
           {/* {console.log(props.numberofusers)} */}
-          <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={data}
-              cx={300}
-              cy={200}
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={80}
-              fill="#8884d8"
-            >
-              {data.map((entry, index) => (
-                <Cell fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-          </PieChart>
+          <div className="piechart">
+            <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={data}
+                cx={300}
+                cy={200}
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={100}
+                fill="#8884d8"
+              >
+                {data.map((entry, index) => (
+                  <Cell fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+            </PieChart>
+          </div>
+          <h1>Hi</h1>
         </div>
       ) : (
         <div>
@@ -97,23 +104,29 @@ const QuestionResult = props => {
           <h1>The correct answer is</h1>
           <h1 className="answer">
             {decodeEntities(props.questionAnswer.correct)}
-            {/* {console.log(props.numberofusers)} */}
           </h1>
-          <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
-            <Pie
-              data={data}
-              cx={300}
-              cy={200}
-              labelLine={false}
-              label={renderCustomizedLabel}
-              outerRadius={80}
-              fill="#8884d8"
-            >
-              {data.map((entry, index) => (
-                <Cell fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-          </PieChart>
+          <div class="colorcontainer">
+            <div class="colorbox correct">Correct.</div>
+            <div class="colorbox wrong">Wrong</div>
+          </div>
+          <div className="piechart">
+            <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+              <Pie
+                data={data}
+                cx={300}
+                cy={200}
+                labelLine={false}
+                label={renderCustomizedLabel}
+                outerRadius={100}
+                fill="#8884d8"
+              >
+                {data.map((entry, index) => (
+                  <Cell fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+            </PieChart>
+          </div>
+          <h1>Hi</h1>
         </div>
       )}
       <button onClick={props.showQuestions}> click here</button>
