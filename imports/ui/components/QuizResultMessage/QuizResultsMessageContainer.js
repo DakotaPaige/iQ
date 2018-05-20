@@ -96,7 +96,6 @@ const QuestionResult = props => {
               </Pie>
             </PieChart>
           </div>
-          <h1>Hi</h1>
         </div>
       ) : (
         <div>
@@ -126,7 +125,6 @@ const QuestionResult = props => {
               </Pie>
             </PieChart>
           </div>
-          <h1>Hi</h1>
         </div>
       )}
       <button onClick={props.showQuestions}> click here</button>
