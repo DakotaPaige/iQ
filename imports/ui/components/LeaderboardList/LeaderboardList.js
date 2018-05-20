@@ -25,11 +25,13 @@ const LeaderboardList = props => {
               <td>{user.profile.points[props.currentIndex].points}</td>
               <td>{user.profile.gamesPlayed}</td>
               <td>
-                {(
-                  user.profile.points[4].points /
-                  user.profile.gamesPlayed *
-                  100
-                ).toFixed(2)}
+                {user.profile.gamesPlayed === 0
+                  ? 0
+                  : (
+                      user.profile.points[4].points /
+                      user.profile.gamesPlayed *
+                      100
+                    ).toFixed(2)}
               </td>
             </tr>
           );
