@@ -38,6 +38,9 @@ class GeneralKContainer extends Component {
   addQuestions(questions) {
     Meteor.call("questions.addQuestions", questions);
   }
+  addScore(question) {
+    Meteor.call("questions.addScore", question);
+  }
 
   setCurrent(current) {
     this.setState({ current });
@@ -78,6 +81,7 @@ class GeneralKContainer extends Component {
                   showQuestions={this.showQuestions.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
                   questionAnswer={this.props.questionAnswer}
+                  users={this.props.users}
                 />
               </div>
             ) : this.state.showQuestion == false ? (
@@ -89,7 +93,7 @@ class GeneralKContainer extends Component {
                 score={this.state.score}
                 answer={this.state.answer}
                 incorrectAnswer={this.state.incorrectAnswer}
-                // addScore={this.addScore.bind(this)}
+                addScore={this.addScore.bind(this)}
                 // plusScore={this.plusScore.bind(this)}
                 showQuestion={this.showQuestion.bind(this)}
                 // showQuestions={this.showQuestions.bind(this)}
@@ -104,6 +108,7 @@ class GeneralKContainer extends Component {
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 questionAnswer={this.props.questionAnswer}
+                users={this.props.users}
               />
             )}
           </div>
@@ -117,12 +122,15 @@ class GeneralKContainer extends Component {
 const newGeneralKContainer = withTracker(() => {
   Meteor.subscribe("scores");
   Meteor.subscribe("questions");
+  Meteor.subscribe("users");
   return {
     scores: Scores.find({ points: { $gt: 1 } }).fetch(),
-    questionAnswer: Questions.findOne()
+    questionAnswer: Questions.findOne(),
+    users: Meteor.users.find().fetch()
   };
 })(GeneralKContainer);
 
 export default newGeneralKContainer;
 
+// "https://opentdb.com/api.php?amount=10&category=9&type=multiple";
 // "https://opentdb.com/api.php?amount=10&category=9&type=multiple";

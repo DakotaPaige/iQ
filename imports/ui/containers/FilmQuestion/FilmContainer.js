@@ -9,15 +9,6 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
 import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
 import { BubbleSpinLoader } from "react-css-loaders";
-import {
-  Card,
-  CardActions,
-  CardHeader,
-  CardMedia,
-  CardTitle,
-  CardText
-} from "material-ui/Card";
-import "./style.css";
 
 class FilmContainer extends Component {
   constructor() {
@@ -47,6 +38,9 @@ class FilmContainer extends Component {
 
   addQuestions(questions) {
     Meteor.call("questions.addQuestions", questions);
+  }
+  addScore(question) {
+    Meteor.call("questions.addScore", question);
   }
 
   setCurrent(current) {
@@ -88,6 +82,7 @@ class FilmContainer extends Component {
                   showQuestions={this.showQuestions.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
                   questionAnswer={this.props.questionAnswer}
+                  users={this.props.users}
                 />
               </div>
             ) : this.state.showQuestion == false ? (
@@ -99,7 +94,7 @@ class FilmContainer extends Component {
                 score={this.state.score}
                 answer={this.state.answer}
                 incorrectAnswer={this.state.incorrectAnswer}
-                // addScore={this.addScore.bind(this)}
+                addScore={this.addScore.bind(this)}
                 // plusScore={this.plusScore.bind(this)}
                 showQuestion={this.showQuestion.bind(this)}
                 // showQuestions={this.showQuestions.bind(this)}
@@ -114,6 +109,7 @@ class FilmContainer extends Component {
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 questionAnswer={this.props.questionAnswer}
+                users={this.props.users}
               />
             )}
           </div>
@@ -127,9 +123,11 @@ class FilmContainer extends Component {
 const newFilmContainer = withTracker(() => {
   Meteor.subscribe("scores");
   Meteor.subscribe("questions");
+  Meteor.subscribe("users");
   return {
     scores: Scores.find({ points: { $gt: 1 } }).fetch(),
-    questionAnswer: Questions.findOne()
+    questionAnswer: Questions.findOne(),
+    users: Meteor.users.find().fetch()
   };
 })(FilmContainer);
 
