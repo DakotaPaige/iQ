@@ -6,15 +6,7 @@ import { Scores } from "../../../api/scores";
 import { Mongo } from "meteor/mongo";
 import { withTracker } from "meteor/react-meteor-data";
 import "./styles.css";
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend
-} from "recharts";
+import { PieChart, Pie, Sector, Cell } from "recharts";
 
 let decodeEntities = encodedString => {
   var translate_re = /&(nbsp|amp|quot|lt|gt);/g;
@@ -48,28 +40,56 @@ const QuestionResult = props => {
     100;
   console.log(percentageWon);
   const data = [
-    { name: "Won", uv: percentageWon },
-    { name: "Loss", uv: percentageLoss }
+    { name: "Won", value: percentageWon },
+    { name: "Loss", value: percentageLoss }
   ];
+  const COLORS = ["#0088FE", "#00C49F"];
+  const RADIAN = Math.PI / 180;
+  const renderCustomizedLabel = ({
+    cx,
+    cy,
+    midAngle,
+    innerRadius,
+    outerRadius,
+    percent,
+    index
+  }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+    return (
+      <text
+        x={x}
+        y={y}
+        fill="white"
+        textAnchor={x > cx ? "start" : "end"}
+        dominantBaseline="central"
+      >
+        {`${(percent * 100).toFixed(0)}%`}
+      </text>
+    );
+  };
   return (
     <div>
       {props.isCorrectAnswer == true ? (
         <div>
           <h1>Good Job</h1>
           {/* {console.log(props.numberofusers)} */}
-          <BarChart
-            width={600}
-            height={300}
-            data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="uv" fill="#82ca9d" />
-          </BarChart>
+          <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={data}
+              cx={300}
+              cy={200}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={80}
+              fill="#8884d8"
+            >
+              {data.map((entry, index) => (
+                <Cell fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
         </div>
       ) : (
         <div>
@@ -79,19 +99,21 @@ const QuestionResult = props => {
             {decodeEntities(props.questionAnswer.correct)}
             {/* {console.log(props.numberofusers)} */}
           </h1>
-          <BarChart
-            width={600}
-            height={300}
-            data={data}
-            margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-          >
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            <Bar dataKey="uv" fill="#82ca9d" />
-          </BarChart>
+          <PieChart width={800} height={400} onMouseEnter={this.onPieEnter}>
+            <Pie
+              data={data}
+              cx={300}
+              cy={200}
+              labelLine={false}
+              label={renderCustomizedLabel}
+              outerRadius={80}
+              fill="#8884d8"
+            >
+              {data.map((entry, index) => (
+                <Cell fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+          </PieChart>
         </div>
       )}
       <button onClick={props.showQuestions}> click here</button>
