@@ -2,6 +2,8 @@ import React from "react";
 import MainMenu from "../../components/MainMenu";
 import TextLoop from "react-text-loop";
 import { Link } from "react-router-dom";
+import { withTracker } from "meteor/react-meteor-data";
+import { Questions } from "../../../api/questions";
 
 const HomePage = props => {
   return props.currentUser && props.currentUser.profile.superuser ? (
@@ -10,6 +12,13 @@ const HomePage = props => {
     </div>
   ) : (
     <div>
+      {props.questionAnswer && props.questionAnswer.path !== "/"
+        ? props.currentUser &&
+          props.currentUser.profile.hasOwnProperty("superuser")
+          ? null
+          : (window.location.href = `http://127.0.0.1:3000${props.questionAnswer &&
+              props.questionAnswer.path}`)
+        : null}
       <h1 className="textloop">
         <TextLoop>
           <div>Have Fun!</div>
@@ -25,4 +34,14 @@ const HomePage = props => {
   );
 };
 
-export default HomePage;
+const HomePageContainer = withTracker(() => {
+  Meteor.subscribe("users");
+  Meteor.subscribe("questions");
+  return {
+    currentUser: Meteor.user(),
+    users: Meteor.users.find().fetch(),
+    questionAnswer: Questions.findOne()
+  };
+})(HomePage);
+
+export default HomePageContainer;

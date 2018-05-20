@@ -95,6 +95,7 @@ class ComputerScienceContainer extends Component {
               </div>
             ) : this.state.showQuestion == false ? (
               <div>
+                {/* {console.log(this.props.questionAnswer)} */}
                 {this.addRouteComputer(this.state.category)}
                 <Questionss
                   current={this.state.current}
@@ -136,6 +137,7 @@ const CSContainer = withTracker(() => {
   Meteor.subscribe("questions");
   Meteor.subscribe("users");
   return {
+    currentUser: Meteor.user(),
     scores: Scores.find({ points: { $gt: 1 } }).fetch(),
     questionAnswer: Questions.findOne(),
     users: Meteor.users.find().fetch()
