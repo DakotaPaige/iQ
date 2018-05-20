@@ -28,6 +28,7 @@ const Question = props => {
   {
     Meteor.call("scores.addScore");
   }
+
   {
     quizzes &&
       quizzes.map((question, index) => {
@@ -35,6 +36,7 @@ const Question = props => {
           <div key={index}>
             {current == index ? (
               <div>
+                {/* {props.addNumberUsers(numberOfLoggedIn)} */}
                 {props.addQuestions(question)}
                 {currentQuestion && allAnswers.push(currentQuestion.correct)}
                 {currentQuestion &&
@@ -47,6 +49,7 @@ const Question = props => {
         );
       });
   }
+  console.log(props);
 
   let handleChange = e => {
     e.preventDefault();

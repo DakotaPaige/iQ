@@ -25,12 +25,31 @@ let decodeEntities = encodedString => {
       return String.fromCharCode(num);
     });
 };
+
 const QuestionResult = props => {
+  let numberOfLoggedIn = 0;
+  if (props.users && props.users) {
+    numberOfLoggedIn = props.users.filter(user => user.status.online).length;
+  }
   return (
     <div>
       {props.isCorrectAnswer == true ? (
         <div>
-          <h1>Good Job</h1>
+          <h1>
+            Good Job
+            {numberOfLoggedIn}
+          </h1>
+          {/* {console.log(props.numberofusers)} */}
+          <h1>
+            Percentage Won:
+            {props.questionAnswer.correctscore / numberOfLoggedIn * 100}%
+          </h1>
+          <h1>
+            Percentage Loss:
+            {(numberOfLoggedIn - props.questionAnswer.correctscore) /
+              numberOfLoggedIn *
+              100}%
+          </h1>
         </div>
       ) : (
         <div>
@@ -38,6 +57,18 @@ const QuestionResult = props => {
           <h1>The correct answer is</h1>
           <h1 className="answer">
             {decodeEntities(props.questionAnswer.correct)}
+            {numberOfLoggedIn}
+            {/* {console.log(props.numberofusers)} */}
+          </h1>
+          <h1>
+            Percentage Won:
+            {props.questionAnswer.correctscore / numberOfLoggedIn * 100}%
+          </h1>
+          <h1>
+            Percentage Loss:
+            {(numberOfLoggedIn - props.questionAnswer.correctscore) /
+              numberOfLoggedIn *
+              100}%
           </h1>
         </div>
       )}

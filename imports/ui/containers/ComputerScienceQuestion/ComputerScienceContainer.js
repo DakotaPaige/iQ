@@ -24,7 +24,8 @@ class ComputerScienceContainer extends Component {
       answer: [],
       incorrectAnswer: [],
       showQuestion: false,
-      isCorrectAnswer: true
+      isCorrectAnswer: true,
+      numberofusers: 0
     };
   }
   //film
@@ -85,6 +86,8 @@ class ComputerScienceContainer extends Component {
                   showQuestions={this.showQuestions.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
                   questionAnswer={this.props.questionAnswer}
+                  numberofusers={this.state.numberofusers}
+                  users={this.props.users}
                 />
               </div>
             ) : this.state.showQuestion == false ? (
@@ -111,6 +114,8 @@ class ComputerScienceContainer extends Component {
                 showQuestions={this.showQuestions.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 questionAnswer={this.props.questionAnswer}
+                numberofusers={this.state.numberofusers}
+                users={this.props.users}
               />
             )}
           </div>
@@ -124,9 +129,11 @@ class ComputerScienceContainer extends Component {
 const CSContainer = withTracker(() => {
   Meteor.subscribe("scores");
   Meteor.subscribe("questions");
+  Meteor.subscribe("users");
   return {
     scores: Scores.find({ points: { $gt: 1 } }).fetch(),
-    questionAnswer: Questions.findOne()
+    questionAnswer: Questions.findOne(),
+    users: Meteor.users.find().fetch()
   };
 })(ComputerScienceContainer);
 

@@ -9,7 +9,7 @@ Meteor.methods({
       correct: questions.correct_answer,
       incorrect: questions.incorrect_answers,
       difficulty: questions.difficulty,
-      correctscore: 0
+      correctscore: 0,
     });
   },
   "questions.dropData"() {
