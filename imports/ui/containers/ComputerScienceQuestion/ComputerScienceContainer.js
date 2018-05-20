@@ -47,8 +47,8 @@ class ComputerScienceContainer extends Component {
     Meteor.call("questions.addScore", question);
   }
 
-  addRoute(category) {
-    Meteor.call("questions.addRoute", category);
+  addRouteComputer(category) {
+    Meteor.call("questions.addRouteComputer", category);
   }
 
   setCurrent(current) {
@@ -95,7 +95,7 @@ class ComputerScienceContainer extends Component {
               </div>
             ) : this.state.showQuestion == false ? (
               <div>
-                {this.addRoute(this.state.category)}
+                {this.addRouteComputer(this.state.category)}
                 <Questionss
                   current={this.state.current}
                   setCurrent={this.setCurrent.bind(this)}
