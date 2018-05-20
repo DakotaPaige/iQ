@@ -10,6 +10,7 @@ Meteor.methods({
       incorrect: questions.incorrect_answers,
       difficulty: questions.difficulty,
       correctscore: 0,
+      path: "/"
     });
   },
   "questions.dropData"() {
@@ -21,6 +22,14 @@ Meteor.methods({
       { correct: question.correct_answer },
       {
         $inc: { correctscore: 1 }
+      }
+    );
+  },
+  "questions.addRoute"(category) {
+    Questions.update(
+      { category: category },
+      {
+        $set: { path: "/Computer-Science" }
       }
     );
   }

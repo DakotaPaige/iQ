@@ -6,7 +6,7 @@ const MainMenu = () => {
   return (
     <div>
       <div className="category-container">
-        <button type="button" value="Computer Science" className="btn btn-dark">
+        <button type="button" value="Computer-Science" className="btn btn-dark">
           <Link to="/Computer-Science"> Computer Science </Link>
         </button>
         <button type="button" value="Film" className="btn btn-dark">
