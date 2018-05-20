@@ -21,7 +21,8 @@ class FilmContainer extends Component {
       answer: [],
       incorrectAnswer: [],
       showQuestion: false,
-      isCorrectAnswer: true
+      isCorrectAnswer: true,
+      category: "Entertainment: Film"
     };
   }
   //film
@@ -41,6 +42,10 @@ class FilmContainer extends Component {
   }
   addScore(question) {
     Meteor.call("questions.addScore", question);
+  }
+
+  addRouteFilm(category) {
+    Meteor.call("questions.addRouteFilm", category);
   }
 
   setCurrent(current) {
@@ -86,24 +91,27 @@ class FilmContainer extends Component {
                 />
               </div>
             ) : this.state.showQuestion == false ? (
-              <Questionss
-                current={this.state.current}
-                setCurrent={this.setCurrent.bind(this)}
-                addQuestions={this.addQuestions.bind(this)}
-                allQuestions={this.state.allQuestions}
-                score={this.state.score}
-                answer={this.state.answer}
-                incorrectAnswer={this.state.incorrectAnswer}
-                addScore={this.addScore.bind(this)}
-                // plusScore={this.plusScore.bind(this)}
-                showQuestion={this.showQuestion.bind(this)}
-                // showQuestions={this.showQuestions.bind(this)}
-                showQ={this.state.showQuestion}
-                isCorrectAnswer={this.state.isCorrectAnswer}
-                isCorrect={this.isCorrect.bind(this)}
-                isIncorrect={this.isIncorrect.bind(this)}
-                currentQuestion={this.props.questionAnswer}
-              />
+              <div>
+                {this.addRouteFilm(this.state.category)}
+                <Questionss
+                  current={this.state.current}
+                  setCurrent={this.setCurrent.bind(this)}
+                  addQuestions={this.addQuestions.bind(this)}
+                  allQuestions={this.state.allQuestions}
+                  score={this.state.score}
+                  answer={this.state.answer}
+                  incorrectAnswer={this.state.incorrectAnswer}
+                  addScore={this.addScore.bind(this)}
+                  // plusScore={this.plusScore.bind(this)}
+                  showQuestion={this.showQuestion.bind(this)}
+                  // showQuestions={this.showQuestions.bind(this)}
+                  showQ={this.state.showQuestion}
+                  isCorrectAnswer={this.state.isCorrectAnswer}
+                  isCorrect={this.isCorrect.bind(this)}
+                  isIncorrect={this.isIncorrect.bind(this)}
+                  currentQuestion={this.props.questionAnswer}
+                />
+              </div>
             ) : (
               <QuizResultsMessageContainer
                 showQuestions={this.showQuestions.bind(this)}

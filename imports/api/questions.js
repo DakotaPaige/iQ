@@ -25,11 +25,35 @@ Meteor.methods({
       }
     );
   },
-  "questions.addRoute"(category) {
+  "questions.addRouteComputer"(category) {
     Questions.update(
       { category: category },
       {
         $set: { path: "/Computer-Science" }
+      }
+    );
+  },
+  "questions.addRouteFilm"(category) {
+    Questions.update(
+      { category: category },
+      {
+        $set: { path: "/Film" }
+      }
+    );
+  },
+  "questions.addRouteGK"(category) {
+    Questions.update(
+      { category: category },
+      {
+        $set: { path: "/General-Knowledge" }
+      }
+    );
+  },
+  "questions.addRouteSN"(category) {
+    Questions.update(
+      { category: category },
+      {
+        $set: { path: "/Science-Nature" }
       }
     );
   }
