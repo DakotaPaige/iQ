@@ -9,11 +9,7 @@ const PrivateComputer = (props, { component: Component, ...rest }) => {
     <Route
       {...rest}
       render={props =>
-        currentUser && currentUserId ? (
-          <ComputerScienceQuestion />
-        ) : (
-          <Redirect to="/login" />
-        )
+        currentUserId ? <ComputerScienceQuestion /> : <Redirect to="/login" />
       }
     />
   );
