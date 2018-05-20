@@ -11,7 +11,7 @@ const TopThree = props => {
             <div className="top-image">
               <Gravatar email={user.emails[0].address} />
             </div>
-            <p>{user.username}</p>
+            <p className="top-three-user">{user.username}</p>
             <p>{user.profile.points[props.currentIndex].points}</p>
             <p>{user.profile.gamesPlayed} Games</p>
             <p>
