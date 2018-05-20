@@ -42,3 +42,7 @@ li:nth-of-type(3) .react-gravatar {
 h1 {
   text-align: center;
 }
+
+.top-three-user {
+  font-weight: bold;
+}

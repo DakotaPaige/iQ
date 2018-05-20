@@ -8,11 +8,11 @@ const LeaderboardList = props => {
     <Table>
       <thead>
         <tr>
-          <th>#</th>
-          <th>Username</th>
-          <th>Points</th>
-          <th>Games Played</th>
-          <th>ELO</th>
+          <th className="rank">#</th>
+          <th className="username">Username</th>
+          <th className="points">Points</th>
+          <th className="games-played">Games Played</th>
+          <th className="elo">ELO</th>
         </tr>
       </thead>
       <tbody>
@@ -21,10 +21,12 @@ const LeaderboardList = props => {
           return (
             <tr>
               <th scope="row">{placement}</th>
-              <td>{user.username}</td>
-              <td>{user.profile.points[props.currentIndex].points}</td>
-              <td>{user.profile.gamesPlayed}</td>
-              <td>
+              <td className="username">{user.username}</td>
+              <td className="points">
+                {user.profile.points[props.currentIndex].points}
+              </td>
+              <td className="games-played">{user.profile.gamesPlayed}</td>
+              <td className="elo">
                 {user.profile.gamesPlayed === 0
                   ? 0
                   : (
