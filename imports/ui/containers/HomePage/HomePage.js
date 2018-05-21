@@ -16,7 +16,7 @@ const HomePage = props => {
         ? props.currentUser &&
           props.currentUser.profile.hasOwnProperty("superuser")
           ? null
-          : (window.location.href = `http://127.0.0.1:3000${props.questionAnswer &&
+          : (window.location.pathname = `${props.questionAnswer &&
               props.questionAnswer.path}`)
         : null}
       <h1 className="textloop">
