@@ -13,7 +13,7 @@ Meteor.methods({
       path: "/"
     });
   },
-  "questions.dropData"() {
+  "questions.dropData"(questionid) {
     Questions.remove({});
   },
   "questions.addScore"(question) {

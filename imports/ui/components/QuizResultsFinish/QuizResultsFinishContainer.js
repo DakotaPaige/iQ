@@ -131,7 +131,7 @@ const QuestionFinish = props => {
         </div>
       )}
       <Link to="/Score">
-        <button onClick={props.showQuestions}> click here</button>
+        <button onClick={props.showResults}> click here</button>
       </Link>
     </div>
   );

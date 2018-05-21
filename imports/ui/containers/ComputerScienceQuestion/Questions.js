@@ -59,7 +59,7 @@ const Question = props => {
 
   let handleChange = () => {
     const selected = answerValue;
-    props.showQuestion();
+    props.showResult();
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         Meteor.call("scores.plusScore");
@@ -140,7 +140,8 @@ const Question = props => {
         </div>
         {setTimeout(() => {
           handleChange();
-        }, 10000)}
+        }, 5000)}
+        {/* {Meteor.setTimeout(handleChange(), 10000)} */}
       </Card>
     </div>
   );

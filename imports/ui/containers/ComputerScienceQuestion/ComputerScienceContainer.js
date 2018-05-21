@@ -23,7 +23,7 @@ class ComputerScienceContainer extends Component {
       current: 0,
       answer: [],
       incorrectAnswer: [],
-      showQuestion: false,
+      showResult: false,
       isCorrectAnswer: true,
       category: "Science: Computers"
     };
@@ -55,14 +55,13 @@ class ComputerScienceContainer extends Component {
     this.setState({ current });
   }
 
-  showQuestion() {
-    this.setState({ showQuestion: true });
+  showResult() {
+    this.setState({ showResult: true });
   }
 
-  showQuestions() {
-    this.setState({ showQuestion: false });
+  showResults() {
+    this.setState({ showResult: false });
     Meteor.call("questions.dropData");
-    this.setState({ isCorrect: false });
   }
   isCorrect() {
     this.setState({ isCorrectAnswer: true });
@@ -87,13 +86,13 @@ class ComputerScienceContainer extends Component {
             {this.state.current == 10 ? (
               <div>
                 <QuizResultsFinishContainer
-                  showQuestions={this.showQuestions.bind(this)}
+                  showResults={this.showResults.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
                   questionAnswer={this.props.questionAnswer}
                   users={this.props.users}
                 />
               </div>
-            ) : this.state.showQuestion == false ? (
+            ) : this.state.showResult == false ? (
               <div>
                 {console.log(this.props.questionAnswer)}
                 {this.addRouteComputer(this.state.category)}
@@ -106,10 +105,7 @@ class ComputerScienceContainer extends Component {
                   answer={this.state.answer}
                   incorrectAnswer={this.state.incorrectAnswer}
                   addScore={this.addScore.bind(this)}
-                  // plusScore={this.plusScore.bind(this)}
-                  showQuestion={this.showQuestion.bind(this)}
-                  // showQuestions={this.showQuestions.bind(this)}
-                  showQ={this.state.showQuestion}
+                  showResult={this.showResult.bind(this)}
                   isCorrectAnswer={this.state.isCorrectAnswer}
                   isCorrect={this.isCorrect.bind(this)}
                   isIncorrect={this.isIncorrect.bind(this)}
@@ -118,7 +114,7 @@ class ComputerScienceContainer extends Component {
               </div>
             ) : (
               <QuizResultsMessageContainer
-                showQuestions={this.showQuestions.bind(this)}
+                showResults={this.showResults.bind(this)}
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 questionAnswer={this.props.questionAnswer}
                 users={this.props.users}
