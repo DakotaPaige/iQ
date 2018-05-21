@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
 import QuizResultsFinishContainer from "../../components/QuizResultsFinish";
 import { BubbleSpinLoader } from "react-css-loaders";
+import ShowResult from "../../../api/showresult";
 
 //ask about redirect or this way
 // import { Route, Redirect } from "react-router";
@@ -71,6 +72,7 @@ class ComputerScienceContainer extends Component {
   }
 
   render() {
+    console.log(this.props.showResultPage);
     let quizzes = this.state.allQuestions.results;
     quizzes &&
       quizzes.map((question, index) => {
@@ -92,7 +94,7 @@ class ComputerScienceContainer extends Component {
                   users={this.props.users}
                 />
               </div>
-            ) : this.state.showResult == false ? (
+            ) : this.props.showResultPage.showResultPage == false ? (
               <div>
                 {console.log(this.props.questionAnswer)}
                 {this.addRouteComputer(this.state.category)}
@@ -105,8 +107,8 @@ class ComputerScienceContainer extends Component {
                   answer={this.state.answer}
                   incorrectAnswer={this.state.incorrectAnswer}
                   addScore={this.addScore.bind(this)}
+                  //for state
                   showResult={this.showResult.bind(this)}
-                  isCorrectAnswer={this.state.isCorrectAnswer}
                   isCorrect={this.isCorrect.bind(this)}
                   isIncorrect={this.isIncorrect.bind(this)}
                   currentQuestion={this.props.questionAnswer}
@@ -133,11 +135,13 @@ const CSContainer = withTracker(() => {
   Meteor.subscribe("scores");
   Meteor.subscribe("questions");
   Meteor.subscribe("users");
+  Meteor.subscribe("showresults");
   return {
     currentUser: Meteor.user(),
     scores: Scores.find({ points: { $gt: 1 } }).fetch(),
     questionAnswer: Questions.findOne(),
-    users: Meteor.users.find().fetch()
+    users: Meteor.users.find().fetch(),
+    showResultPage: ShowResult.findOne()
   };
 })(ComputerScienceContainer);
 

@@ -59,7 +59,11 @@ const Question = props => {
 
   let handleChange = () => {
     const selected = answerValue;
-    props.showResult();
+    //for state
+    // props.showResult();
+    //for props
+    //check if this is correct
+    Meteor.call("showresult.insertUnboolean", true);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         Meteor.call("scores.plusScore");
