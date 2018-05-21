@@ -1,8 +1,9 @@
 .main-login .login-link-text {
-  background-color: white;
-  padding: 5px 20px;
+  background-color: #007bff;
+  padding: 10px 40px;
   border-radius: 5px;
-  color: white !important;
+  color: white;
+  text-transform: uppercase;
 }
 
 .main-login .login-link-and-dropdown-list {
@@ -19,4 +20,39 @@
 
 #login-buttons-open-change-password:hover {
   background-color: #20c997;
+}
+
+.main-login #login-username-or-email-label-and-input {
+  width: 50%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.main-login #login-password-label-and-input {
+  text-align: left;
+}
+
+.main-login .additional-link-container a {
+  color: black !important;
+}
+
+.main-login .additional-link-container a:hover {
+  color: #20c997 !important;
+}
+
+.main-login .login-form {
+  text-align: center;
+}
+
+#login-password-label {
+  line-height: 1.5;
+}
+
+#login-username-label-and-input,
+#login-email-label-and-input {
+  text-align: left;
+}
+
+#login-email-label {
+  line-height: 1.5;
 }
