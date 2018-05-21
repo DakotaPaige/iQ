@@ -95,7 +95,7 @@ class ComputerScienceContainer extends Component {
               </div>
             ) : this.state.showQuestion == false ? (
               <div>
-                {/* {console.log(this.props.questionAnswer)} */}
+                {console.log(this.props.questionAnswer)}
                 {this.addRouteComputer(this.state.category)}
                 <Questionss
                   current={this.state.current}
