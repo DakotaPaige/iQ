@@ -3,6 +3,7 @@
   list-style-type: none;
   align-items: center;
   justify-content: space-around;
+  padding: 0;
 }
 
 .single-user {
@@ -16,9 +17,10 @@
 }
 
 .top-image {
-  height: 75px;
+  height: 100px;
   display: flex;
-  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .react-gravatar {
@@ -28,6 +30,32 @@
 li:nth-of-type(2) .react-gravatar {
   width: 75px;
   height: 75px;
+}
+
+li:nth-of-type(2) .top-image::before {
+  content: "#1";
+  display: block;
+  text-align: center;
+  color: #ffc107;
+  font-weight: bold;
+  position: relative;
+  top: 0;
+}
+
+li:nth-of-type(1) .top-image::before {
+  content: "#2";
+  display: block;
+  text-align: center;
+  color: #a9a9a8;
+  font-weight: bold;
+}
+
+li:nth-of-type(3) .top-image::before {
+  content: "#3";
+  display: block;
+  text-align: center;
+  color: #8c7c26;
+  font-weight: bold;
 }
 
 li:nth-of-type(3) .react-gravatar {

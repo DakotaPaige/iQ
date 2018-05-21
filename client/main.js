@@ -29,6 +29,8 @@ import QuizResultsContainer from "../imports/ui/components/QuizResultMessage";
 import LoggedInUsers from "../imports/ui/components/LoggedInUsers";
 import Routes from "../imports/routes";
 
+import iQLogo from "../imports/images/iQ-logo.png";
+
 class App extends Component {
   constructor() {
     super();
@@ -43,11 +45,13 @@ class App extends Component {
           <Router>
             <div className="App">
               <Link to="/" className="iq-logo">
-                <h1>iQ</h1>
+                <h1>
+                  <img src={iQLogo} alt="iQ logo" className="main-logo" />
+                </h1>
               </Link>
               <div>
                 {window.location.href.includes("/login") ? (
-                  <p>None</p>
+                  <p> </p>
                 ) : (
                   <AccountsUIWrapper />
                 )}
