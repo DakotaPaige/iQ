@@ -118,6 +118,7 @@ class ComputerScienceContainer extends Component {
                 isCorrectAnswer={this.state.isCorrectAnswer}
                 questionAnswer={this.props.questionAnswer}
                 users={this.props.users}
+                currentUser={this.props.currentUser}
               />
             )}
           </div>

@@ -36,6 +36,7 @@ let decodeEntities = encodedString => {
 };
 
 const QuestionResult = props => {
+  console.log(props.currentUser.profile.superuser);
   let numberOfLoggedIn = 0;
   if (props.users && props.users) {
     numberOfLoggedIn = props.users.filter(user => user.status.online).length;
@@ -104,12 +105,12 @@ const QuestionResult = props => {
           </div>
         </div>
       )}
-      <button onClick={props.showResults}> click here</button>
-      {setTimeout(() => {
-        if (props.currentUser && props.currentUser.profile.superuser) {
-          props.showResults();
-        }
-      }, 5000)}
+      {/* <button onClick={props.showResults}> click here</button> */}
+      {props.currentUser && props.currentUser.profile.superuser == true
+        ? setTimeout(() => {
+            props.showResults();
+          }, 5000)
+        : null}
     </div>
   );
 };
