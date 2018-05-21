@@ -6,6 +6,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Questions } from "../../../api/questions";
 
 const HomePage = props => {
+  console.log(window.location);
   return props.currentUser && props.currentUser.profile.superuser ? (
     <div>
       <MainMenu />
