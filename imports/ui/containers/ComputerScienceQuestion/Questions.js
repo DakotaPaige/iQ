@@ -24,6 +24,7 @@ const Question = props => {
   let score = props.score;
   let allAnswers = [];
   let newQuizzes = quizzes;
+  let answerValue;
 
   {
     Meteor.call("scores.addScore");
@@ -51,9 +52,13 @@ const Question = props => {
   }
   console.log(props);
 
-  let handleChange = e => {
+  let getValue = e => {
     e.preventDefault();
-    const selected = e.target.value;
+    answerValue = e.target.value;
+  };
+
+  let handleChange = () => {
+    const selected = answerValue;
     props.showQuestion();
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
@@ -116,7 +121,8 @@ const Question = props => {
                                 <button
                                   type="button"
                                   className="btn btn-outline-primary"
-                                  onClick={handleChange}
+                                  // onClick={handleChange}
+                                  onClick={getValue}
                                   key={index}
                                   value={answer}
                                 >
@@ -132,6 +138,9 @@ const Question = props => {
               );
             })}
         </div>
+        {setTimeout(() => {
+          handleChange();
+        }, 10000)}
       </Card>
     </div>
   );

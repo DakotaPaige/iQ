@@ -73,6 +73,9 @@ const QuestionResult = props => {
     <div>
       {props.isCorrectAnswer == true ? (
         <div>
+          {setTimeout(function() {
+            props.showQuestions();
+          }, 10000)}
           <h1>Good Job</h1>
           <div class="colorcontainer">
             <div class="colorbox correct">Correct.</div>
@@ -98,6 +101,9 @@ const QuestionResult = props => {
         </div>
       ) : (
         <div>
+          {setTimeout(function() {
+            props.showQuestions();
+          }, 10000)}
           <h1>Wrong!</h1>
           <h1>The correct answer is</h1>
           <h1 className="answer">
@@ -126,7 +132,7 @@ const QuestionResult = props => {
           </div>
         </div>
       )}
-      <button onClick={props.showQuestions}> click here</button>
+      {/* <button onClick={props.showQuestions}> click here</button> */}
     </div>
   );
 };
