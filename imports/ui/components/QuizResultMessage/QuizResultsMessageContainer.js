@@ -105,12 +105,11 @@ const QuestionResult = props => {
         </div>
       )}
       <button onClick={props.showResults}> click here</button>
-      {/* {setTimeout(() => {
-        props.showResults();
-      }, 5000)}
       {setTimeout(() => {
-        Meteor.call("questions.dropData");
-      }, 4900)} */}
+        if (props.currentUser && props.currentUser.profile.superuser) {
+          props.showResults();
+        }
+      }, 5000)}
     </div>
   );
 };
