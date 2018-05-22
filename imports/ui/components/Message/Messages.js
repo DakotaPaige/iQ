@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Moment } from "moment";
 
 class Messages extends Component {
   formatTime(time) {
@@ -8,7 +9,7 @@ class Messages extends Component {
   render() {
     return (
       <li>
-        {this.formatTime(this.props.message.time)} - {this.props.message.text}
+        {this.props.message.text} - {this.formatTime(this.props.message.time)}
       </li>
     );
   }

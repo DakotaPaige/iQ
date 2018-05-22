@@ -8,7 +8,7 @@ import { withTracker } from "meteor/react-meteor-data";
 class MessageList extends Component {
   renderMessages() {
     return this.props.messages.map(message => {
-      <Messages key={message._id} message={message} />;
+      return <Messages key={message._id} message={message} />;
     });
   }
 
@@ -36,6 +36,7 @@ class MessageList extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="container">
         <header>
@@ -51,7 +52,7 @@ class MessageList extends Component {
 }
 
 const MessageListContainer = withTracker(() => {
-  Meteor.subscribe("message");
+  Meteor.subscribe("messages");
   return {
     messages: Message.find({}).fetch(),
     currentUser: Meteor.user()
