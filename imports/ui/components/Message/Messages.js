@@ -9,7 +9,10 @@ class Messages extends Component {
   render() {
     return (
       <li>
-        {this.props.message.text} - {this.formatTime(this.props.message.time)}
+        <p style={{ margin: "0" }}>{this.props.message.text}</p>{" "}
+        <p style={{ margin: "0" }}>
+          {this.formatTime(this.props.message.time)}
+        </p>
       </li>
     );
   }

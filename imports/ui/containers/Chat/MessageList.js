@@ -3,6 +3,18 @@ import { Message } from "../../../api/messages";
 import ReactDOM from "react-dom";
 import Messages from "../../components/Message";
 
+import TextField from "material-ui/TextField";
+import {
+  Card,
+  CardActions,
+  CardHeader,
+  CardMedia,
+  CardTitle,
+  CardText
+} from "material-ui/Card";
+
+import "./style";
+
 import { withTracker } from "meteor/react-meteor-data";
 
 class MessageList extends Component {
@@ -24,28 +36,31 @@ class MessageList extends Component {
 
   renderForm() {
     return (
-      <form onSubmit={this.handleSubmit.bind(this)}>
-        <input
-          type="text"
-          ref="textInput"
-          name="message"
-          placeholder="Enter message..."
-        />
-      </form>
+      <div className="chat-container">
+        <TextField>
+          <form onSubmit={this.handleSubmit.bind(this)}>
+            <input
+              type="text"
+              ref="textInput"
+              name="message"
+              placeholder="Enter message..."
+            />
+          </form>
+        </TextField>
+      </div>
     );
   }
 
   render() {
-    console.log(this.props);
     return (
       <div className="container">
-        <header>
-          <h2>This is the Chat</h2>
-        </header>
-
-        {this.renderForm()}
-
-        <ul>{this.renderMessages()}</ul>
+        <Card>
+          \{" "}
+          <div>
+            <ul className="messages-container">{this.renderMessages()}</ul>
+          </div>
+          {this.renderForm()}
+        </Card>
       </div>
     );
   }
