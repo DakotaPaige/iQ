@@ -33,6 +33,7 @@ class ComputerScienceContainer extends Component {
   //film
   componentDidMount() {
     console.log("COMPONENT IS MOUNTING");
+    Meteor.call("allquestions.dropData");
     const questionLink =
       "https://opentdb.com/api.php?amount=10&category=18&type=multiple";
     this.setState({ isLoading: true });
@@ -111,7 +112,7 @@ class ComputerScienceContainer extends Component {
                   current={this.state.current}
                   setCurrent={this.setCurrent.bind(this)}
                   addQuestions={this.addQuestions.bind(this)}
-                  allQuestions={this.state.allQuestions}
+                  allQuestions={this.props.allQuestions}
                   score={this.state.score}
                   // answer={this.state.answer}
                   addScore={this.addScore.bind(this)}

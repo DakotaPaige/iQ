@@ -6,6 +6,9 @@ export const allQuestions = new Mongo.Collection("allquestions");
 Meteor.methods({
   "allquestions.addAllQuestions"(allOfTheQuestions) {
     allQuestions.insert(allOfTheQuestions);
+  },
+  "allquestions.dropData"() {
+    allQuestions.remove({});
   }
 });
 

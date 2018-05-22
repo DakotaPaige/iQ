@@ -16,7 +16,7 @@ import "./style.css";
 
 const Question = props => {
   let { currentQuestion } = props;
-  let quizzes = props.allQuestions.results;
+  let quizzes = props.allQuestions;
   let current = props.current;
   let score = props.score;
   let allAnswers = [];
