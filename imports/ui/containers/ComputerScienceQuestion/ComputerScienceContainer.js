@@ -61,7 +61,8 @@ class ComputerScienceContainer extends Component {
   }
 
   showResults() {
-    this.setState({ showResult: false });
+    // this.setState({ showResult: false });
+    Meteor.call("showresult.insertUnboolean", true);
     Meteor.call("questions.dropData");
   }
   isCorrect() {

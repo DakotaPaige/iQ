@@ -38,6 +38,7 @@ const Question = props => {
             {current == index ? (
               <div>
                 {/* {props.addNumberUsers(numberOfLoggedIn)} */}
+                {console.log("ADD QUESTION")}
                 {props.addQuestions(question)}
                 {currentQuestion && allAnswers.push(currentQuestion.correct)}
                 {currentQuestion &&
@@ -60,10 +61,10 @@ const Question = props => {
   let handleChange = () => {
     const selected = answerValue;
     //for state
-    // props.showResult();
+    props.showResult();
     //for props
     //check if this is correct
-    Meteor.call("showresult.insertUnboolean", true);
+    Meteor.call("showresult.insertUnboolean", false);
     let test = correctAnswer.find(function(element) {
       if (element == selected) {
         Meteor.call("scores.plusScore");
