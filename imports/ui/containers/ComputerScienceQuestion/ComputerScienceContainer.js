@@ -121,6 +121,7 @@ class ComputerScienceContainer extends Component {
                   isCorrect={this.isCorrect.bind(this)}
                   isIncorrect={this.isIncorrect.bind(this)}
                   currentQuestion={this.props.questionAnswer}
+                  // questionAnswer={this.props.questionAnswer}
                 />
               </div>
             ) : (
