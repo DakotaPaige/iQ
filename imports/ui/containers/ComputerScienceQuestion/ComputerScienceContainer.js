@@ -82,6 +82,7 @@ class ComputerScienceContainer extends Component {
 
   render() {
     console.log(this.props.allQuestions);
+    console.log(this.state.current);
     // console.log(this.props.showResultPage);
     // let quizzes = this.state.allQuestions.results;
     // console.log(this.props);
