@@ -1,5 +1,7 @@
 # iQ
 
+<img src="https://i.gyazo.com/4f6ac3d615843e727c9f0077fcf05ab8.png" alt="https://gyazo.com/4f6ac3d615843e727c9f0077fcf05ab8" width="804"/>
+
 iQ is a multi-user online quiz app built using Meteor and React. It features a multiple category quiz with a superuser to choose, a dynamic leaderboard based on ELO ranking and general points, and a chat to share answers with all your friends!
 
 ## Features
