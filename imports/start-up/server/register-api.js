@@ -3,3 +3,4 @@ import "../../api/scores";
 import "../../api/users";
 import "../../api/messages";
 import "../../api/showresult";
+import "../../api/allquestions";

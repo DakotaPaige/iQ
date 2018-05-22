@@ -4,6 +4,7 @@ import Score from "../Score";
 import { Questions } from "../../../api/questions";
 import { Meteor } from "meteor/meteor";
 import { Scores } from "../../../api/scores";
+import { allQuestions } from "../../../api/allquestions";
 import { withTracker } from "meteor/react-meteor-data";
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import QuizResultsMessageContainer from "../../components/QuizResultMessage";
@@ -31,12 +32,16 @@ class ComputerScienceContainer extends Component {
   }
   //film
   componentDidMount() {
+    console.log("COMPONENT IS MOUNTING");
     const questionLink =
       "https://opentdb.com/api.php?amount=10&category=18&type=multiple";
     this.setState({ isLoading: true });
     fetch(questionLink)
       .then(allQuestions => allQuestions.json())
       .then(allQuestions => this.setState({ allQuestions }))
+      .then(allQuestions =>
+        Meteor.call("allquestions.addAllQuestions", allQuestions)
+      )
       .then(() => this.setState({ isLoading: false }))
       .catch(error => console.log(error));
   }
@@ -136,12 +141,14 @@ const CSContainer = withTracker(() => {
   Meteor.subscribe("questions");
   Meteor.subscribe("users");
   Meteor.subscribe("showresults");
+  Meteor.subscribe("allquestions");
   return {
     currentUser: Meteor.user(),
     scores: Scores.find({ points: { $gt: 1 } }).fetch(),
     questionAnswer: Questions.findOne(),
     users: Meteor.users.find().fetch(),
-    showResultPage: ShowResult.findOne()
+    showResultPage: ShowResult.findOne(),
+    allQuestions: allQuestions.find().fetch()
   };
 })(ComputerScienceContainer);
 
