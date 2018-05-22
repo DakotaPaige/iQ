@@ -61,17 +61,14 @@ const Question = props => {
     //for props
     //check if this is correct
     Meteor.call("showresult.insertUnboolean", false);
-    if (
-      props.currentQuestion &&
-      props.currentQuestion.correct.includes(selected) === true
-    ) {
+    if (props.currentQuestion && props.currentQuestion.correct == selected) {
       Meteor.call("scores.plusScore");
       Meteor.call("users.plusAllScore");
       Meteor.call("users.plusComputerScore");
-      props.addScore(element);
+      props.addScore(selected);
       props.setCurrent(current + 1);
       props.isCorrect();
-      alert("its true");
+      // alert("its true");
     } else if (
       props.currentQuestion &&
       props.currentQuestion.incorrect.includes(selected) === true
@@ -79,7 +76,7 @@ const Question = props => {
       Meteor.call("scores.sameScore");
       props.setCurrent(current + 1);
       props.isIncorrect();
-      alert("its false");
+      // alert("its false");
     }
   };
 
