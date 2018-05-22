@@ -7,13 +7,7 @@ import { withTracker } from "meteor/react-meteor-data";
 import { Meteor } from "meteor/meteor";
 import HomePage from "../imports/ui/containers/HomePage";
 import Score from "../imports/ui/containers/Score";
-import {
-  BrowserRouter as Router,
-  Route,
-  Link,
-  Switch,
-  withRouter
-} from "react-router-dom";
+import { Router, Route, Link, Switch, withRouter } from "react-router-dom";
 import MainMenu from "../imports/ui/components/MainMenu";
 import ReactDOM from "react-dom";
 import AccountsUIWrapper from "../imports/ui/components/AccountsWrapper";
@@ -24,7 +18,7 @@ import Leaderboard from "../imports/ui/containers/Leaderboard";
 import { Scores } from "../imports/api/scores";
 import "bootstrap/dist/css/bootstrap.min.css";
 // import "../node_modules/font-awesome/css/font-awesome.min.css";
-import History from "../imports/history";
+import history from "../imports/history";
 import { Button } from "reactstrap";
 import QuizResultsContainer from "../imports/ui/components/QuizResultMessage";
 import LoggedInUsers from "../imports/ui/components/LoggedInUsers";
@@ -44,7 +38,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <div>
-          <Router>
+          <Router history={history}>
             <div className="App">
               <Link to="/" className="iq-logo">
                 <h1>
