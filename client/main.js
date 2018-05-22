@@ -27,6 +27,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Button } from "reactstrap";
 import QuizResultsContainer from "../imports/ui/components/QuizResultMessage";
 import LoggedInUsers from "../imports/ui/components/LoggedInUsers";
+import MessageList from "../imports/ui/containers/Chat/MessageList";
 import Routes from "../imports/routes";
 
 class App extends Component {
@@ -57,6 +58,7 @@ class App extends Component {
                   currentUser={this.props.currentUser}
                   currentUserId={this.props.currentUserId}
                 />
+                <MessageList />
               </div>
             </div>
           </Router>
