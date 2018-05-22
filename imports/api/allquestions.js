@@ -10,7 +10,7 @@ if (Meteor.isServer) {
 }
 
 Meteor.methods({
-  "allquestions.addAllQuestions"(jsonQuestions) {
-    jsonQuestions.map(question => allQuestions.insert(question));
+  "allquestions.addAllQuestions"(allOfTheQuestions) {
+    allQuestions.insert(allOfTheQuestions);
   }
 });

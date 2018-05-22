@@ -39,11 +39,12 @@ class ComputerScienceContainer extends Component {
     fetch(questionLink)
       .then(allQuestions => allQuestions.json())
       .then(allQuestions => this.setState({ allQuestions }))
-      .then(allQuestions =>
-        Meteor.call("allquestions.addAllQuestions", allQuestions)
-      )
       .then(() => this.setState({ isLoading: false }))
       .catch(error => console.log(error));
+
+    this.state.allQuestions.map(question => {
+      Meteor.call("allquestions.AddAllQuestions", question);
+    });
   }
 
   addQuestions(questions) {
@@ -78,6 +79,7 @@ class ComputerScienceContainer extends Component {
   }
 
   render() {
+    console.log(this.props.allQuestions);
     // console.log(this.props.showResultPage);
     // let quizzes = this.state.allQuestions.results;
     // console.log(this.props);
