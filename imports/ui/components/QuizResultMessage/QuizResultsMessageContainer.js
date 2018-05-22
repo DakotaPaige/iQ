@@ -105,12 +105,12 @@ const QuestionResult = props => {
           </div>
         </div>
       )}
-      {/* <button onClick={props.showResults}> click here</button> */}
-      {props.currentUser && props.currentUser.profile.superuser == true
+      <button onClick={props.showResults}> click here</button>
+      {/* {props.currentUser && props.currentUser.profile.superuser == true
         ? setTimeout(() => {
             props.showResults();
           }, 5000)
-        : null}
+        : null} */}
     </div>
   );
 };

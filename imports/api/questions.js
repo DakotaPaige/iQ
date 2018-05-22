@@ -10,10 +10,14 @@ Meteor.methods({
       incorrect: questions.incorrect_answers,
       difficulty: questions.difficulty,
       correctscore: 0,
-      path: "/"
+      path: "/",
+      showResult: false
     });
   },
-  "questions.dropData"(questionid) {
+  "questions.showResults"(result) {
+    Question.update({ showResult: result }, { $set: { showResult: !result } });
+  },
+  "questions.dropData"() {
     Questions.remove({});
   },
   "questions.addScore"(question) {

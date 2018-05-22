@@ -37,3 +37,7 @@ p {
   justify-content: center !important;
   margin-top: 10% !important;
 }
+
+.main-logo {
+  width: 70px;
+}
