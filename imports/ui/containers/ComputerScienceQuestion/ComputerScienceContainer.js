@@ -43,7 +43,7 @@ class ComputerScienceContainer extends Component {
       .catch(error => console.log(error));
 
     this.state.allQuestions.map(question => {
-      Meteor.call("allquestions.AddAllQuestions", question);
+      Meteor.call("allquestions.addAllQuestions", question);
     });
   }
 
@@ -150,7 +150,7 @@ const CSContainer = withTracker(() => {
     questionAnswer: Questions.findOne(),
     users: Meteor.users.find().fetch(),
     showResultPage: ShowResult.findOne(),
-    allQuestions: allQuestions.find().fetch()
+    allQuestions: allQuestions.find({}).fetch()
   };
 })(ComputerScienceContainer);
 
