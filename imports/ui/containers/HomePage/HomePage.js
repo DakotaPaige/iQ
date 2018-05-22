@@ -1,9 +1,9 @@
 import React from "react";
 import MainMenu from "../../components/MainMenu";
 import TextLoop from "react-text-loop";
-import { Link } from "react-router-dom";
 import { withTracker } from "meteor/react-meteor-data";
 import { Questions } from "../../../api/questions";
+import { BrowserRouter, Link, withRouter } from "react-router-dom";
 
 const HomePage = props => {
   console.log(window.location);

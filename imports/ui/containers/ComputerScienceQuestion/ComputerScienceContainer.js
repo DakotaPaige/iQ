@@ -105,7 +105,8 @@ class ComputerScienceContainer extends Component {
                   users={this.props.users}
                 />
               </div>
-            ) : this.props.showResultPage.showResultPage == false ? (
+            ) : this.props &&
+            this.props.showResultPage.showResultPage == false ? (
               <div>
                 {console.log(this.props.questionAnswer)}
                 {this.addRouteComputer(this.state.category)}
