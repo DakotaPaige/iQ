@@ -1,0 +1,18 @@
+input {
+  background: transparent;
+  border: none;
+}
+
+ul {
+  list-style: none;
+  max-height: 300px;
+  padding: 0;
+}
+
+.container {
+  display: block;
+  align-content: flex-end;
+  width: 275px;
+  margin: 0 auto;
+  padding: 0;
+}
