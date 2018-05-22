@@ -52,6 +52,7 @@ const Question = props => {
   let getValue = e => {
     e.preventDefault();
     answerValue = e.target.value;
+    alert(e.target.value);
   };
 
   let handleChange = () => {
@@ -62,8 +63,8 @@ const Question = props => {
     //check if this is correct
     Meteor.call("showresult.insertUnboolean", false);
     if (
-      props.questionAnswer &&
-      props.questionAnswer.correct.includes(selected) == true
+      props.currentQuestion &&
+      props.currentQuestion.correct.includes(selected) == true
     ) {
       Meteor.call("scores.plusScore");
       Meteor.call("users.plusAllScore");
@@ -72,8 +73,8 @@ const Question = props => {
       props.setCurrent(current + 1);
       props.isCorrect();
     } else if (
-      props.questionAnswer &&
-      props.questionAnswer.correct.includes(selected) == false
+      props.currentQuestion &&
+      props.currentQuestion.correct.includes(selected) == false
     ) {
       Meteor.call("scores.sameScore");
       props.setCurrent(current + 1);
@@ -99,6 +100,7 @@ const Question = props => {
         return String.fromCharCode(num);
       });
   };
+  console.log(props.questionAnswer);
 
   return (
     <div className="cardQuestion">
