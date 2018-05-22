@@ -73,13 +73,13 @@ class ComputerScienceContainer extends Component {
   }
 
   render() {
-    console.log(this.props.showResultPage);
-    let quizzes = this.state.allQuestions.results;
-    quizzes &&
-      quizzes.map((question, index) => {
-        this.state.answer.push(question.correct_answer);
-        this.state.incorrectAnswer.push(question.incorrect_answers);
-      });
+    // console.log(this.props.showResultPage);
+    // let quizzes = this.state.allQuestions.results;
+    // console.log(this.props);
+    // if (this.props.questionAnswer) {
+    //   this.state.answer.push(this.props.questionAnswer.correct);
+    //   this.state.incorrectAnswer.push(this.props.questionAnswer.incorrect);
+    // }
     return (
       <div>
         {this.state.isLoading ? (
@@ -105,8 +105,7 @@ class ComputerScienceContainer extends Component {
                   addQuestions={this.addQuestions.bind(this)}
                   allQuestions={this.state.allQuestions}
                   score={this.state.score}
-                  answer={this.state.answer}
-                  incorrectAnswer={this.state.incorrectAnswer}
+                  // answer={this.state.answer}
                   addScore={this.addScore.bind(this)}
                   //for state
                   showResult={this.showResult.bind(this)}

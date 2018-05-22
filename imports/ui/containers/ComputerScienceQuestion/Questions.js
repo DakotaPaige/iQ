@@ -17,13 +17,9 @@ import "./style.css";
 const Question = props => {
   let { currentQuestion } = props;
   let quizzes = props.allQuestions.results;
-  const newQuestions = [];
   let current = props.current;
-  let correctAnswer = props.answer.splice(10, 10);
-  let incorrectAnswer = props.incorrectAnswer;
   let score = props.score;
   let allAnswers = [];
-  let newQuizzes = quizzes;
   let answerValue;
 
   {
@@ -51,7 +47,7 @@ const Question = props => {
         );
       });
   }
-  console.log(props);
+  // console.log(props.answer);
 
   let getValue = e => {
     e.preventDefault();
@@ -61,24 +57,28 @@ const Question = props => {
   let handleChange = () => {
     const selected = answerValue;
     //for state
-    props.showResult();
+    // props.showResult();
     //for props
     //check if this is correct
     Meteor.call("showresult.insertUnboolean", false);
-    let test = correctAnswer.find(function(element) {
-      if (element == selected) {
-        Meteor.call("scores.plusScore");
-        Meteor.call("users.plusAllScore");
-        Meteor.call("users.plusComputerScore");
-        props.addScore(element);
-        props.setCurrent(current + 1);
-        props.isCorrect();
-      } else if (correctAnswer.includes(selected) == false) {
-        Meteor.call("scores.sameScore");
-        props.setCurrent(current + 1);
-        props.isIncorrect();
-      }
-    });
+    if (
+      props.questionAnswer &&
+      props.questionAnswer.correct.includes(selected) == true
+    ) {
+      Meteor.call("scores.plusScore");
+      Meteor.call("users.plusAllScore");
+      Meteor.call("users.plusComputerScore");
+      props.addScore(element);
+      props.setCurrent(current + 1);
+      props.isCorrect();
+    } else if (
+      props.questionAnswer &&
+      props.questionAnswer.correct.includes(selected) == false
+    ) {
+      Meteor.call("scores.sameScore");
+      props.setCurrent(current + 1);
+      props.isIncorrect();
+    }
   };
 
   let decodeEntities = encodedString => {
