@@ -15,18 +15,18 @@ Meteor.methods({
   "showresult.insertBoolean"() {
     ShowResult.insert({ showResult: false });
   },
-  "showresult.insertUnboolean"(boolean) {
+  "showresult.insertUnboolean"(word) {
     ShowResult.update(
-      { showResult: boolean },
-      { $set: { showResult: !boolean } }
-    );
-  },
-  "showresult.setTrue"(boolean) {
-    ShowResult.update(
-      { showResult: boolean },
-      { $set: { showResult: !boolean } }
+      { showResultPage: word },
+      { $set: { showResultPage: !word } }
     );
   }
+  // "showresult.setTrue"(boolean) {
+  //   ShowResult.update(
+  //     { showResult: boolean },
+  //     { $set: { showResult: !boolean } }
+  //   );
+  // }
   // "showresult.dropData"() {
   //   ShowResult.remove({});
   // }
