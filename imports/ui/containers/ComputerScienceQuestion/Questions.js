@@ -77,6 +77,10 @@ const Question = props => {
       props.setCurrent(current + 1);
       props.isIncorrect();
       // alert("its false");
+    } else {
+      Meteor.call("scores.sameScore");
+      props.setCurrent(current + 1);
+      props.isIncorrect();
     }
   };
 
