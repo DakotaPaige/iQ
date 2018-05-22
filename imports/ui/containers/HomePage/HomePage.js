@@ -4,6 +4,7 @@ import TextLoop from "react-text-loop";
 import { withTracker } from "meteor/react-meteor-data";
 import { Questions } from "../../../api/questions";
 import { BrowserRouter, Link, withRouter } from "react-router-dom";
+import history from "../../../history";
 
 const HomePage = props => {
   console.log(window.location);
@@ -17,8 +18,10 @@ const HomePage = props => {
         ? props.currentUser &&
           props.currentUser.profile.hasOwnProperty("superuser")
           ? null
-          : (window.location.pathname = `${props.questionAnswer &&
-              props.questionAnswer.path}`)
+          : props.history &&
+            props.history.push(
+              `/${props.questionAnswer && props.questionAnswer.path}`
+            )
         : null}
       <h1 className="textloop">
         <TextLoop>
