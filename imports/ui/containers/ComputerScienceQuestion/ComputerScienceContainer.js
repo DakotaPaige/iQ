@@ -39,12 +39,13 @@ class ComputerScienceContainer extends Component {
     fetch(questionLink)
       .then(allQuestions => allQuestions.json())
       .then(allQuestions => this.setState({ allQuestions }))
+      .then(() =>
+        this.state.allQuestions.results.map(question =>
+          Meteor.call("allquestions.addAllQuestions", question)
+        )
+      )
       .then(() => this.setState({ isLoading: false }))
       .catch(error => console.log(error));
-
-    this.state.allQuestions.map(question => {
-      Meteor.call("allquestions.addAllQuestions", question);
-    });
   }
 
   addQuestions(questions) {
